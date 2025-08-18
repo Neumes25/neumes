@@ -184,13 +184,16 @@ body{
    flex-direction: row;
 }
 
+.main{
+   display: flex;
+}
 
 .notesButtons{
-   position: absolute;
+   position: relative;
    width: 370px;
    height: fit-content;
-   left: calc( var(--A4-page-width) + 2*var(--A4-page-side-margin));
-   top: calc( var(--A4-page-top-margin) +var(--headerheight)/2);
+   left: 80px;
+   top: 40px;
 }
 
 .textDasboard{
