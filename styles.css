@@ -1,0 +1,349 @@
+@font-face {
+    font-family: 'Irmologion';
+    src: url(fonts/IrmUcs.ttf) format('trueType');
+   }
+
+@font-face {
+    font-family: 'Ftora';
+    src: url(fonts/EZ\ Fthora.ttf) format('trueType');
+   }  
+
+@font-face {
+      font-family: 'Oxeia';
+      src: url(fonts/Zoki\ EZ\ Oxeia.ttf) format('trueType');
+     }
+  
+@font-face {
+      font-family: 'Psaltica';
+      src: url(fonts/Zoki\ EZ\ Psaltica.ttf) format('trueType');
+     }  
+
+@font-face {
+      font-family: 'Special';
+      src: url(fonts/Zoki\ EZ\ Special.ttf) format('trueType');
+     }
+  
+@font-face {
+      font-family: 'Special2';
+      src: url(fonts/Zoki\ EZ\ Special-II.ttf) format('trueType');
+     }  
+
+@font-face {
+      font-family: 'PageNumber';
+      src: url(fonts/bell-mt-italic.ttf) format('trueType');
+     }      
+  
+
+:root{
+   --red-color: #ed0000;
+   --A4-page-height: 297mm;
+   --A4-page-width: 210mm;
+   --A4-page-side-margin: 19mm;
+   --A4-page-top-margin: 25mm;
+   --A4-pageContent-width: calc(var(--A4-page-width) - 2*var(--A4-page-side-margin));
+   --A4-pageContent-height: calc(var(--A4-page-height) - 2*var(--A4-page-top-margin));
+   --headerheight: 2cm;
+   --line-spacing: 70pt;
+   --ftora-offset: 20pt;
+
+}
+
+.text{
+      text-align: center;
+      height: fit-content;
+      position: relative;
+      bottom: 15pt;
+      font-size: 16pt;
+      font-family: 'Irmologion';
+}     
+
+.red{
+   color: var(--red-color);
+}
+
+.note{
+   width: fit-content;
+   font-size: 26pt;
+   height: var(--line-spacing);
+}
+
+.psaltica{
+   font-family: 'Psaltica';
+   margin: 0px 0.5px 0px 0.5px;
+}
+
+.special{
+   font-family: 'Special';
+   margin: 0px 0.5px 0px 0.5px;
+}
+
+.special2{
+   font-family: 'Special2';
+}
+
+.ftora{
+   width: fit-content;
+   font-size: 26pt;
+   font-family: 'Ftora';
+   height:  calc( var(--line-spacing) - var(--ftora-offset));
+   display: inline-block;
+}
+
+.oxeia{
+   font-family: 'Oxeia';
+   margin: 0px 0.5px 0px 0.5px;
+}
+
+body{
+   background-color: #F0F0F0;
+   width: 90vw;
+}
+
+#print{
+   position: relative;
+   top: 40px;
+   left: 40px;
+   width: var(--A4-page-width);
+   border-style: solid;
+   border-width: 1px;
+   border-color: black;   
+}
+
+.paper{ 
+   height: var(--A4-page-height);
+   width: var(--A4-page-width);
+   background-color: #FFFFFF;
+}
+
+#paperContent{
+   position: relative;
+   top: var(--A4-page-top-margin);
+   left: var(--A4-page-side-margin);
+   width: var(--A4-pageContent-width);
+   height: var(--A4-pageContent-height);
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   align-content: flex-start;
+   justify-content: flex-start;
+   
+   }
+
+#title{
+   position: relative;
+   top: 25mm;
+   left: var(--A4-page-side-margin);
+   height: 13mm;
+   width: var(--A4-pageContent-width);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.titleText{
+   width: fit-content;
+   font-family: 'Irmologion';
+   color: var(--red-color);
+   font-size: 26pt;
+   margin: 0 5mm 0 5mm;
+}
+
+#titleTextInput{
+   font-family: 'Irmologion';
+}
+
+#startMartiria{
+   width: fit-content;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   align-content: flex-start;
+   justify-content: space-evenly;
+   margin: 0 5mm 0 5mm;
+}
+
+#startTempo{
+   width: fit-content;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   align-content: flex-start;
+   justify-content: space-evenly;
+   margin: 0 5mm 0 5mm;
+}
+
+
+.buttonsDashboard{
+   position: fixed;
+   width: fit-content;
+   height: var(--headerheight);;
+   position: relative;
+   top: 5px;
+   left: 25px;  
+   display: flex;
+   flex-direction: row;
+}
+
+
+.notesButtons{
+   position: absolute;
+   width: 370px;
+   height: fit-content;
+   left: calc( var(--A4-page-width) + 2*var(--A4-page-side-margin));
+   top: calc( var(--A4-page-top-margin) +var(--headerheight)/2);
+}
+
+.textDasboard{
+   position: absolute;
+   width: 200px;
+   height: 70px;
+   top: 200mm;
+}
+
+#textInput{
+   font-family: 'Irmologion';
+   display: none;
+   position: relative;
+}
+
+#textInputArea{
+   font-family: 'Irmologion';
+   width: 90mm;
+   height: 60mm;
+}
+
+.ison{
+   position: relative;
+   top: -12px;
+}
+
+.ftora-ga{
+   position: relative; 
+   top: -10px; 
+   right: -8px; 
+   font-family:'Ftora';
+}
+
+
+
+.white{
+height: fit-content;
+width: 20px;
+}
+
+button{
+   height: fit-content;
+
+}
+
+.oneNoteButton{
+   width: 1.4cm;
+   font-size: 18pt;
+}
+
+.twoNoteButton{
+   width: 3cm;
+   font-size: 18pt;
+}
+
+.startMartiriaButton{
+height: 2.1cm;
+width: fit-content;
+
+}
+
+.pageNumberDiv{
+   display: flex;
+   width: min-content;
+}
+
+#pageNumberInput{
+   display: block;
+   visibility: hidden;
+   width: 50px;
+   height: min-content;
+   position: relative;
+   top: 10px;
+
+}
+
+#pageNumber{
+color: var(--red-color);
+width: var(--A4-pageContent-width);
+left: var(--A4-page-side-margin);
+position: relative;
+top: 80px;
+text-align: center;
+font-family: 'PageNumber';
+font-size: 15pt;
+}
+
+
+
+.button-image{
+   background-color: transparent;
+   width: 1cm;
+   height: 1cm;
+   filter: grayscale(80%);
+   opacity: 90%;
+}
+
+
+.button-image:hover{
+   background-color: transparent;
+   filter: grayscale(0%);
+   transform: scale(1.6);
+   opacity: 120%;
+   cursor: pointer;
+}
+
+
+
+
+.no-borber-button{
+   border: none;
+   background-color: transparent;
+   outline: none;
+   width: 60px;
+}
+
+
+.hiddenText{
+   text-align: center;
+   background-color: #280a6a;
+   border-radius: 7px;
+   color: white;
+   width: 100%;
+   height: fit-content;
+   padding: 5%;
+   position: relative;
+   top: 15px;
+   visibility: hidden;
+   font-family: Verdana;
+   font-size: 10pt;
+   font-weight: 600;
+}
+
+
+.button-container:hover .hiddenText{
+   visibility: visible;
+}
+
+
+
+.button-note:hover{
+   font-size: 28pt;
+}
+
+
+#print:focus{
+   border-width: 2px;
+}
+
+
+
+#neumesInportArea{
+   width: 90mm;
+   height: 120mm;
+
+}

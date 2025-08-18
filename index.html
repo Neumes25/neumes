@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts/main.js" defer></script>
+    <title>Neumes</title>
+    <link rel="icon" type="images/x-icon" href="images/favicon_io/apple-touch-icon.png">
+</head>
+
+<body>
+
+  <header class="buttonsDashboard">
+    <div class="button-container"> <button onclick="init()" class="no-borber-button"> <img src="images/new.png" class="button-image"> </button>  <div class="hiddenText" style="transform: translateX(-20%);">New Page</div> </div>
+    <div class="button-container"> <button onclick="savePDF()" class="no-borber-button"><img src="images/save.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">Save as PDF</div> </div>
+    <div class="button-container"> <button onclick="exportNotes()" class="no-borber-button"><img src="images/export.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">Export Notes</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('importNeumes')" class="no-borber-button"><img src="images/import.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">Import Notes</div> </div>
+    <div class="button-container"> <button name="Backspace" onclick="deleteNote()" class='no-borber-button'><img src="images/delete.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-15%);">Delete Note</div> </div>
+    <div class="button-container"> <button onclick="justify()" class='no-borber-button'><img src="images/justify.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Justify</div> </div>
+    <div class="button-container"> <button name=" " onclick="newSpace()" class="no-borber-button"><img src="images/space.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">WhiteSpace</div> </div> 
+    <div class="button-container"> <button onclick="activeteNoteButtons('BasicNotesButtons')" class="no-borber-button"><img src="images/Notes11.PNG" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Notes</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('TemporalNotesButtons')" class="no-borber-button"> <img src="images/temporal.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Time</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('martiriasButtons')" class="no-borber-button"> <img src="images/martirias.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Martirias</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('FtoraButtons')" class="no-borber-button"><img src="images/ftora.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-5%);">Ftoras</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('IsonButtons')" class="no-borber-button"><img src="images/ison.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Isons and  Extras</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('OxeiaButtons')" class="no-borber-button"><img src="images/oxeia.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-20%);">Oxeia Notes</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('textInput')" class="no-borber-button" ><img src="images/textInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Add Text</div> </div>
+    <div class="button-container"> <button  onclick="activeteNoteButtons('titleInput')" class="no-borber-button" ><img src="images/titleInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-3%);">Add Title</div> </div>
+   
+    <div class="button-container pageNumberDiv"> <button onclick="activetePageNumbers()"class='no-borber-button'><img src="images/pageNumber.png" class="button-image"></button> 
+    <input type="number" onchange="updatePageNumber(value)" id="pageNumberInput"/> <div class="hiddenText" style="transform: translate(-155%, 65%);">Add Page Number</div></div>
+    
+    <div class="button-container"> <button onclick="document.location='help.html'" class="no-borber-button"><img src="images/help.svg" class="button-image" href="help.html"></button> <div class="hiddenText" style="transform: translateX(-15%);">Help</div> </div>
+    <div class="button-container"> <button name="Escape" onclick="activeteNoteButtons('None')" class="no-borber-button"><img src="images/close.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-15%);">Close Menu</div> </div>
+
+   </header>
+
+
+    <div id="print" tabindex="0">
+     <div class="paper" id="paper"> 
+        <div id="title">
+          <div class="titleText" id="titleText"></div>
+          <div id="startMartiria"></div>
+          <div id="startTempo"></div>
+        </div>
+
+        <div id="paperContent"></div>
+
+        <div id="pageNumber"></div>
+      </div>
+    </div>
+
+
+    <aside class="notesButtons">
+       
+   
+       <div class="BasicNotesButtons Button-menu">
+        <button name="0" onclick="addNoteWithText('0', 'psaltica')" class="oneNoteButton psaltica">0</button>
+        <button name="p" onclick="addNoteWithText('p', 'psaltica')" class="oneNoteButton psaltica">p</button>
+        <button name="1" onclick="addNoteWithText('1', 'psaltica')" class="oneNoteButton psaltica">1</button>
+        <button name="2" onclick="addNoteWithText('2', 'psaltica')" class="oneNoteButton psaltica">2</button>
+        <button name="3" onclick="addNoteWithText('3', 'psaltica')" class="oneNoteButton psaltica">3</button>
+        <button name="4" onclick="addNoteWithText('4', 'psaltica')" class="oneNoteButton psaltica">4</button>
+        <button name="5" onclick="addNoteWithText('5', 'psaltica')" class="oneNoteButton psaltica">5</button>
+        <button name="6" onclick="addNoteWithText('6', 'psaltica')" class="oneNoteButton psaltica">6</button>
+        <button name="7" onclick="addNoteWithText('7', 'psaltica')" class="oneNoteButton psaltica">7</button>
+        <button name="8" onclick="addNoteWithText('8', 'psaltica')" class="oneNoteButton psaltica">8</button>
+        <button name="9" onclick="addNoteWithText('9', 'psaltica')" class="oneNoteButton psaltica">9</button>
+        <button name="`" onclick="addNoteWithText('`', 'psaltica')" class="oneNoteButton psaltica">`</button>
+        <button name="~" onclick="addNoteNoText('~', 'psaltica')"   class="oneNoteButton psaltica">~</button>
+        <button name="=" onclick="addNoteWithText('=', 'psaltica')" class="oneNoteButton psaltica">=</button>
+        <button name="q" onclick="addNoteWithText('q', 'psaltica')" class="oneNoteButton psaltica">q</button>
+        <button name="w" onclick="addNoteWithText('w', 'psaltica')" class="oneNoteButton psaltica">w</button>
+        <button name="e" onclick="addNoteWithText('e', 'psaltica')" class="oneNoteButton psaltica">e</button>
+        <button name="r" onclick="addNoteWithText('r', 'psaltica')" class="oneNoteButton psaltica">r</button>
+        <button name="t" onclick="addNoteWithText('t', 'psaltica')" class="oneNoteButton psaltica">t</button>
+        <button name="y" onclick="addNoteWithText('y', 'psaltica')" class="oneNoteButton psaltica">y</button>
+        <button name="u" onclick="addNoteWithText('u', 'psaltica')" class="oneNoteButton psaltica">u</button>
+        <button name="i" onclick="addNoteWithText('i', 'psaltica')" class="oneNoteButton psaltica">i</button>
+        <button name="!" onclick="addNoteWithText('!', 'psaltica')" class="oneNoteButton psaltica">!</button>
+        <button name="@" onclick="addNoteWithText('@', 'psaltica')" class="oneNoteButton psaltica">@</button>
+        <button name="_" onclick="addNoteWithText('_', 'psaltica')" class="oneNoteButton psaltica">_</button>
+        <button name="-" onclick="addNoteWithText('-', 'psaltica')" class="oneNoteButton psaltica">-</button> 
+        <button name=")" onclick="addNoteWithText(')', 'psaltica')" class="oneNoteButton psaltica">)</button>   <!--Ne e problem crvenata zagrada-->
+        <button name="#" onclick="addNoteWithText('#', 'psaltica')" class="oneNoteButton psaltica">#</button>
+        <button name="$" onclick="addNoteWithText('$', 'psaltica')" class="oneNoteButton psaltica">$</button>
+        <button name="%" onclick="addNoteWithText('%', 'psaltica')" class="oneNoteButton psaltica">%</button>
+        <button name="^" onclick="addNoteWithText('^', 'psaltica')" class="oneNoteButton psaltica">^</button>
+        <button name="&" onclick="addNoteWithText('&', 'psaltica')" class="oneNoteButton psaltica">&</button>
+        <button name="*" onclick="addNoteWithText('*', 'psaltica')" class="oneNoteButton psaltica">*</button>
+        <button name="(" onclick="addNoteWithText('(', 'psaltica')" class="oneNoteButton psaltica">(</button>
+        <button name="Q" onclick="addNoteWithText('Q', 'psaltica')" class="oneNoteButton psaltica">Q</button>
+        <button name="W" onclick="addNoteWithText('W', 'psaltica')" class="oneNoteButton psaltica">W</button>
+        <button name="E" onclick="addNoteWithText('E', 'psaltica')" class="oneNoteButton psaltica">E</button>
+        <button name="o" onclick="addNoteWithText('o', 'psaltica')" class="oneNoteButton psaltica">o</button>
+        <button name="O" onclick="addNoteWithText('O', 'psaltica')" class="oneNoteButton psaltica">O</button>
+        <button name="l" onclick="addNoteWithText('l', 'psaltica')" class="oneNoteButton psaltica">l</button>
+        <button name="L" onclick="addNoteWithText('L', 'psaltica')" class="oneNoteButton psaltica">L</button>
+        <button name="P" onclick="addNoteWithText('P', 'psaltica')" class="oneNoteButton psaltica">P</button>
+        <button name="I" onclick="addNoteWithText('I', 'psaltica')" class="oneNoteButton psaltica">I</button>
+        <button name="U" onclick="addNoteWithText('U', 'psaltica')" class="oneNoteButton psaltica">U</button>
+        <button name="Y" onclick="addNoteWithText('Y', 'psaltica')" class="oneNoteButton psaltica">Y</button>
+        <button name="T" onclick="addNoteWithText('T', 'psaltica')" class="oneNoteButton psaltica">T</button>
+        <button name="R" onclick="addNoteWithText('R', 'psaltica')" class="oneNoteButton psaltica">R</button>
+        <button name="+" onclick="addNoteNoText('+', 'psaltica')"   class="oneNoteButton psaltica">+</button>
+        <button name="\" onclick="addNoteNoText('\\', 'psaltica')"  class="oneNoteButton psaltica">\</button>
+        <button name="|" onclick="addNoteNoText('|', 'psaltica')"   class="oneNoteButton psaltica">|</button>
+        <button onclick="addNoteNoText(`|<span class='special'>j</span>`, 'psaltica')" class="oneNoteButton psaltica">|<span class="special">j</span></button>
+
+          <br><br>
+
+        <button onclick="addNoteWithText('0','special')" class="oneNoteButton special">0</button>
+        <button onclick="addNoteWithText('1','special')" class="oneNoteButton special">1</button>
+        <button onclick="addNoteWithText('2','special')" class="oneNoteButton special">2</button>
+        <button onclick="addNoteWithText('3','special')" class="oneNoteButton special">3</button>
+        <button onclick="addNoteWithText('4','special')" class="oneNoteButton special">4</button>
+        <button onclick="addNoteWithText('(','special')" class="oneNoteButton special">(</button>
+        <button onclick="addNoteWithText('p','special')" class="oneNoteButton special">p</button>
+        <button onclick="addNoteWithText('q','special')" class="oneNoteButton special">q</button>
+        <button onclick="addNoteWithText('w','special')" class="oneNoteButton special">w</button>
+        <button onclick="addNoteWithText('e','special')" class="oneNoteButton special">e</button>
+        <button onclick="addNoteWithText('r','special')" class="oneNoteButton special">r</button>    
+        <button onclick="addNoteWithText('u','special')" class="oneNoteButton special">u</button>
+        <button onclick="addNoteWithText('i','special')" class="oneNoteButton special">i</button>
+        <button onclick="addNoteWithText('o','special')" class="oneNoteButton special">o</button>
+        <button onclick="addNoteWithText('=','special')" class="oneNoteButton special">=</button>
+        <button onclick="addNoteWithText(')','special')" class="oneNoteButton special">)</button>
+        <button onclick="addNoteWithText('!','special')" class="oneNoteButton special">!</button>
+        <button onclick="addNoteWithText('@','special')" class="oneNoteButton special">@</button>
+        <button onclick="addNoteWithText('Q','special')" class="oneNoteButton special">Q</button>
+        <button onclick="addNoteWithText('W','special')" class="oneNoteButton special">W</button>
+        <button onclick="addNoteWithText('E','special')" class="oneNoteButton special">E</button>
+        <button onclick="addNoteWithText('R','special')" class="oneNoteButton special">R</button>
+        <button onclick="addNoteWithText('%','special')" class="oneNoteButton special">%</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">^</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">t</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">5</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">6</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">7</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">8</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">9</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">I</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">T</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">Y</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">U</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">\</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">]</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">}</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">-</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">_</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">[</button>
+        <button onclick="addNoteWithText('^','special')" class="oneNoteButton special">{</button>
+        <button onclick="addNoteWithText('y','special')" class="twoNoteButton special">y</button>
+       
+
+
+        <button onclick="addNoteWithText('-','special2')" class="oneNoteButton special2">-</button>
+        <button onclick="addNoteWithText('9','special2')" class="oneNoteButton special2">9</button>
+        <button onclick="addNoteWithText('0','special2')" class="oneNoteButton special2">0</button>
+        <button onclick="addNoteWithText(')','special2')" class="oneNoteButton special2">)</button>
+        <button onclick="addNoteWithText('_','special2')" class="oneNoteButton special2">_</button>  
+        <button onclick="addNoteWithText(']','special2')" class="oneNoteButton special2">]</button>  
+        <button onclick="addNoteWithText('O','special')" class="oneNoteButton special">O</button>
+        <button onclick="addNoteWithText('P','special')" class="oneNoteButton special">P</button>
+            
+       </div>
+
+       <div class="TemporalNotesButtons Button-menu">
+        <button name="s" onclick="addTemporalNote('<span class=red>s</span>', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>s</button>
+        <button name="S" onclick="addTemporalNote(`<span style='position: relative; top: 3px;' class=red>S</span>`, 'psaltica')" class="oneNoteButton psaltica"><span class="red">!</span><span style="position: relative; top: 3px;">S</span></button>
+        <button name="ss" onclick="addTemporalNote(`<span style='position: relative; top: -2px; left: -2px;' class=red>S</span>`, 'psaltica')" class="oneNoteButton psaltica"><span class="red">U</span><span style="position: relative; top: -2px; left: -1px;">S</span></button>
+        <button name="x" onclick="addTemporalNote('<span class=red>x</span>', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>x</button>
+        <button name="X" onclick="addTemporalNote('<span class=red>X</span>', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>X</button>
+
+
+        <button onclick="addTemporalNote('<span class=red>h</span>', 'special')" class="psaltica"><span class="oneNoteButton red">0</span>h</button>
+        <button onclick="addTemporalNote(`<span style='position: relative; top: -2px; left: -2px;'class=red>H</span>`, 'special')" class="oneNoteButton psaltica"><span class="red">U</span><span style="position: relative; top: -2px; left: -1px;;">H</span></button>
+        
+        <button onclick="addTemporalNote('<span class=red>d</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">0</span>d</button>
+        <button onclick="addTemporalNote('<span class=red>D</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">U</span>D</button>
+
+        <button onclick="addTemporalNote('<span class=red>k</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">0</span>k</button>
+        <button onclick="addTemporalNote('<span class=red>K</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">U</span>K</button>
+        <button onclick="addTemporalNote('<span class=red>C</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">U</span>C</button>
+
+        <button onclick="addTemporalNote('<span class=red>f</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">0</span>f</button>
+        <button onclick="addTemporalNote('<span class=red>F</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">U</span>F</button>
+        <button onclick="addTemporalNote('<span class=red>b</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">0</span>b</button>
+        <button onclick="addTemporalNote('<span class=red>B</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">U</span>B</button>
+        <button onclick="addTemporalNote('<span class=red>v</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">0</span>v</button>
+        <button onclick="addTemporalNote('<span class=red>V</span>', 'special')" class="oneNoteButton special"><span class="psaltica red">U</span>V</button>
+
+
+        <button name="g" onclick="addTemporalNote('<span class=red>g</span>', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>g</button>
+        <button name="G" onclick="addTemporalNote('<span class=red>G</span>', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>G</button>
+        <button onclick="addTemporalNote('<span class=red>J</span>', 'special')" class="oneNoteButton special"><span class="red psaltica">0</span>J</button>
+
+        <button name="a" onclick="addTemporalNote('a', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>a</button>
+        <button name="A" onclick="addTemporalNote('A', 'psaltica')" class="oneNoteButton psaltica"><span class="red">!</span>A</button>
+        <button name="z" onclick="addTemporalNote('z', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>z</button>
+        <button name="Z" onclick="addTemporalNote('Z', 'psaltica')" class="oneNoteButton psaltica"><span class="red">1</span>Z</button>
+
+
+        <button name=";" onclick="addTemporalNote(';', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>;</button>
+        <button name=":" onclick="addTemporalNote(':', 'psaltica')" class="oneNoteButton psaltica"><span class="red">!</span>:</button>
+        <button name="k" onclick="addTemporalNote('k', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>k</button>
+        <button name="K" onclick="addTemporalNote('K', 'psaltica')" class="oneNoteButton psaltica"><span class="red">!</span>K</button>
+
+        <button onclick="addTemporalNote('k', 'psaltica')" class="oneNoteButton special"><span class="psaltica red">0</span>;</button>
+        <button onclick="addTemporalNote('K', 'psaltica')" class="oneNoteButton special"><span class="psaltica red">!</span>:</button>
+
+        <button name="'" onclick="addTemporalNote(`'`, 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>'</button>
+        <button name='"' onclick='addTemporalNote(`"`, "psaltica")' class="oneNoteButton psaltica"><span class="red">0</span>"</button>
+        <button name="}" onclick="addTemporalNote('}', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>}</button>
+        <button name="{" onclick="addTemporalNote('{', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>{</button>
+
+        <button name="d" onclick="addTemporalNote(`<span class=red>d</span>`, 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>d</button>
+        <button name="D" onclick='addTemporalNote(`<span class=red>D</span>`, "psaltica")' class="oneNoteButton psaltica"><span class="red">U</span>D</button>
+        <button name="f" onclick="addTemporalNote('<span class=red>f</span>', 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span>f</button>
+        <button name="F" onclick="addTemporalNote('<span class=red>F</span>', 'psaltica')" class="oneNoteButton psaltica"><span class="red">U</span>F</button>    
+
+        <button onclick="addIson(':', 'special2')" class="twoNoteButton psaltica"><span class="red">00</span><span class="special2">:</span></button>
+        <button onclick='addIson(`"`, "special2")' class="twoNoteButton psaltica"><span class="red">00</span><span class="special2">"</span></button>
+        <button onclick="addIson(';', 'special2')" class="twoNoteButton psaltica"><span class="red">00</span><span class="special2">;</span></button>
+        <button onclick="addIson(`'`, 'special2')" class="twoNoteButton psaltica"><span class="red">00</span><span class="special2">'</span></button>
+        <button onclick="addIson('}', 'special2')" class="twoNoteButton psaltica"><span class="red">00</span><span class="special2">}</span></button>
+        <button onclick='addIson(`\\`, "special2")' class="twoNoteButton psaltica"><span class="red">00</span><span class="special2">\</span></button>
+        <button onclick='addIson(`z`, "special2")' class="oneNoteButton psaltica"><span class="red">0</span><span class="special2">z</span></button>
+
+        <button onclick="addIson(`'`, 'psaltica')" class="oneNoteButton psaltica"><span class="red">0</span><span class="psaltica">'</span></button>
+        <button onclick='addIson(`"`, "psaltica")' class="oneNoteButton psaltica"><span class="red">0</span><span class="psaltica">"</span></button>
+        <button onclick='addIson(`}`, "psaltica")' class="oneNoteButton psaltica"><span class="red">0</span><span class="psaltica">}</span></button>
+        <button onclick='addIson(`{`, "psaltica")' class="oneNoteButton psaltica"><span class="red">0</span><span class="psaltica">{</span></button>
+        <button onclick='addIson(`[`, "psaltica")' class="twoNoteButton  psaltica"><span class="red">00</span><span class="psaltica">[</span></button>
+        <button onclick='addIson(`]`, "psaltica")' class="oneNoteButton psaltica"><span class="red">0</span><span class="psaltica">]</span></button>
+
+
+        <button onclick="addTemporalNote('l', 'special')" class="oneNoteButton special"><span class="red psaltica">0</span>l</button>
+        <button onclick="addTemporalNote('L', 'special')" class="oneNoteButton special"><span class="red psaltica">P</span>L</button>
+        <button onclick="addTemporalNote(`'`, 'special')" class="oneNoteButton special"><span class="red psaltica">0</span>'</button>
+        <button onclick='addTemporalNote(`"`, "special")' class="oneNoteButton special"><span class="red psaltica">0</span>"</button>
+
+       </div>
+
+       <div class="OxeiaButtons Button-menu">
+        <button onclick="addNoteWithText('I','oxeia')" class="oneNoteButton oxeia">I</button>
+        <button onclick="addNoteWithText('~','oxeia')" class="oneNoteButton oxeia">~</button>
+        <button onclick="addNoteWithText('1','oxeia')" class="oneNoteButton oxeia">1</button>
+        <button onclick="addNoteWithText('2','oxeia')" class="oneNoteButton oxeia">2</button>
+        <button onclick="addNoteWithText('3','oxeia')" class="oneNoteButton oxeia">3</button>
+        <button onclick="addNoteWithText('4','oxeia')" class="oneNoteButton oxeia">4</button>
+        <button onclick="addNoteWithText('5','oxeia')" class="oneNoteButton oxeia">5</button>
+        <button onclick="addNoteWithText('6','oxeia')" class="oneNoteButton oxeia">6</button>
+        <button onclick="addNoteWithText('7','oxeia')" class="oneNoteButton oxeia">7</button>
+        <button onclick="addNoteWithText('8','oxeia')" class="oneNoteButton oxeia">8</button>
+        <button onclick="addNoteWithText('9','oxeia')" class="oneNoteButton oxeia">9</button>
+        <button onclick="addNoteWithText('Q','oxeia')" class="oneNoteButton oxeia">Q</button>
+        <button onclick="addNoteWithText('W','oxeia')" class="oneNoteButton oxeia">W</button>
+        <button onclick="addNoteWithText('E','oxeia')" class="oneNoteButton oxeia">E</button>
+
+        <button onclick="addNoteWithText('!','oxeia')" class="oneNoteButton oxeia">!</button>
+        <button onclick="addNoteWithText('`','oxeia')" class="oneNoteButton oxeia">`</button>
+        <button onclick="addNoteWithText('-','oxeia')" class="oneNoteButton oxeia">-</button>
+        <button onclick="addNoteWithText('@','oxeia')" class="oneNoteButton oxeia">@</button>
+        <button onclick="addNoteWithText('#','oxeia')" class="oneNoteButton oxeia">#</button>
+        <button onclick="addNoteWithText('$','oxeia')" class="oneNoteButton oxeia">$</button>
+ 
+        <button onclick="addNoteWithText('P','oxeia')" class="oneNoteButton oxeia">P</button>
+        <button onclick="addNoteWithText('o','oxeia')" class="oneNoteButton oxeia">o</button>
+        <button onclick="addNoteWithText('O','oxeia')" class="oneNoteButton oxeia">O</button>
+        <button onclick="addNoteWithText('l','oxeia')" class="oneNoteButton oxeia">l</button>
+        <button onclick="addNoteWithText('L','oxeia')" class="oneNoteButton oxeia">L</button>
+        <button onclick="addNoteWithText('=','oxeia')" class="oneNoteButton oxeia">=</button>
+        <button onclick="addNoteWithText('%','oxeia')" class="oneNoteButton oxeia">%</button>
+        <button onclick="addNoteWithText('^','oxeia')"  class="oneNoteButton oxeia">^</button>
+
+        <button onclick="addNoteWithText('U','oxeia')" class="oneNoteButton oxeia">U</button>
+        <button onclick="addNoteWithText('Y','oxeia')" class="oneNoteButton oxeia">Y</button>
+        <button onclick="addNoteWithText('T','oxeia')" class="oneNoteButton oxeia">T</button>
+        <button onclick="addNoteWithText('R','oxeia')" class="oneNoteButton oxeia">R</button>
+        <button onclick="addNoteWithText('&','oxeia')" class="oneNoteButton oxeia">&</button>
+        <button onclick="addNoteWithText('*','oxeia')" class="oneNoteButton oxeia">*</button>
+        <button onclick="addNoteWithText('(','oxeia')" class="oneNoteButton oxeia">(</button>
+        <button onclick="addNoteWithText('j','oxeia')" class="oneNoteButton oxeia">j</button>
+        <button onclick="addNoteWithText('J','oxeia')" class="oneNoteButton oxeia">J</button>
+        <button onclick="addNoteWithText('_','oxeia')" class="oneNoteButton oxeia">_</button>
+        <button onclick="addNoteWithText('\\','oxeia')" class="oneNoteButton oxeia">\</button>
+
+        <button onclick="addTemporalNote('<span class=red>s</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>s</button>
+        <button onclick="addTemporalNote('<span class=red>S</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">U</span>S</button>
+        <button onclick="addTemporalNote('<span class=red>x</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>x</button>
+        <button onclick="addTemporalNote('<span class=red>X</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>X</button>
+        <button onclick="addTemporalNote('<span class=red>w</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>w</button>
+        <button onclick="addTemporalNote('<span class=red>h</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>h</button>
+        <button onclick="addTemporalNote('<span class=red>H</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">U</span>H</button>
+        <button onclick="addTemporalNote('<span class=red>d</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>d</button>
+        <button onclick="addTemporalNote('<span class=red>D</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">U</span>D</button>
+        <button onclick="addTemporalNote('<span class=red>f</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>f</button>
+        <button onclick="addTemporalNote('<span class=red>F</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">U</span>F</button>
+        <button onclick="addTemporalNote('<span class=red>g</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>g</button>
+        <button onclick="addTemporalNote('<span class=red>G</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>G</button>
+        <button onclick="addTemporalNote('<span class=red>;</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>;</button>
+        <button onclick="addTemporalNote('<span class=red>:</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>:</button>
+        <button onclick="addTemporalNote('<span class=red>k</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>k</button>
+        <button onclick="addTemporalNote('<span class=red>K</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>K</button>
+
+
+        <button onclick="addTemporalNote('<span class=red>c</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>c</button>
+        <button onclick='addTemporalNote(`<span class=red>"</span>`, `oxeia`)' class="oneNoteButton oxeia"><span class="red">1</span>"</button>
+        <button onclick="addTemporalNote('<span class=red>{</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>{</button>
+        <button onclick="addTemporalNote(`<span class=red>'</span>`, 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>'</button>
+        <button onclick="addTemporalNote('<span class=red>[</span>', 'oxeia')" class="twoNoteButton oxeia"><span class="psaltica red">00</span>[</button>
+        <button onclick="addTemporalNote('<span class=red>]/</span>', 'oxeia')" class="twoNoteButton oxeia"><span class="psaltica red">1aP</span>]/</button>
+
+
+        <button onclick="addTemporalNote('<span class=red>p</span>', 'oxeia')" class="oneNoteButton oxeia">p</button>
+        <button onclick="addTemporalNote('<span class=red>+</span>', 'oxeia')" class="twoNoteButton  oxeia"><span class="red">1</span>+</button>
+        <button onclick="addTemporalNote('<span class=red>)</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>)</button>
+        <button onclick="addTemporalNote('<span class=red>0</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>0</button>
+
+        <button onclick="addTemporalNote('<span class=red>q</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>q</button>
+        <button onclick="addTemporalNote('<span class=red>a</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>a</button>
+        <button onclick="addTemporalNote('<span class=red>A</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>A</button>
+        <button onclick="addTemporalNote('<span class=red>z</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>z</button>
+        <button onclick="addTemporalNote('<span class=red>Z</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>Z</button>
+
+        <button onclick="addTemporalNote('<span class=red>v</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>v</button>
+        <button onclick="addTemporalNote('<span class=red>b</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>b</button>
+        <button onclick="addTemporalNote('<span class=red>,</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="psaltica red">1'</span>,</button>
+        <button onclick="addTemporalNote('<span class=red>|</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="psaltica red">!</span>|</button>
+        <button onclick="addTemporalNote('<span class=red>}</span>', 'oxeia')" class="twoNoteButton oneNoteButton oxeia"><span class="psaltica red">00</span>}</button>
+        <button onclick="addTemporalNote('<span class=red>?</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>?</button>
+        <button onclick="addTemporalNote('<span class=red>.</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="psaltica red">0</span>.</button>
+        <button onclick="addTemporalNote('<span class=red>e</span>', 'oxeia')" class="twoNoteButton  oxeia"><span class="psaltica red">!</span>e<span class="psaltica red">0</span></button>
+
+
+
+
+
+       </div>
+
+        <div class="martiriasButtons Button-menu">
+        <br>
+        Diatonic Scale: <br>
+        <button onclick="addMartiria('mM','special')" class="oneNoteButton special">mM</button>
+        <button onclick="addMartiria(',<','special')" class="oneNoteButton special">,< </button>
+        <button onclick="addMartiria('.>','psaltica')" class="oneNoteButton psaltica">.></button>
+        <button onclick="addMartiria('cC','psaltica')" class="oneNoteButton psaltica">cC</button>
+        <button onclick="addMartiria('vV','psaltica')" class="oneNoteButton psaltica">vV</button>
+        <button onclick="addMartiria('bB','psaltica')" class="oneNoteButton psaltica">bB</button>
+        <button onclick="addMartiria('n N ','psaltica')" class="oneNoteButton psaltica">nN</button>
+        <button onclick="addMartiria('mC  <','psaltica')" class="oneNoteButton psaltica">mC< </button>
+        <button onclick="addMartiria(',V <','psaltica')" class="oneNoteButton psaltica">,V< </button>
+        <button onclick="addMartiria('.B/ ','psaltica')" class="oneNoteButton psaltica">.B/</button>
+        <button onclick="addMartiria('c/N ','psaltica')" class="oneNoteButton psaltica">c/N</button>
+        <button onclick="addMartiria('vV/','psaltica')" class="oneNoteButton psaltica">vV/</button>
+        <button onclick="addMartiria('bB/','psaltica')" class="oneNoteButton psaltica">bB/</button>
+        <button onclick="addMartiria('n/ N','psaltica')" class="oneNoteButton psaltica">n/N</button>
+        <button onclick="addMartiria('mC  </','psaltica')" class="oneNoteButton psaltica">mC< / </button>
+
+<br> <br>
+        Enharmonic Scale: <br>
+        <button onclick="addMartiria('mM','special')" class="oneNoteButton special">mM</button>
+        <button onclick="addMartiria(',<','special')" class="oneNoteButton special">,<</button>
+        <button onclick="addMartiria('.N','psaltica')" class="oneNoteButton psaltica">.N</button>
+        <button onclick="addMartiria('cC','psaltica')" class="oneNoteButton psaltica">cC</button>
+        <button onclick="addMartiria('vV','psaltica')" class="oneNoteButton psaltica">vV</button>
+        <button onclick="addMartiria('bN','psaltica')" class="oneNoteButton psaltica">bN</button>
+        <button onclick="addMartiria('n N ','psaltica')" class="oneNoteButton psaltica">nN</button>
+        <button onclick="addMartiria('mC  <','psaltica')" class="oneNoteButton psaltica">mC< </button>
+        <button onclick="addMartiria(',V','psaltica')" class="oneNoteButton psaltica">,V</button>
+        <button onclick="addMartiria('.N / ','psaltica')" class="oneNoteButton psaltica">.N/</button>
+        <button onclick="addMartiria('cC/< ','psaltica')" class="oneNoteButton psaltica">cC/< </button>
+        <button onclick="addMartiria('vV</','psaltica')" class="oneNoteButton psaltica">vV< /</button>
+        <button onclick="addMartiria('b/N','psaltica')" class="oneNoteButton psaltica">b/N</button>
+        <button onclick="addMartiria('n/ N','psaltica')" class="oneNoteButton psaltica">n/N</button>
+        <button onclick="addMartiria('mC  </','psaltica')" class="oneNoteButton psaltica">mC< /</button>
+
+        
+<br> <br>
+        Hard Chromatic Scale: <br>
+        <button onclick="addMartiria('m?','special')" class="oneNoteButton special">m?</button>
+        <button onclick="addMartiria(',/','special')" class="oneNoteButton special">,/</button> 
+        <button onclick="addMartiria(' .?','psaltica')" class="oneNoteButton psaltica">.?</button>
+        <button onclick="addMartiria('cM','psaltica')" class="oneNoteButton psaltica">cM</button>
+        <button onclick="addMartiria('v?','psaltica')" class="oneNoteButton psaltica">v?</button>
+        <button onclick="addMartiria('bM','psaltica')" class="oneNoteButton psaltica">bM</button>
+        <button onclick="addMartiria('n? ','psaltica')" class="oneNoteButton psaltica">n?</button>
+        <button onclick="addMartiria('mM','psaltica')" class="oneNoteButton psaltica">mM</button>
+        <button onclick="addMartiria(',?','psaltica')" class="oneNoteButton psaltica">,?</button>
+        <button onclick="addMartiria('.M /','psaltica')" class="oneNoteButton psaltica">./M</button>
+        <button onclick="addMartiria('c?/','psaltica')" class="oneNoteButton psaltica">c?/</button>
+        <button onclick="addMartiria('vM/','psaltica')" class="oneNoteButton psaltica">vM/</button>
+        <button onclick="addMartiria('b?','psaltica')" class="oneNoteButton psaltica">b/?</button>
+        <button onclick="addMartiria('nM/','psaltica')" class="oneNoteButton psaltica">nM/</button>
+        <button onclick="addMartiria('m?/','psaltica')" class="oneNoteButton psaltica">m?/</button>
+
+
+        <br> <br>
+        Soft Chromatic Scale: <br> 
+        <button onclick="addMartiria(`m<span  class='ftora-ga'>R</span>`,'special')" class="oneNoteButton special">m<span  class='ftora-ga'>R</span></button>  
+        <button onclick="addMartiria(',?','special')" class="oneNoteButton special">,?</button> 
+        <button onclick="addMartiria(` .<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">.<span class='ftora-ga' style="position: relative; top:3px; left: -3px; ">R</span></button>
+        <button onclick="addMartiria('c?<','psaltica')" class="oneNoteButton psaltica">c?<</button>
+        <button onclick="addMartiria(`v<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">v<span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span></button>
+        <button onclick="addMartiria('b?<','psaltica')" class="oneNoteButton psaltica">b?<</button>
+        <button onclick="addMartiria(`n <span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">n <span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span></button>
+        <button onclick="addMartiria('m?<','psaltica')" class="oneNoteButton psaltica">m?<</button>
+        <button onclick="addMartiria(`,<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">,<span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span></button>
+        <button onclick="addMartiria('.?< /','psaltica')" class="oneNoteButton psaltica">.?< /</button>
+        <button onclick="addMartiria(`c/<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">c<span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span>/</button>
+        <button onclick="addMartiria('v?</','psaltica')" class="oneNoteButton psaltica">v?/ </button>
+        <button onclick="addMartiria(`b<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">b<span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span>/</button>
+        <button onclick="addMartiria('n?/<','psaltica')" class="oneNoteButton psaltica">n?/<</button>
+        <button onclick="addMartiria(`m/<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">m/<span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span></button>
+
+        <br> <br>
+
+        Временски: <br>
+        <button onclick="addMartiria('A','special')" class="oneNoteButton special">A</button>
+        <button onclick="addMartiria('a','special')" class="oneNoteButton special">a</button>
+        <button onclick="addMartiria('S','special')" class="oneNoteButton special">S</button>
+        <button onclick="addMartiria('s','special')" class="oneNoteButton special">s</button>
+        <button onclick="addMartiria('z','special')" class="oneNoteButton special">z</button>
+        <button onclick="addMartiria('x','special')" class="oneNoteButton special">x</button>
+        <button onclick="addMartiria('X','special')" class="oneNoteButton special">X</button>
+        <button onclick="addMartiria('Z','special')" class="oneNoteButton special">Z</button>
+
+
+        </div>
+
+    
+        <div class="FtoraButtons Button-menu">
+
+        <button onclick="addFtora('<span class=red>=</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>=</button>
+        <button onclick="addFtora('<span class=red>+</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>+</button>
+
+        <button onclick="addFtora('<span class=red>]</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>]</button>
+        <button onclick="addFtora('<span class=red>}</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>}</button>
+
+        
+        <button onclick="addFtora('<span class=red>;</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>;</button>
+        <button onclick="addFtora(`<span  style='position: relative; right: -8px;' class=red>;</span>`)" class="oneNoteButton ftora"><span class="psaltica red">!</span><span style="position: relative; right: -8px;">;</span></button>
+
+        <button onclick="addFtora('<span class=red>+</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>+</button>
+        <button onclick="addFtora('<span class=red>=</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>=</button>
+        
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>-</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>-</button>
+        <button onclick="addFtora('<span class=red>_</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>_</button>
+        
+        <button onclick="addFtora('<span class=red>[</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>[</button>
+        <button onclick="addFtora('<span class=red>{</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>{</button>
+
+
+        <button onclick="addFtora(`<span class=red>'</span>`)" class="oneNoteButton ftora"><span class="psaltica red">0</span>'</button>
+        <button onclick='addFtora(`<span class=red>"</span>`)' class="oneNoteButton ftora"><span class="psaltica red">!</span>"</button>
+        
+        
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>d</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>d</button>
+        <button onclick="addFtora('<span class=red>D</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>D</button>     
+        <button onclick="addFtora('<span class=red>z</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>z</button>
+        <button onclick="addFtora('<span class=red>Z</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>Z</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>f</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>f</button>
+        <button onclick="addFtora('<span class=red>F</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>F</button>
+        <button onclick="addFtora('<span class=red>a</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>a</button>
+        <button onclick="addFtora('<span class=red>A</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>A</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>g</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>g</button>
+        <button onclick="addFtora('<span class=red>G</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>G</button>
+        <button onclick="addFtora('<span class=red>i</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>l</button>
+        <button onclick="addFtora('<span class=red>I</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>L</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>j</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>j</button>
+        <button onclick="addFtora('<span class=red>J</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>J</button>
+        <button onclick="addFtora('<span class=red>s</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>s</button>
+        <button onclick="addFtora('<span class=red>S</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>S</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>k</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>k</button>
+        <button onclick="addFtora('<span class=red>K</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>K</button>
+        <button onclick="addFtora('<span class=red>j</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>x</button>
+        <button onclick="addFtora('<span class=red>J</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>X</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>7</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>7</button>
+        <button onclick="addFtora('<span class=red>&</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>&</button>
+        <button onclick="addFtora('<span class=red>u</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>u</button>
+        <button onclick="addFtora('<span class=red>U</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>U</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>2</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>2</button>
+        <button onclick="addFtora('<span class=red>@</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>@</button>
+        <button onclick="addFtora('<span class=red>w</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>w</button>
+        <button onclick="addFtora('<span class=red>W</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>W</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>4</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>4</button>
+        <button onclick="addFtora('<span class=red>$</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>$</button>
+        <button onclick="addFtora('<span class=red>r</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>r</button>
+        <button onclick="addFtora('<span class=red>R</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>R</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>1</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>1</button>
+        <button onclick="addFtora('<span class=red>!</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>!</button>
+        <button onclick="addFtora('<span class=red>q</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>q</button>
+        <button onclick="addFtora('<span class=red>Q</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>Q</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>6</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>6</button>
+        <button onclick="addFtora('<span class=red>^</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>^</button>
+        <button onclick="addFtora('<span class=red>y</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>y</button>
+        <button onclick="addFtora('<span class=red>Y</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>Y</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>5</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>5</button>
+        <button onclick="addFtora('<span class=red>%</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>%</button>
+        <button onclick="addFtora('<span class=red>t</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>t</button>
+        <button onclick="addFtora('<span class=red>T</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>T</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>0</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>0</button>
+        <button onclick="addFtora('<span class=red>)</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>)</button>
+        <button onclick="addFtora('<span class=red>p</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>p</button>
+        <button onclick="addFtora('<span class=red>P</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>P</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>3</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>3</button>
+        <button onclick="addFtora('<span class=red>#</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>#</button>
+        <button onclick="addFtora('<span class=red>e</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>e</button>
+        <button onclick="addFtora('<span class=red>E</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>E</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>9</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>9</button>
+        <button onclick="addFtora('<span class=red>(</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>(</button>
+        <button onclick="addFtora('<span class=red>o</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>o</button>
+        <button onclick="addFtora('<span class=red>O</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>O</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora(`<span style='position: relative; right: 10px;' class=red>*</span>`)" class="oneNoteButton ftora"><span class="psaltica red">0</span><span style="position: relative; right: 10px;">*</span></button>  
+        <button onclick="addFtora('<span class=red>*</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>*</button>
+        <button onclick="addFtora('<span class=red>i</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>i</button>
+        <button onclick="addFtora('<span class=red>I</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>I</button>
+ 
+        <br>
+ 
+        <button onclick="addFtora('<span class=red>`</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>`</button>
+        <button onclick="addFtora('<span class=red>~</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>~</button>
+        <button onclick="addFtora('<span class=red>h</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>h</button>
+        <button onclick="addFtora('<span class=red>H</span>')" class="oneNoteButton ftora"><span class="psaltica red">!</span>H</button>
+ 
+  
+        </div>
+
+
+        <div class="IsonButtons Button-menu">
+        <button name="/" onclick="addIson('?')" class="oneNoteButton special2"><span class="red psaltica">0</span>?</button>
+        <button name="?" onclick="addIson('/')" class="oneNoteButton special2"><span class="red psaltica">!</span>/</button>
+        <button name="j" onclick="addIson('~')" class="oneNoteButton special2"><span class="red psaltica">0</span>~</button>
+        <button name="J" onclick="addIson('`')" class="oneNoteButton special2"><span class="red psaltica">!</span>`</button>
+        <button name="h" onclick="addIson('!')" class="oneNoteButton special2"><span class="red psaltica">0</span>!</button>
+        <button name="H" onclick="addIson('1')" class="oneNoteButton special2"><span class="red psaltica">!</span>1</button>
+        <button name="." onclick="addIson(`<span style='position: relative; right: 8px;'>.</span>`)" class="oneNoteButton special2"><span class="red psaltica">0</span><span style="position: relative; right: 8px;">></span></button>
+        <button name=">" onclick="addIson('.')" class="oneNoteButton special2"><span class="red psaltica">!</span>.</button>
+        <button name="c" onclick="addIson('C')" class="oneNoteButton special2"><span class="red psaltica">0</span>C</button>
+        <button name="C" onclick="addIson('c')" class="oneNoteButton special2"><span class="red psaltica">!</span>c</button>
+        <button name="v" onclick="addIson('V')" class="oneNoteButton special2"><span class="red psaltica">0</span>V</button>
+        <button name="V" onclick="addIson('v')" class="oneNoteButton special2"><span class="red psaltica">!</span>v</button>
+        <button name="b" onclick="addIson('B')" class="oneNoteButton special2"><span class="red psaltica">0</span>B</button>
+        <button name="B" onclick="addIson('b')" class="oneNoteButton special2"><span class="red psaltica">!</span>b</button>
+        <button name="n" onclick="addIson('N')" class="oneNoteButton special2"><span class="red psaltica">0</span>N</button>
+        <button name="N" onclick="addIson(`<span style='position: relative; right: -8px;'>N</span>`)" class="oneNoteButton special2"><span class="red psaltica">!</span><span style="position: relative; right: -8px;">N</span></button>
+        <button name="m" onclick="addIson('M')" class="oneNoteButton special2"><span class="red psaltica">0</span>M</button>
+        <button name="M" onclick="addIson('m')" class="oneNoteButton special2"><span class="red psaltica">!</span>m</button>
+        <button name="," onclick="addIson('<')" class="oneNoteButton special2"><span class="red psaltica">0</span><</button>
+        <button name="<" onclick="addIson(',')" class="oneNoteButton special2"><span class="red psaltica">!</span>,</button>
+
+        <button onclick="addIson('>')" class="oneNoteButton special2"><span class="red psaltica">0</span>></button>
+
+        <br><br>
+
+
+        <button onclick="addFtora('<span class=red>c</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>c</button>
+        <button onclick="addFtora('<span class=red>C</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>C</button>
+        <button onclick="addFtora('<span class=red>v</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>v</button>
+        <button onclick="addFtora('<span class=red>V</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>V</button>
+        <button onclick="addFtora('<span class=red>?</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>?</button>
+        <button onclick="addFtora('<span class=red>b</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>b</button>
+        <button onclick="addFtora('<span class=red>B</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>B</button>
+        <button onclick="addFtora('<span class=red>n</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>n</button>
+        <button onclick="addFtora('<span class=red>N</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>N</button>
+        <button onclick="addFtora('<span class=red>m</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>m</button>
+        <button onclick="addFtora('<span class=red>M</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>M</button>
+        <button onclick="addFtora('<span class=red>/</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>/</button>
+        <button onclick="addFtora('<span class=red>,</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>,</button>
+        <button onclick="addFtora('<span class=red><</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span><</button>
+        <button onclick="addFtora('<span class=red>.</span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>.</button>
+        <button onclick="addFtora('<span class=red>></span>')" class="oneNoteButton ftora"><span class="psaltica red">0</span>></button>
+
+
+        <br><br>
+
+        <button onclick="addFtora(`<span class=red'>2</span>`, 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>2</button>
+        <button onclick="addFtora('<span class=red>3</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>3</button>
+        <button onclick="addFtora('<span class=red>4</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>4</button>
+        <button onclick="addFtora('<span class=red>5</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>5</button>
+        <button onclick="addFtora('<span class=red>6</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>6</button>
+        <button onclick="addFtora('<span class=red>7</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>7</button>
+        <button onclick="addFtora('<span class=red>8</span>', 'special2')" class="oneNoteButton special2"><span class="psaltica red">0</span>8</button>
+
+        <button name="~" onclick="addNoteNoText('J', 'psaltica')"   class="oneNoteButton psaltica">J</button>
+        <button name="~" onclick="addNoteNoText('j', 'psaltica')"   class="oneNoteButton psaltica">j</button>
+        <button name="~" onclick="addNoteNoText('y', 'oxeia')"   class="oneNoteButton oxeia">y</button>
+        <button name="~" onclick="addNoteNoText('u', 'oxeia')"   class="oneNoteButton oxeia">u</button>
+        <button name="~" onclick="addNoteNoText('t', 'oxeia')"   class="oneNoteButton oxeia">t</button>
+        <button name="~" onclick="addNoteNoText('r', 'oxeia')"   class="oneNoteButton oxeia">r</button>
+
+
+
+
+        </div>
+    
+            
+        <div class="importNeumes Button-menu">
+          <textarea id="neumesInportArea"></textarea>
+          <button onclick="ImportNeumes()">Import</button>
+          <button onclick="DownloadNeumes()">Downlaod</button>
+          <input type="file" id="Upload" onchange="readUpload()">
+          
+
+        </div>
+
+        <div class="textInput Button-menu"> 
+          <textarea id="textInputArea"></textarea>
+          <button onclick="removeAccents()">removeAccents</button>
+          <button onclick="addAccentsBack()">addAccentsBack</button>
+          <button onclick="addText()">Add Text</button>
+          <button onclick="removePunctuation()">Remove Punctuation</button>
+          <button onclick="getTextFromNeumes()">Get Text from Neumes</button>
+
+      
+        </div>
+
+      
+        <div class="titleInput Button-menu">
+
+        <input type="radio" name="titleOn" value="flex" onchange="titleOn(this.value)" checked > <label>Title On </label>  
+        <input type="radio" name="titleOn" value="none"  onchange="titleOn(this.value)">          <label>Title Off</label>
+
+
+        <br>  
+        <textarea id="titleTextInput"></textarea>
+        <button onclick="addTitle()">addTitle</button>
+        
+        <br>Title position:
+
+        <input type="radio" name="titlePosition" value="start" onchange="titlePosition(this.value)"> <label>Left</label>
+        <input type="radio" name="titlePosition" value="center" onchange="titlePosition(this.value)" checked > <label>Center</label>
+        <input type="radio" name="titlePosition" value="end" onchange="titlePosition(this.value)"> <label>Rigth</label>
+          <br>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>а7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>qT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>qT</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>k</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>k</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='psaltica note' style='position: relative; bottom: -20px;'> 4 </span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -20px;'> 4 </span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>qT</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>2</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>2</span></button>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>в7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='special2 note red' style='position: relative; bottom: -8px;'> t </span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -8px;'> t </span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='special2 note red' style='position: relative; bottom: -8px;'> G </span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -8px;'> G </span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> B </span><span class='ftora note red' style='position: relative; bottom: -5px;'>1</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> B </span><span class='ftora note red' style='position: relative; bottom: -5px;'>1</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='special2 note red' style='position: relative; bottom: -12px;'> g </span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -12px;'> g </span></button>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>г7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='special2 note' style='position: relative; bottom: -10px;'>p</span><span class='oxeia note red' style='position: relative; left: -10px; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px;'>h</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; left: -10px; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px;'>h</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px;'>D</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px;'>D</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px'>H</span><span class='psaltica note' style='position: relative; bottom: -12px;'> _ </span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px'>H</span><span class='psaltica note' style='position: relative; bottom: -12px;'> _ </span></button>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>д7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>J</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>J</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='psaltica note' style='position: relative; bottom: -10px;'>_</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -10px;'>_</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='psaltica note red' style='position: relative;'>nN</span><span class='special2 red note' style='position: relative; top: -5px;'>|</span>`, 'startMartiria')"><span class='special2 red note' style='position: relative; top: -5px;'>|</span></button>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='psaltica note' style='position: relative; bottom: -10px;'>_</span><span class='special2 red note' style='position: relative; bottom: -10px;'>G</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -10px;'>_</span><span class='special2 red note' style='position: relative; bottom: -10px;'>G</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='special2 red note' style='position: relative; bottom: -10px;'>t</span>`, 'startMartiria')"><span class='special2 red note' style='position: relative; bottom: -10px;'>t</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>)</span>`, 'startMartiria')"> <span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>)</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>^</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>^</span></button>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: 27px;'>є7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='psaltica note' style='position: relative; bottom: -10px;'>5</span><span class='ftora note red' style='position: relative; left: -10px; bottom: -7px;'>)</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='psaltica note' style='position: relative; bottom: -10px;'>5</span><span class='ftora note red' style='position: relative; left: -10px; bottom: -7px;'>)</span></button>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>ѕ7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='special2 note red' style='position: relative; bottom: -12px;'>g</span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -12px;'>g</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='psaltica note' style='position: relative; bottom: -10px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -10px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='special2 note red' style='position: relative; bottom: -12px;'> G </span><span class='psaltica note' style='position: relative; bottom: -10px;'>o</span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -12px;'> G </span><span class='psaltica note' style='position: relative; bottom: -10px;'>o</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='psaltica note' style='position: relative; bottom: -10px;'>4</span><span class='special2 note red' style='position: relative; bottom: -10px;'> t </span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -10px;'>4</span><span class='special2 note red' style='position: relative; bottom: -10px;'> t </span></button>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='psaltica note' style='position: relative; bottom: -10px;'>4</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>2</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -10px;'>4</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>2</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> V </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>2</span><span class='psaltica note' style='position: relative; bottom: -5px;'>o</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> V </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>2</span><span class='psaltica note' style='position: relative; bottom: -5px;'>o</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='psaltica note' style='position: relative; bottom: -20px;'>7</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span>`, 'startMartiria')"> <span class='psaltica note' style='position: relative; bottom: -20px;'>7</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span></button>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>з7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7</span><span class='special2 note red' style='position: relative;'>E</span><span class='oxeia note red' style='position: relative; bottom: -20px;'>N</span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'>N</span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7</span><span class='special2 note red' style='position: relative;'>E</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>></span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>></span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7</span><span class='special2 note red' style='position: relative;'>E</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7</span><span class='special2 note red' style='position: relative;'>E</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>></span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>></span></button>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7</span><span class='special2 note red' style='position: relative;'>E</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>G</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>G</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7 </span><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span>`, 'startMartiria')"><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7 </span><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>4</span>`, 'startMartiria')"><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>4</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7 </span><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>5</span>`, 'startMartiria')"><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>5</span> </button>
+          <br>
+          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>и7</span>
+          <br>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='psaltica note' style='position: relative; bottom: -15px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -15px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>N</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>N</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span></button>
+          <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span></button>
+
+          <br><br>
+
+          <button onclick="addTitleMartira(`<span class='special red note'>A</span>`, 'startTempo')" class="special note red">A</button>
+          <button onclick="addTitleMartira(`<span class='special red note'>a</span>`, 'startTempo')" class="special note red">a</button>
+          <button onclick="addTitleMartira(`<span class='special red note'>S</span>`, 'startTempo')" class="special note red">S</button>
+          <button onclick="addTitleMartira(`<span class='special red note'>s</span>`, 'startTempo')" class="special note red">s</button>
+          <button onclick="addTitleMartira(`<span class='special red note'>z</span>`, 'startTempo')" class="special note red">z</button>
+          <button onclick="addTitleMartira(`<span class='special red note'>x</span>`, 'startTempo')" class="special note red">x</button>
+          <button onclick="addTitleMartira(`<span class='special red note'>X</span>`, 'startTempo')" class="special note red">X</button>
+          <button onclick="addTitleMartira(`<span class='special red note'>Z</span>`, 'startTempo')" class="special note red">Z</button>
+
+        </div>
+
+     </aside>
+
+ </body>
+</html>

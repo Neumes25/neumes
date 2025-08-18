@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="helpstyle.css">
+    <script src="scripts/main.js" defer></script>
+    <title>Nevmi</title>
+    <link rel="icon" type="images/x-icon" href="images/favicon_io/apple-touch-icon.png">
+
+</head>
+
+
+<body>
+    
+    
+    This application was made in order to ease the writing of neumatic orthodox hyms in with text in churchslavonic language. It uses custom fonts, based on the fonts from EZ Byzantine Music Font Package. For the churchslavonic texts it uses the Irmologion UCS font. 
+    
+
+    <br>
+    <br>
+    <br>
+    
+    The application is divided into 3 main segments.
+    <br>
+    First is the button dashboard in the header, the functions of the buttons are explained in the next section.
+    <br>
+    Second is the paper: A standard A4 paper with measures of 210 x 297 millimeters, and margin of, which makes it suitable for printing (note: Printer setting needs to be on A4 paper, not letter which is the default in many cases).
+    <br>
+    Third are the various note buttons that appear when some of the buttons on the button dashboard are clicked. 
+    
+    
+    
+    
+    Guide
+    <br><br>
+    <div class="container">     
+        <img class="button-image" src="images/new.png">
+        
+        <span class="help-text"> This button deletes everything on the paper and returns a blank new page, to start writing again. </span>
+    </div>
+    
+    <br><br>
+
+    <div class="container">     
+        <img class="button-image" src="images/save.png">
+        
+        <span class="help-text"> When this button is clicked the browser opens the dialogue form print, from where the user can save the paper and its content as a pdf file, suitable for printing. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <img class="button-image" src="images/export.png">
+        
+        <span class="help-text"> This function gets all the HTML code that has populated the paper an exports it. It is useful if it is needed to store a part of the document, to be imported a later time, since the PDF Output cannot be edited. Also, it is useful if it is needed to do small custom changes in positioning or content - anyone with knowledge of html and css can do edits to the paper content. </span>
+    </div>
+    <br><br>
+
+
+    <div class="container">     
+        <img class="button-image" src="images/import.png">
+        
+        <span class="help-text"> Opens a textbox where the contents of an Exported file can be entered. Upon clicking “BUTTON NAME" the content of the import textbox will be added to the paper, replacing the previous text.         </span>
+    </div>
+    <br><br>
+
+    
+    <div class="container">     
+        <img class="button-image" src="images/space.png">
+        
+        <span class="help-text"> Adds an empty whitespace in the paper. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <img class="button-image" src="images/delete.png">
+        
+        <span class="help-text"> This deletes/removes the last entered note. Can also be done by pressing Backspace while the paper is active. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <span class="psaltica note">p</span>
+        
+        <span class="help-text"> Used to activate the basic notes buttons on the right side. Clicking on a button will append a note on the paper. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <span class="psaltica note red">0</span><span class="psaltica note">s</span>
+        
+        <span class="help-text"> Used to activate the time symbols buttons on the right side. Clicking on a button will add a time symbol to the last added note. The button symbol is composed of two notes, the black note indicating the note that will be added, and the red note which is not added, but is only used to indicate the position of the time note, relative to the base note. There are multiple positions that the time notes can take, so most of them are taken into consideration when creating the buttons. If more fine-tuning of positions is needed, the paper content can be exportet, and inline css style can be applied to a div containing a specific note, and after that the content can be imported. </span>
+    </div>
+    <br><br>
+    
+
+    <div class="container">     
+        <span class="psaltica note red">m?<</span>
+        
+        <span class="help-text"> Activates the martiria buttons. In order to simplify, the martirias are divided into groups according to scales so it is only needed to pick a martiria for a tone according to the scale, or a tempo. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <span class="psaltica note" style="color: #F0F0F0;" >!</span> <span class="ftora note red">!</span>
+        
+        <span class="help-text"> Activates the buttons that contain ftora for modulating the scale. The are mainly 4 possitions for a ftora, and all are defined as specific buttons. The ftora is added, the red note is only used to indicate position. When clicked, the ftora is applied to the lates note added. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <span class="oxeia note">P</span>
+        
+        <span class="help-text"> This activates the buttons for adding oxeia notes as well as some speial symbols that are rarely used. </span>
+    </div>
+    <br><br>
+
+
+    <div class="container">     
+        <span class="psaltica note" style="color: #F0F0F0;" >!</span> <span class="special2  note red">`</span>
+        
+        <span class="help-text">  This activates buttons for adding Ison. Or some extra symbols for notes or numbers. When a button is clicked, the symbol gets applied to the lates tone. </span>
+    </div>
+    <br><br>
+        
+
+
+    <div class="container">     
+        <img class="button-image" src="images/textInput.png">
+        
+        <span class="help-text"> This opens a dialogue box where text can be entered. Currently only supports churchslavonic. When the text is entered it is necessary to separate the words into syllables (using whitespace, note: multiple whitespaces are ignored) and extra repeating wolves. When the addText button is clicked, the syllables are arranged below the notes: every note receives a syllable. For the churchslavonic there is also the option to remove accents, clicking the buttons removes accent from the text in the textbox, and the text can be added to the notes. This can be reversed once. There is also a button that can get the text from the paper content and populate the textbox with it - this is useful when importing neumes.      </span>
+    </div>
+    <br><br>
+
+
+    <div class="container">     
+        <img class="button-image" src="images/titleInput.png">
+        
+        <span class="help-text"> This opens a dialogue box and multiple buttons. The title text can be entered in the dialogue box and added to the top of the page. After that, a starting martiria that corresponds to the melogy can be added and a tempo martiria if needed. Title possition can be regulated, as well as removing the title from the page completely and freing up space for notes.</span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <img class="button-image" src="images/pageNumber.png">
+        
+        <span class="help-text"> Opens a field where you can add a page number. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <img class="button-image" src="images/help.svg">
+        
+        <span class="help-text"> Opens this page. </span>
+    </div>
+    <br><br>
+
+    <div class="container">     
+        <img class="button-image" src="images/close.png">
+        
+        <span class="help-text"> Closes any active manu on the right side. </span>
+    </div>
+
+
+
+
+
+
+
+    
+    
+
+
+    
+  
+    <br><br>
+    Keyboard - For the most common notes, the keyboard can be used for input, as it is much faster. In order to add notes with the keyboard, you have to click on the page, which will become highlighted and take the keyboard inputs. The notes that can be added using the keyboard, as well as the corresponding buttons are the following:
+    <br><br>
+
+
+    <table>
+        <tr><td>Ascending</td></tr>
+        <tr>
+            <td>0</td>
+            
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td class="psaltica note">0</td>
+            
+            <td class="psaltica note">1</td>
+            <td class="psaltica note">2</td>
+            <td class="psaltica note">3</td>
+            <td class="psaltica note">4</td>
+            <td class="psaltica note">5</td>
+            <td class="psaltica note">6</td>
+            <td class="psaltica note">7</td>
+            <td class="psaltica note">8</td>
+            <td class="psaltica note">9</td>
+        </tr>    
+        <tr>
+            <td>p</td>
+            <td>q</td>
+            <td>w</td>
+            <td>e</td>
+            <td>r</td>
+            <td>t</td>
+            <td>y</td>
+            <td>u</td>
+            <td>i</td>
+            <td>`</td>
+            <td>~</td>
+         </tr>
+         
+        <tr>
+            <td class="psaltica note">p</td>
+            <td class="psaltica note">q</td>
+            <td class="psaltica note">w</td>
+            <td class="psaltica note">e</td>
+            <td class="psaltica note">r</td>
+            <td class="psaltica note">t</td>
+            <td class="psaltica note">y</td>
+            <td class="psaltica note">u</td>
+            <td class="psaltica note">i</td>
+            <td class="psaltica note">`</td>
+            <td class="psaltica note">~</td>
+        </tr>
+        <tr><td>Descending</td></tr>
+        <tr>   
+            <td>!</td>
+            <td>@</td>
+            <td>#</td>
+            <td>$</td>
+            <td>%</td>
+            <td>^</td>
+            <td>&</td>
+            <td>*</td>
+            <td>(</td>
+            <td>)</td>
+            <td>-</td>
+            <td>_</td>
+        </tr>
+        <tr>    
+            <td class="psaltica note">!</td>
+            <td class="psaltica note">@</td>
+            <td class="psaltica note">#</td>
+            <td class="psaltica note">$</td>
+            <td class="psaltica note">%</td>
+            <td class="psaltica note">^</td>
+            <td class="psaltica note">&</td>
+            <td class="psaltica note">*</td>
+            <td class="psaltica note">(</td>
+            <td class="psaltica note">)</td>
+            <td class="psaltica note">-</td>
+            <td class="psaltica note">_</td>
+        </tr>
+        <tr>    
+            <td>Q</td>
+            <td>W</td>
+            <td>E</td>
+            <td>R</td>
+            <td>T</td>
+            <td>Y</td>
+            <td>U</td>
+            <td>I</td>
+            <td>\</td>
+            <td>|</td>
+            <td>=</td>
+        </tr>
+        <tr>
+            <td class="psaltica note">Q</td>
+            <td class="psaltica note">W</td>
+            <td class="psaltica note">E</td>
+            <td class="psaltica note">R</td>
+            <td class="psaltica note">T</td>
+            <td class="psaltica note">Y</td>
+            <td class="psaltica note">U</td>
+            <td class="psaltica note">I</td>
+            <td class="psaltica note">\</td>
+            <td class="psaltica note">|</td>
+            <td class="psaltica note">=</td>
+        </tr>
+        <tr><td>Temporal</td></tr>
+        <tr>
+            <td>s</td>
+            <td>S</td>
+            <td>x</td>
+            <td>X</td>
+            <td>a</td>
+            <td>A</td>
+            <td>z</td>
+            <td>Z</td>
+            <td>g</td>
+            <td>G</td>
+            <td>;</td>
+            <td>:</td>
+            <td>k</td>
+            <td>K</td>
+            <td>'</td>
+            <td>"</td>
+            <td>d</td>
+            <td>D</td>
+            <td>f</td>
+            <td>F</td>
+        </tr>
+        <tr>
+            <td class="psaltica note"><span class="red">0</span>s</td>
+            <td class="psaltica note"><span class="red">0</span>S</td>
+            <td class="psaltica note"><span class="red">0</span>x</td>
+            <td class="psaltica note"><span class="red">0</span>X</td>
+            <td class="psaltica note"><span class="red">0</span>a</td>
+            <td class="psaltica note"><span class="red">0</span>A</td>
+            <td class="psaltica note"><span class="red">0</span>z</td>
+            <td class="psaltica note"><span class="red">0</span>Z</td>
+            <td class="psaltica note"><span class="red">0</span>g</td>
+            <td class="psaltica note"><span class="red">0</span>G</td>
+            <td class="psaltica note"><span class="red">0</span>;</td>
+            <td class="psaltica note"><span class="red">0</span>:</td>
+            <td class="psaltica note"><span class="red">0</span>k</td>
+            <td class="psaltica note"><span class="red">0</span>K</td>
+            <td class="psaltica note"><span class="red">0</span>'</td>
+            <td class="psaltica note"><span class="red">0</span>"</td>
+            <td class="psaltica note"><span class="red">0</span>d</td>
+            <td class="psaltica note"><span class="red">0</span>D</td>
+            <td class="psaltica note"><span class="red">0</span>f</td>
+            <td class="psaltica note"><span class="red">0</span>F</td>
+        </tr>
+        <tr><td>Ison</td></tr>
+        <tr>
+            <td>h</td>
+            <td>H</td>
+            <td>j</td>
+            <td>J</td>
+            <td>c</td>
+            <td>C</td>
+            <td>v</td>
+            <td>V</td>
+            <td>b</td>
+            <td>B</td>
+            <td>n</td>
+            <td>N</td>
+            <td>m</td>
+            <td>M</td>
+            <td>,</td>
+            <td><</td>
+            <td>.</td>
+            <td>></td>
+            <td>/</td>
+            <td>?</td>
+        </tr>
+
+        
+
+    
+        <tr>   
+            <td class="special2 note"><span class="psaltica red">0</span>1</td>
+            <td class="special2 note"><span class="psaltica red">0</span>!</td>
+            <td class="special2 note"><span class="psaltica red">0</span>~</td>
+            <td class="special2 note"><span class="psaltica red">0</span>`</td>
+            <td class="special2 note"><span class="psaltica red">0</span>C</td>
+            <td class="special2 note"><span class="psaltica red">0</span>c</td>
+            <td class="special2 note"><span class="psaltica red">0</span>V</td>
+            <td class="special2 note"><span class="psaltica red">0</span>v</td>
+            <td class="special2 note"><span class="psaltica red">0</span>B</td>
+            <td class="special2 note"><span class="psaltica red">0</span>b</td>
+            <td class="special2 note"><span class="psaltica red">0</span>N</td>
+            <td class="special2 note"><span class="psaltica red">0</span><span style="position: relative; right: -8px;">N</span></td>
+            <td class="special2 note"><span class="psaltica red">0</span>M</td>
+            <td class="special2 note"><span class="psaltica red">0</span>m</td>
+            <td class="special2 note"><span class="psaltica red">0</span><</td>
+            <td class="special2 note"><span class="psaltica red">0</span>,</td>
+            <td class="special2 note"><span class="psaltica red">0</span>></td>
+            <td class="special2 note"><span class="psaltica red">0</span>.</td>
+            <td class="special2 note"><span class="psaltica red">0</span>?</td>
+            <td class="special2 note"><span class="psaltica red">0</span>/</td>
+        </tr>
+
+        
+
+    </table> 
+
+    
+
+    
+    
+    <div class="Back-Button"> <a href="./index.html">  Back to Main Page </a> </div> 
+    
+    
+    
+    
+    
+    
+
+</body>
+
+
+
+
+</html>

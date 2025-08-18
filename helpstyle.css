@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'Irmologion';
+    src: url(fonts/IrmUcs.ttf) format('trueType');
+   }
+
+@font-face {
+    font-family: 'Ftora';
+    src: url(fonts/EZ\ Fthora.ttf) format('trueType');
+   }  
+
+@font-face {
+      font-family: 'Oxeia';
+      src: url(fonts/Zoki\ EZ\ Oxeia.ttf) format('trueType');
+     }
+  
+@font-face {
+      font-family: 'Psaltica';
+      src: url(fonts/Zoki\ EZ\ Psaltica.ttf) format('trueType');
+     }  
+
+@font-face {
+      font-family: 'Special';
+      src: url(fonts/Zoki\ EZ\ Special.ttf) format('trueType');
+     }
+  
+@font-face {
+      font-family: 'Special2';
+      src: url(fonts/Zoki\ EZ\ Special-II.ttf) format('trueType');
+     }  
+
+@font-face {
+      font-family: 'PageNumber';
+      src: url(fonts/bell-mt-italic.ttf) format('trueType');
+     }  
+
+
+body{
+        background-color: #F0F0F0;
+        font-family: 'Calibri';
+        font-size: 14pt;
+}
+
+
+.button-image{
+        background-color: transparent;
+        width: 1cm;
+        height: 1cm;
+
+}     
+
+.red{
+    color: #ed0000;
+ }
+ 
+ .note{
+    width: fit-content;
+    font-size: 20pt;
+    height: fit-content;
+ }
+ 
+ .psaltica{
+    font-family: 'Psaltica';
+    margin: 0px 2px 0px 2px;
+ }
+ 
+ .special{
+    font-family: 'Special';
+    margin: 0px 2px 0px 2px;
+ }
+ 
+ .special2{
+    font-family: 'Special2';
+ }
+ 
+ .ftora{
+    font-family: 'Ftora';
+ }
+ 
+ .oxeia{
+    font-family: 'Oxeia';
+    margin: 0px 2px 0px 2px;
+ }
+ 
+
+ .back-button{
+    position: fixed;
+
+    top: 3cm;
+    bottom: 10cm;
+    right: 3cm;
+ }
+
+ td{
+   text-align: center;
+ }
