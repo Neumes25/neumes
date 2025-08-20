@@ -29,7 +29,7 @@
     <div class="button-container"> <button onclick="activeteNoteButtons('IsonButtons')" class="no-borber-button"><img src="images/ison.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Isons and  Extras</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('OxeiaButtons')" class="no-borber-button"><img src="images/oxeia.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-20%);">Oxeia Notes</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('textInput')" class="no-borber-button" ><img src="images/textInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Add Text</div> </div>
-    <div class="button-container"> <button  onclick="activeteNoteButtons('titleInput')" class="no-borber-button" ><img src="images/titleInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-3%);">Add Title</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('titleInput')" class="no-borber-button" ><img src="images/titleInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-3%);">Add Title</div> </div>
    
     <div class="button-container pageNumberDiv"> <button onclick="activetePageNumbers()"class='no-borber-button'><img src="images/pageNumber.png" class="button-image"></button> 
     <input type="number" onchange="updatePageNumber(value)" id="pageNumberInput"/> <div class="hiddenText" style="transform: translate(-155%, 65%);">Add Page Number</div></div>
@@ -345,7 +345,9 @@
 
         <div class="martiriasButtons Button-menu">
         <br>
-        Diatonic Scale: <br>
+        <details>
+        <summary>Diatonic Scale:</summary> 
+        <br>
         <button onclick="addMartiria('mM','special')" class="oneNoteButton special">mM</button>
         <button onclick="addMartiria(',<','special')" class="oneNoteButton special">,< </button>
         <button onclick="addMartiria('.>','psaltica')" class="oneNoteButton psaltica">.></button>
@@ -361,9 +363,12 @@
         <button onclick="addMartiria('bB/','psaltica')" class="oneNoteButton psaltica">bB/</button>
         <button onclick="addMartiria('n/ N','psaltica')" class="oneNoteButton psaltica">n/N</button>
         <button onclick="addMartiria('mC  </','psaltica')" class="oneNoteButton psaltica">mC< / </button>
+        </details>
 
 <br> <br>
-        Enharmonic Scale: <br>
+        <details>  
+        <summary>Enharmonic Scale:</summary>
+        <br>
         <button onclick="addMartiria('mM','special')" class="oneNoteButton special">mM</button>
         <button onclick="addMartiria(',<','special')" class="oneNoteButton special">,<</button>
         <button onclick="addMartiria('.N','psaltica')" class="oneNoteButton psaltica">.N</button>
@@ -379,10 +384,12 @@
         <button onclick="addMartiria('b/N','psaltica')" class="oneNoteButton psaltica">b/N</button>
         <button onclick="addMartiria('n/ N','psaltica')" class="oneNoteButton psaltica">n/N</button>
         <button onclick="addMartiria('mC  </','psaltica')" class="oneNoteButton psaltica">mC< /</button>
-
+        </details>  
         
 <br> <br>
-        Hard Chromatic Scale: <br>
+        <details>
+        <summary>Hard Chromatic Scale: </summary>
+        <br>
         <button onclick="addMartiria('m?','special')" class="oneNoteButton special">m?</button>
         <button onclick="addMartiria(',/','special')" class="oneNoteButton special">,/</button> 
         <button onclick="addMartiria(' .?','psaltica')" class="oneNoteButton psaltica">.?</button>
@@ -398,10 +405,11 @@
         <button onclick="addMartiria('b?','psaltica')" class="oneNoteButton psaltica">b/?</button>
         <button onclick="addMartiria('nM/','psaltica')" class="oneNoteButton psaltica">nM/</button>
         <button onclick="addMartiria('m?/','psaltica')" class="oneNoteButton psaltica">m?/</button>
-
+        </details>
 
         <br> <br>
-        Soft Chromatic Scale: <br> 
+        <details>
+        <summary>Soft Chromatic Scale:</summary> <br> 
         <button onclick="addMartiria(`m<span  class='ftora-ga'>R</span>`,'special')" class="oneNoteButton special">m<span  class='ftora-ga'>R</span></button>  
         <button onclick="addMartiria(',?','special')" class="oneNoteButton special">,?</button> 
         <button onclick="addMartiria(` .<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">.<span class='ftora-ga' style="position: relative; top:3px; left: -3px; ">R</span></button>
@@ -417,10 +425,12 @@
         <button onclick="addMartiria(`b<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">b<span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span>/</button>
         <button onclick="addMartiria('n?/<','psaltica')" class="oneNoteButton psaltica">n?/<</button>
         <button onclick="addMartiria(`m/<span class='ftora' >R</span>`,'psaltica')" class="oneNoteButton psaltica">m/<span class='ftora-ga' style="position: relative; top:3px; left: -3px;">R</span></button>
-
+        </details>
         <br> <br>
 
-        Временски: <br>
+        <details>
+          <summary>Temporal:</summary> 
+        <br>
         <button onclick="addMartiria('A','special')" class="oneNoteButton special">A</button>
         <button onclick="addMartiria('a','special')" class="oneNoteButton special">a</button>
         <button onclick="addMartiria('S','special')" class="oneNoteButton special">S</button>
@@ -429,7 +439,7 @@
         <button onclick="addMartiria('x','special')" class="oneNoteButton special">x</button>
         <button onclick="addMartiria('X','special')" class="oneNoteButton special">X</button>
         <button onclick="addMartiria('Z','special')" class="oneNoteButton special">Z</button>
-
+        </details>  
 
         </div>
 
@@ -657,9 +667,9 @@
 
         <div class="textInput Button-menu"> 
           <textarea id="textInputArea"></textarea>
-          <button onclick="removeAccents()">removeAccents</button>
-          <button onclick="addAccentsBack()">addAccentsBack</button>
           <button onclick="addText()">Add Text</button>
+          <button onclick="removeAccents()">Remove Accents</button>
+          <button onclick="addAccentsBack()">Add AccentsBack</button>
           <button onclick="removePunctuation()">Remove Punctuation</button>
           <button onclick="getTextFromNeumes()">Get Text from Neumes</button>
 
@@ -684,28 +694,36 @@
         <input type="radio" name="titlePosition" value="end" onchange="titlePosition(this.value)"> <label>Rigth</label>
           <br>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>а7</span>
           <br>
+          <details>
+            <summary><span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>а7</span></summary>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>qT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>qT</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>k</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>k</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='psaltica note' style='position: relative; bottom: -20px;'> 4 </span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -20px;'> 4 </span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>а7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>qT</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>2</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> < </span><span class='ftora note red' style='position: relative; bottom: -5px;'>2</span></button>
+          </details>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>в7</span>
+          <details>
+          <summary><span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>в7</span></summary>
           <br>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='special2 note red' style='position: relative; bottom: -8px;'> t </span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -8px;'> t </span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='special2 note red' style='position: relative; bottom: -8px;'> G </span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -8px;'> G </span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> B </span><span class='ftora note red' style='position: relative; bottom: -5px;'>1</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> B </span><span class='ftora note red' style='position: relative; bottom: -5px;'>1</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>в7</span><span class='special2 note' style='position: relative; bottom: -14px;'>W</span><span class='special2 note red' style='position: relative; bottom: -12px;'> g </span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -12px;'> g </span></button>
+          </details>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>г7</span>
+          <details>
+          <summary><span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>г7</span></summary>
           <br>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='special2 note' style='position: relative; bottom: -10px;'>p</span><span class='oxeia note red' style='position: relative; left: -10px; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px;'>h</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; left: -10px; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px;'>h</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px;'>D</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px;'>D</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>г7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px'>H</span><span class='psaltica note' style='position: relative; bottom: -12px;'> _ </span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> N </span><span class='ftora note red' style='position: relative; bottom: -5px; left: -5px'>H</span><span class='psaltica note' style='position: relative; bottom: -12px;'> _ </span></button>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>д7</span>
+          </details>
+          <br>
+          <details>
+          <summary><span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>д7</span></summary>
           <br>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>J</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>J</span></button>
@@ -717,14 +735,20 @@
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>)</span>`, 'startMartiria')"> <span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>)</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='bottom: -13px;'>д7</span><span class='special2 note red' style='position: relative; bottom: -5px;'>rT</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>^</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>M</span><span class='ftora note red' style='position: relative; bottom: -5px; left: -7px;'>^</span></button>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: 27px;'>є7</span>
+          </details>
+          <br>
+          <details>
+          <summary><span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: 27px;'>є7</span></summary>
           <br>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='oxeia note red' style='position: relative; bottom: -21px;'> < </span><span class='special2 note' style='position: relative; bottom: -10px;'>I</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='font-size: 30; position: relative; bottom: -12px'>є7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hq</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='psaltica note' style='position: relative; bottom: -10px;'>5</span><span class='ftora note red' style='position: relative; left: -10px; bottom: -7px;'>)</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>V</span><span class='ftora note red' style='position: relative; bottom: -5px;'>f</span><span class='psaltica note' style='position: relative; bottom: -10px;'>5</span><span class='ftora note red' style='position: relative; left: -10px; bottom: -7px;'>)</span></button>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>ѕ7</span>
+          </details>
+          <br>
+          <details>
+          <summary><span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>ѕ7</span></summary>
           <br>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='special2 note red' style='position: relative; bottom: -12px;'>g</span>`, 'startMartiria')"><span class='special2 note red' style='position: relative; bottom: -12px;'>g</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='psaltica note' style='position: relative; bottom: -10px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -10px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span></button>
@@ -736,7 +760,10 @@
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>ѕ7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>w</span><span class='psaltica note' style='position: relative; bottom: -20px;'>7</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span>`, 'startMartiria')"> <span class='psaltica note' style='position: relative; bottom: -20px;'>7</span><span class='oxeia note red' style='position: relative; bottom: -20px;'> C </span><span class='ftora note red' style='position: relative; right: -5px; bottom: -5px;'>1</span></button>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>з7</span>
+          </details>
+          <br>
+          <details>
+          <summary><span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>з7</span></summary>
           <br>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7</span><span class='special2 note red' style='position: relative;'>E</span><span class='oxeia note red' style='position: relative; bottom: -20px;'>N</span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -20px;'>N</span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7</span><span class='special2 note red' style='position: relative;'>E</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>></span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>></span><span class='ftora note red' style='position: relative; bottom: -10px;'>)</span></button>
@@ -748,16 +775,21 @@
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7 </span><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>4</span>`, 'startMartiria')"><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>4</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red ' style=' font-size: 30; position: relative; bottom: -13px'>з7 </span><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>5</span>`, 'startMartiria')"><span class='psaltica note red' style='position: relative; right: -5px;'>.></span><span class='psaltica note' style='position: relative; bottom: -15px;'>5</span> </button>
           <br>
-          <span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>и7</span>
+          </details>
+          <br>
+          <details>
+          <summary><span class='special2 note red'>h</span><span class='text note red' style='bottom: 27px;'>и7</span></summary>
           <br>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='psaltica note' style='position: relative; bottom: -15px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span>`, 'startMartiria')"><span class='psaltica note' style='position: relative; bottom: -15px;'>3</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>N</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>N</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>&</span></button>
           <button class="startMartiriaButton" onclick="addTitleMartira(`<span class='special2 note red'>h</span><span class='text note red' style='position: relative; bottom: -12px'>и7</span><span class='special2 note red' style='position: relative; bottom: -3px;'>Hr</span><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span>`, 'startMartiria')"><span class='oxeia note red' style='position: relative; bottom: -21px;'>C</span><span class='psaltica note' style='position: relative; bottom: -15px;'>7</span><span class='ftora note red' style='position: relative; bottom: -10px;'>^</span></button>
-
+          </details>  
           <br><br>
-
+          <details>
+          <summary>Temporal</summary>
+          <br>
           <button onclick="addTitleMartira(`<span class='special red note'>A</span>`, 'startTempo')" class="special note red">A</button>
           <button onclick="addTitleMartira(`<span class='special red note'>a</span>`, 'startTempo')" class="special note red">a</button>
           <button onclick="addTitleMartira(`<span class='special red note'>S</span>`, 'startTempo')" class="special note red">S</button>
@@ -766,6 +798,7 @@
           <button onclick="addTitleMartira(`<span class='special red note'>x</span>`, 'startTempo')" class="special note red">x</button>
           <button onclick="addTitleMartira(`<span class='special red note'>X</span>`, 'startTempo')" class="special note red">X</button>
           <button onclick="addTitleMartira(`<span class='special red note'>Z</span>`, 'startTempo')" class="special note red">Z</button>
+          </details>
 
         </div>
 

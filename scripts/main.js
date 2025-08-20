@@ -173,7 +173,7 @@ function ImportNeumes(){
     paperContent.innerHTML = ''
     paperContent.innerHTML = neumes
 
-    countTextNote = document.getElementsByClassName('withText').length -1;
+    countTextNote = document.getElementsByClassName('withText').length;
 
 }
 
