@@ -143,14 +143,16 @@ function newSpace(){
     
     whiteSpace=document.createElement('div')
     whiteSpace.classList.add('white');
+    whiteSpace.setAttribute('contenteditable', 'true');
     paperContent.appendChild(whiteSpace)
 }
 
 function newLine(){
     
-    whiteSpace=document.createElement('div')
-    whiteSpace.classList.add('newline');
-    paperContent.appendChild(whiteSpace)
+    line=document.createElement('div')
+    line.classList.add('newline');
+    line.setAttribute('contenteditable', 'true');
+    paperContent.appendChild(line)
 }
 
 function exportNotes(){

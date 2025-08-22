@@ -230,7 +230,7 @@ body{
 
 
 .white{
-height: fit-content;
+   height: var(--line-spacing);
 width: 20px;
 }
 
