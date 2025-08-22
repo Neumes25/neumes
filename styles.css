@@ -234,6 +234,11 @@ height: fit-content;
 width: 20px;
 }
 
+.newline{
+   height: var(--line-spacing);
+   width: 100%;
+   }
+
 button{
    height: fit-content;
 

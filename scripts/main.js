@@ -146,6 +146,12 @@ function newSpace(){
     paperContent.appendChild(whiteSpace)
 }
 
+function newLine(){
+    
+    whiteSpace=document.createElement('div')
+    whiteSpace.classList.add('newline');
+    paperContent.appendChild(whiteSpace)
+}
 
 function exportNotes(){
 
