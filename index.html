@@ -32,7 +32,7 @@
     <div class="button-container"> <button onclick="activeteNoteButtons('textInput')" class="no-borber-button" ><img src="images/textInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Add Text</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('titleInput')" class="no-borber-button" ><img src="images/titleInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-3%);">Add Title</div> </div>
    
-    <div class="button-container pageNumberDiv"> <button onclick="activetePageNumbers()"class='no-borber-button'><img src="images/pageNumber.png" class="button-image"></button> 
+    <div class="button-container pageNumberDiv"> <button onclick="activetePageNumbers()" class='no-borber-button'><img src="images/pageNumber.png" class="button-image"></button> 
     <input type="number" onchange="updatePageNumber(value)" id="pageNumberInput"/> <div class="hiddenText" style="transform: translate(-155%, 65%);">Add Page Number</div></div>
     
     <div class="button-container"> <button onclick="document.location='help.html'" class="no-borber-button"><img src="images/help.svg" class="button-image" href="help.html"></button> <div class="hiddenText" style="transform: translateX(-15%);">Help</div> </div>
@@ -41,6 +41,8 @@
    </header>
 
 <div class="main">
+
+
     <div id="print" tabindex="0">
      <div class="paper" id="paper"> 
         <div id="title">
@@ -673,7 +675,47 @@
           <button onclick="addAccentsBack()">Add AccentsBack</button>
           <button onclick="removePunctuation()">Remove Punctuation</button>
           <button onclick="getTextFromNeumes()">Get Text from Neumes</button>
+          <br>
+          <br>
+          
 
+          <details>
+          <summary>Churchslavonic Letters:</summary>
+          Click on a letter to copy it to the clipboard: <br> <br>
+          <button class="letterButton" onclick="copyToClipboard('F')">F</button>
+          <button class="letterButton" onclick="copyToClipboard('f')">f</button>
+          <button class="letterButton" onclick="copyToClipboard('K')">K</button>
+          <button class="letterButton" onclick="copyToClipboard('k')">k</button>
+          <button class="letterButton" onclick="copyToClipboard('P')">P</button>
+          <button class="letterButton" onclick="copyToClipboard('p')">p</button>
+          <button class="letterButton" onclick="copyToClipboard('X')">X</button>
+          <button class="letterButton" onclick="copyToClipboard('x')">x</button>
+          <button class="letterButton" onclick="copyToClipboard('U')">U</button>
+          <button class="letterButton" onclick="copyToClipboard('u')">u</button>
+          <button class="letterButton" onclick="copyToClipboard('V')">V</button>
+          <button class="letterButton" onclick="copyToClipboard('v')">v</button>
+          <button class="letterButton" onclick="copyToClipboard('Z')">Z</button>
+          <button class="letterButton" onclick="copyToClipboard('z')">z</button>
+          <button class="letterButton" onclick="copyToClipboard('W')">W</button>
+          <button class="letterButton" onclick="copyToClipboard('w')">w</button>
+          <button class="letterButton" onclick="copyToClipboard('Щ')">Щ</button>
+          <button class="letterButton" onclick="copyToClipboard('щ')">щ</button>
+          <button class="letterButton" onclick="copyToClipboard('Ъ')">Ъ</button>
+          <button class="letterButton" onclick="copyToClipboard('ъ')">ъ</button>
+          <button class="letterButton" onclick="copyToClipboard('Ы')">Ы</button>
+          <button class="letterButton" onclick="copyToClipboard('ы')">ы</button>
+          <button class="letterButton" onclick="copyToClipboard('Ь')">Ь</button>
+          <button class="letterButton" onclick="copyToClipboard('ь')">ь</button>
+          <button class="letterButton" onclick="copyToClipboard('Э')">Э</button>
+          <button class="letterButton" onclick="copyToClipboard('э')">э</button>
+          <button class="letterButton" onclick="copyToClipboard('Ю')">Ю</button>
+          <button class="letterButton" onclick="copyToClipboard('ю')">ю</button>
+          <button class="letterButton" onclick="copyToClipboard('Я')">Я</button>
+          <button class="letterButton" onclick="copyToClipboard('я')">я</button>
+          <button class="letterButton" onclick="copyToClipboard('і')">і</button>
+          <button class="letterButton" onclick="copyToClipboard('<')"><</button>
+          <button class="letterButton" onclick="copyToClipboard('8')">8</button>
+        </details>
       
         </div>
 

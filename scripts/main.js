@@ -303,6 +303,10 @@ function removePunctuation(){
     document.getElementById('textInputArea').value=removedPunctuation;  
 }
 
+function copyToClipboard(value){
+    navigator.clipboard.writeText(value)
+}
+
 
 
 
