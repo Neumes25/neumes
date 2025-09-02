@@ -36,6 +36,7 @@
 
 :root{
    --red-color: #ed0000;
+   --grey-blur-color: rgb(117, 117, 117);
    --A4-page-height: 297mm;
    --A4-page-width: 210mm;
    --A4-page-side-margin: 19mm;
@@ -59,6 +60,10 @@
 
 .red{
    color: var(--red-color);
+}
+
+.grey-blur{
+   color: var(--grey-blur-color);
 }
 
 .note{
@@ -357,8 +362,10 @@ font-size: 15pt;
 }
 
 .letterButton{
-   /* width: ;
-   height: ; */
    font-family: 'Irmologion';
    font-size: 14pt;
+}
+
+summary:hover{
+   cursor: pointer;
 }
