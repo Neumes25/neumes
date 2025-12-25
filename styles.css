@@ -70,6 +70,16 @@
    width: fit-content;
    font-size: 26pt;
    height: var(--line-spacing);
+   position: relative;
+   left: 0px;
+   top: 0px;
+}
+
+.titleMartiria{
+   width: fit-content;
+   font-size: 26pt;
+   height: var(--line-spacing);
+   position: relative;
 }
 
 .psaltica{
@@ -131,50 +141,46 @@ body{
    flex-wrap: wrap;
    align-content: flex-start;
    justify-content: flex-start;
-   
    }
 
-#title{
-   position: relative;
-   top: 25mm;
-   left: var(--A4-page-side-margin);
-   height: 13mm;
-   width: var(--A4-pageContent-width);
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.titleText{
-   width: fit-content;
-   font-family: 'Irmologion';
-   color: var(--red-color);
-   font-size: 26pt;
-   margin: 0 5mm 0 5mm;
-}
-
-#titleTextInput{
-   font-family: 'Irmologion';
-}
-
 #startMartiria{
+   width: 35%;
+   position: absolute;
+   right: 8%;
+   top: 5%;
+   height: 60px; 
+   z-index: 100;
+}
+
+#startMartiria:hover{
+cursor: pointer;
+}
+
+#startNote{
    width: fit-content;
+   white-space: nowrap;
+   position: absolute;
+   right: 0;
+   top: 5%;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
    align-content: flex-start;
    justify-content: space-evenly;
    margin: 0 5mm 0 5mm;
+   height: 60px;
 }
 
 #startTempo{
    width: fit-content;
+   position:absolute;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
    align-content: flex-start;
    justify-content: space-evenly;
    margin: 0 5mm 0 5mm;
+   right: -25px;
 }
 
 
@@ -240,8 +246,14 @@ width: 20px;
 }
 
 .newline{
-   height: var(--line-spacing);
+   height: calc(var(--line-spacing)/5);
    width: 100%;
+   text-align: center;
+   height: fit-content;
+   position: relative;
+   bottom: 15pt;
+   font-size: 16pt;
+   font-family: 'Irmologion';
    }
 
 button{
@@ -369,3 +381,8 @@ font-size: 15pt;
 summary:hover{
    cursor: pointer;
 }
+
+.selected{
+text-shadow: -0.5px -0.5px 0 #2782dd, 0.5px -0.5px 0 #2782dd, 0.5px 0.5px 0 #2782dd, -0.5px 0.5px 0 #2782dd;
+}
+
