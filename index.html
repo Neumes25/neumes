@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="scripts/main.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
     <title>Neumes</title>
     <link rel="icon" type="images/x-icon" href="images/favicon_io/apple-touch-icon.png">
 </head>
@@ -347,8 +352,6 @@
 
 
 
-
-
        </div>
 
         <div class="martiriasButtons Button-menu">
@@ -667,7 +670,6 @@
         <div class="importNeumes Button-menu">
           <textarea id="neumesInportArea"></textarea>
           <button onclick="ImportNeumes()">Import</button>
-          <button onclick="DownloadNeumes()">Downlaod</button>
           <input type="file" id="Upload" onchange="readUpload()">
           
 
@@ -727,27 +729,13 @@
       
         <div class="titleInput Button-menu">
 
-        <!-- <input type="radio" name="titleOn" value="flex" onchange="titleOn(this.value)" checked > <label>Title On </label>  
-        <input type="radio" name="titleOn" value="none"  onchange="titleOn(this.value)">          <label>Title Off</label>
-
-
-        <br>  
-        <textarea id="titleTextInput"></textarea>
-        <button onclick="addTitle()">addTitle</button>
-        
-        <br>Title position:
-
-        <input type="radio" name="titlePosition" value="start" onchange="titlePosition(this.value)"> <label>Left</label>
-        <input type="radio" name="titlePosition" value="center" onchange="titlePosition(this.value)" checked > <label>Center</label>
-        <input type="radio" name="titlePosition" value="end" onchange="titlePosition(this.value)"> <label>Rigth</label> -->
-          <br>
-          <br>
-          <br>
+        <br>
+        <br>
 
           <button onclick="newLineAtStart()" >New Line at Start</button>
           <button onclick="newLine()" >New Line at End</button>
 
-          <br>
+        <br>
           
           <label>New Line Font</label>
           <select id="newLineFont">

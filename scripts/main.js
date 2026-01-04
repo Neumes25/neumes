@@ -14,6 +14,7 @@ function init(){
     countTextNote = 0;
 
     paperContent = document.getElementById('paperContent');
+    paper = document.getElementById('paper')
 
     activeteNoteButtons(' ');
 }
@@ -127,9 +128,6 @@ function getTextFromNeumes(){
     }
 
     document.getElementById('textInputArea').value = textString2;
-
-    console.log(textString2)
-
 }
 
 
@@ -186,31 +184,45 @@ function newLineAtStart(){
 function exportNotes(){
 
     activeteNoteButtons('importNeumes');
-    exportText = paperContent.innerHTML;
-    document.getElementById('neumesInportArea').value = exportText;
+    document.getElementById('neumesInportArea').value = paper.innerHTML;
 }
 
 function savePDF(){
 
     divContents = document.getElementById('print')
-    printWindow = window.open('', '', 'height=1200, width=800');
-    printWindow.document.write('<html><head><title>Neumes</title>');
-    printWindow.document.write('<link rel="stylesheet" href="styles.css">')
-    printWindow.document.write('</head><body >');
-    printWindow.document.write(divContents.innerHTML);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
 
-    printWindow.print();   
+    const options = {
+        margin:       0,
+        filename:     'content.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 4 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+
+    html2pdf().from(divContents.innerHTML).set(options).toPdf().get('pdf').then(function(pdf) {
+
+    date_now = new Date().toString().slice(0, -42)
+        const metadata = {
+            title: 'Neumes '+date_now,
+            subject: 'Neumes '+date_now,
+            author: 'NeumesApp',
+            keywords: divContents.innerHTML
+        };
+
+        pdf.setProperties(metadata);
+
+        pdf.save();
+    });
+
 }
 
 function ImportNeumes(){ 
     neumes = document.getElementById('neumesInportArea').value
-    paperContent.innerHTML = ''
-    paperContent.innerHTML = neumes
+    paper.innerHTML = ''
+    paper.innerHTML = neumes
 
     countTextNote = document.getElementsByClassName('withText').length;
-
 }
 
 
@@ -273,45 +285,27 @@ function justify(){
     paperContent.style.justifyContent == 'flex-start' ? paperContent.style.justifyContent = 'space-between' : paperContent.style.justifyContent = 'flex-start';
     
 }
+  
+async function readUpload(){
 
-function DownloadNeumes(){
-    fileContent =document.getElementById('neumesInportArea').value;
-    const blob =new Blob([fileContent], {type: "text/plain"})
-    const url = URL.createObjectURL(blob)
-    const downloadLink = document.createElement('a')
-    downloadLink.href = url
-    downloadLink.download = "Downaloded Neumes.html"
-    downloadLink.click()
-    document.body.removeChild(downloadLink)
-    URL.revokeObjectURL(url)
+    upload = document.getElementById('Upload')
+    const file = upload.files[0]
 
-}
+    const arrayBuffer = await file.arrayBuffer();
 
-   
-function readUpload(){
+    pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
 
-    input = document.getElementById('Upload')
-
-    const file = input.files[0]
-    const reader = new FileReader()
-
-    reader.onload = (e) => {
-        uploadContent = e.target.result
-        document.getElementById('neumesInportArea').value=uploadContent;
-        
-    }
-
-    reader.readAsText(file)
-
+    const {info, metadata} = await pdf.getMetadata();
     
+    document.getElementById('neumesInportArea').value=info.Keywords
 
+    ImportNeumes()
 }
 
 function removePunctuation(){
     withPunctuation = document.getElementById('textInputArea').value;
     removedPunctuation = withPunctuation.split('').filter(char => !/[,.:;!?*()/]/.test(char)).join('');
   
-
     document.getElementById('textInputArea').value=removedPunctuation;  
 }
 
@@ -333,18 +327,15 @@ function moveRight(){
     selectedElement = document.getElementsByClassName("selected")
 
     if (selectedElement.length == 0) return;
-        selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) + 3 + 'px';
-
+        selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) + 1 + 'px';
 }
-
 
 function moveLeft(){
 
     selectedElement = document.getElementsByClassName("selected")
 
     if (selectedElement.length == 0) return;
-        selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) - 3 + 'px';
-
+        selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) - 1 + 'px';
 }
 
 
@@ -353,7 +344,7 @@ function moveDown(){
     selectedElement = document.getElementsByClassName("selected")
 
     if (selectedElement.length == 0) return;
-        selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) + 3 + 'px';
+        selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) + 1 + 'px';
 
 }
 
@@ -362,7 +353,7 @@ function moveUp(){
     selectedElement = document.getElementsByClassName("selected")
 
     if (selectedElement.length == 0) return;
-        selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) - 3 + 'px';
+        selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) - 1 + 'px';
 
 }
 
