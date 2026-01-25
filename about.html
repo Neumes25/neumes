@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=, initial-scale=1.0">
+        <link rel="stylesheet" href="helpstyle.css">
+        <title>Neumes: About</title>
+        <link rel="icon" type="images/x-icon" href="images/favicon_io/apple-touch-icon.png">
+    
+    </head>
+<body>
+    
+    <br>
+    
+    <h1>About</h1>
+
+    <br>
+
+This application is a graphical editor for neumatic notation, following churchslavonic tradition. 
+It is inspired by the Ez Psaltica Byzantine Music Font Package developed by St. Anthony's Greek Orthodox Monastery, but uses custom fonts. (Support for more fonts may be included in further updates). For the text it uses the widely adopted Irmologion UCS font.
+<br> It is built using HTML, CSS and Javascript. Curently, has no backend and is hosted on githubpages - free static webpage hosting service. For handling the PDF it uses 3 external libraries: jsPDF, html2pdf, and PDFjs.
+
+<br> <br> Using this application, neumes (notes) accompanied by the chanted text can be placed visually on a virtual A4 page and stored as HTML elements. The software does not interpret neumes as pitch, interval, or rhythm. Correct notation and musical meaning depend on the user’s knowledge of the chant tradition, the program does not evaluate or correct mistakes. No modern theory is imposed and authority stays with the tradition and the cantor. All musical meaning, correctness, and performance practice depend entirely on the user’s knowledge of the chant tradition. The application should therefore be used responsibly and in accordance with established liturgical and musical tradition. 
+
+<br> After writing the chant, the contents of the A4 Virtual Paper can be exported as either HMTL format, or a PDF intended for direct use in chanting. The PDF is a one-to-one match of the Virtual paper, while the exported HTML can be used to manually edit some aspects of the composition or add or modify features unique to it. 
+
+<br>  <h2>Features</h2>
+
+<h3>Buttons for every Note</h3>
+Buttons can be used for adding every note. They are separated into    categories: Basic Notes, Temporal Notes, Martirias, Ftoras and Ison and Extra. Within some categories further separation is done, in order to ease the acces. These notes are based upon the fonts from 'Ez Psaltica Byzantine Musin Font Packege', and almost every symbol needed in order to write a chant. 
+Besides the buttons, the most common notes can be typed using the keyboard in order to ease the writing and increase the speed. A full table of notes and corresponds keystokes can be found on the Keuboard Shortcuts page.
+
+
+<h3>Automatic Text placement</h3>
+By using the delagated text box, after dividing the text into sylaables separated by whitespace, as well as any repeating vocals, the Application automatically places them under the notes. Notes are written in such a wat, that there is a distinction between notes that should have text under them and notes that do not (i.e. martiria, pause, or other qualitative signs). The application expects that everty note should get a syllable/vocal it is not posible to have an empty space under notes that repeat the previous vocal (at least a dash '-' should be placed). 
+The application centers the text under the Note, but if fine tuning is neaded it can be done using the arrow keys or manuallt by editing the exported html and importing it.
+Additional functions such as removing accents od interpuctional signs are avaliable.
+
+<h3>Export, editi and import HTML</h3>
+The HTML contents of the Virtual Page can be exported to a textobox, where they can amnually be edited. After that they can be copied externaly.
+Using the same manu, HTML code can be imported to the Virtual Page.
+
+
+<h3>PDF as Editable Container</h3>
+When you export a chant page to PDF, the application stores not only the visual layout but also the full content of the A4 page in the PDF's metadata. This means that the PDF is not just a printable file — it also serves as a self-contained editable copy. You can later open the same PDF in Neumes25, and the page will be fully restored, including all neumes, text, and layout.
+This approach allows easy sharing, storage, and resumption of work without requiring separate files. Users should note that very large or multi-page chants may encounter practical limits on metadata size. For best results, reopen PDFs in the same browser or version of the app used to create them. The metadata also includes the app version, ensuring compatibility with future updates.
+
+<h3>Fine-Tuning Neume Placement</h3>
+After selecting a neume with the mouse, you can use the arrow keys to move it in small increments in any direction. This allows precise alignment of neumes and text, which is particularly useful for creating accurate, readable chant notation. Only one neume can be moved at a time, and there is no undo function, so adjustments should be made carefully. For larger edits or complex groups, manual repositioning by editing the HTML may be preferable.
+
+<h3>Predefined Martirias</h3>
+A multitude of Starting Martirias are predefined and can be added using the Starting Martirias function. Additionaly the possition can be changed with the fine tining feature.
+
+<h3>Adding content on empty space</h3>
+Empty spaces or lines can be added to the page. They have HTML content editable property so they can writen into with text or images. If font, text size, colour or similar features need to be modified, the export HTML function can be used.
+
+</body>
+</html>
