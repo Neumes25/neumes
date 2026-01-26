@@ -33,7 +33,6 @@
       src: url(fonts/bell-mt-italic.ttf) format('trueType');
      }      
   
-
 :root{
    --red-color: #ed0000;
    --grey-blur-color: rgb(117, 117, 117);
@@ -43,9 +42,10 @@
    --A4-page-top-margin: 25mm;
    --A4-pageContent-width: calc(var(--A4-page-width) - 2*var(--A4-page-side-margin));
    --A4-pageContent-height: calc(var(--A4-page-height) - 2*var(--A4-page-top-margin));
-   --headerheight: 2cm;
+   --buttonsDashboard-height: 2cm;
    --line-spacing: 70pt;
    --ftora-offset: 20pt;
+   --header-and-footer-color: rgb(5, 14, 92)
 
 }
 
@@ -111,7 +111,8 @@
 
 body{
    background-color: #F0F0F0;
-   width: 90vw;
+   margin: 0;
+   padding: 0;
 }
 
 #print{
@@ -119,6 +120,7 @@ body{
    top: 40px;
    left: 40px;
    width: var(--A4-page-width);
+   height: var(--A4-page-height);
    border-style: solid;
    border-width: 1px;
    border-color: black;   
@@ -141,13 +143,13 @@ body{
    flex-wrap: wrap;
    align-content: flex-start;
    justify-content: flex-start;
-   }
+ }
 
 #startMartiria{
    width: 35%;
    position: absolute;
-   right: 8%;
-   top: 5%;
+   right: 0%;
+   top: -5%;
    height: 60px; 
    z-index: 100;
 }
@@ -187,7 +189,7 @@ cursor: pointer;
 .buttonsDashboard{
    position: fixed;
    width: fit-content;
-   height: var(--headerheight);;
+   height: var(--buttonsDashboard-height);
    position: relative;
    top: 5px;
    left: 25px;  
@@ -197,6 +199,7 @@ cursor: pointer;
 
 .main{
    display: flex;
+   padding-bottom:  var(--buttonsDashboard-height);
 }
 
 .notesButtons{
@@ -386,3 +389,81 @@ summary:hover{
 text-shadow: -0.5px -0.5px 0 #2782dd, 0.5px -0.5px 0 #2782dd, 0.5px 0.5px 0 #2782dd, -0.5px 0.5px 0 #2782dd;
 }
 
+footer{
+   height: 2.5cm;
+   position: relative;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   flex-direction: column;
+   bottom: 0;
+   background-color: var(--header-and-footer-color);
+   color: beige;
+   font-family: 'Calibri';
+}
+
+header{
+   height: 1.5cm;
+   background-color: var(--header-and-footer-color);
+   color: beige;
+   font-family: 'Arial';
+   font-weight: bold;
+   align-content: center;
+   display: flex;
+   flex-direction: row;
+   top: 0%;
+   margin-bottom: 15px;
+   padding-left: 30px;
+}
+
+.title-image{
+   height: 1.3cm;
+   width: 1.cm;
+   border-radius: 10px;
+}
+.title-text{
+   position: relative;
+   top: 30% ;
+}
+
+.footer-title{
+   color: beige;
+   top: 5px;
+   font-size: 15pt;
+   justify-content: center;
+   align-items: center;
+}
+
+.footer-description{
+   color: beige;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.footer-links{
+   display: flex;
+   flex-direction: row;
+   color: beige;
+   justify-content: center;
+   align-items: center;
+}
+
+a:link{
+   text-decoration: none;
+   color: beige;
+}
+
+a:visited{
+   text-decoration: none;
+   color: beige;
+}
+
+a:hover{
+   text-decoration: underline;
+   cursor: pointer;
+}
+
+a:active{
+   text-decoration: underline;
+}

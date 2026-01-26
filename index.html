@@ -19,31 +19,28 @@
 
 <body>
 
-  <header class="buttonsDashboard">
+  <header>
+    <img class="title-image" src="images/favicon_io/apple-touch-icon.png"> <div class="title-text"> &nbsp; &nbsp; NEUMES &nbsp; &nbsp; A free, online, Neumatic Musicsheet Editor for Byzantine Chants in Churchlavonic.</div>
+  </header>
+
+
+  <div class="buttonsDashboard">
     <div class="button-container"> <button onclick="init()" class="no-borber-button"> <img src="images/new.png" class="button-image"> </button>  <div class="hiddenText" style="transform: translateX(-20%);">New Page</div> </div>
     <div class="button-container"> <button onclick="savePDF()" class="no-borber-button"><img src="images/save.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">Save as PDF</div> </div>
     <div class="button-container"> <button onclick="exportNotes()" class="no-borber-button"><img src="images/export.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">Export Notes</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('importNeumes')" class="no-borber-button"><img src="images/import.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">Import Notes</div> </div>
     <div class="button-container"> <button name="Backspace" onclick="deleteNote()" class='no-borber-button'><img src="images/delete.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-15%);">Delete Note</div> </div>
-    <div class="button-container"> <button onclick="justify()" class='no-borber-button'><img src="images/justify.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Justify</div> </div>
-    <div class="button-container"> <button name=" " onclick="newSpace()" class="no-borber-button"><img src="images/space.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">WhiteSpace</div> </div>
-    <div class="button-container"> <button name="Enter" onclick="newLine()" class="no-borber-button"><img src="images/enter.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">New Line</div> </div> 
     <div class="button-container"> <button onclick="activeteNoteButtons('BasicNotesButtons')" class="no-borber-button"><img src="images/Notes11.PNG" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Notes</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('TemporalNotesButtons')" class="no-borber-button"> <img src="images/temporal.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Time</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('martiriasButtons')" class="no-borber-button"> <img src="images/martirias.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Martirias</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('FtoraButtons')" class="no-borber-button"><img src="images/ftora.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-5%);">Ftoras</div> </div>
-    <div class="button-container"> <button onclick="activeteNoteButtons('IsonButtons')" class="no-borber-button"><img src="images/ison.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Isons and  Extras</div> </div>
-    <div class="button-container"> <button onclick="activeteNoteButtons('OxeiaButtons')" class="no-borber-button"><img src="images/oxeia.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-20%);">Oxeia Notes</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('IsonButtons')" class="no-borber-button"><img src="images/ison.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-10%);">Isons <br> and <br> Extras</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('OxeiaButtons')" class="no-borber-button"><img src="images/oxeia.PNG" class="button-image"> </button> <div class="hiddenText" style="transform: translateX(-20%);">Oxeia <br> Notes</div> </div>
     <div class="button-container"> <button onclick="activeteNoteButtons('textInput')" class="no-borber-button" ><img src="images/textInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Add Text</div> </div>
-    <div class="button-container"> <button onclick="activeteNoteButtons('titleInput')" class="no-borber-button" ><img src="images/titleInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-3%);">Add Title</div> </div>
-   
-    <div class="button-container pageNumberDiv"> <button onclick="activetePageNumbers()" class='no-borber-button'><img src="images/pageNumber.png" class="button-image"></button> 
-    <input type="number" onchange="updatePageNumber(value)" id="pageNumberInput"/> <div class="hiddenText" style="transform: translate(-155%, 65%);">Add Page Number</div></div>
-    
-    <div class="button-container"> <button onclick="document.location='help.html'" class="no-borber-button"><img src="images/help.svg" class="button-image" href="help.html"></button> <div class="hiddenText" style="transform: translateX(-15%);">Help</div> </div>
+    <div class="button-container"> <button onclick="activeteNoteButtons('titleInput')" class="no-borber-button" ><img src="images/titleInput.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-3%);">Page <br> Properties</div> </div>
     <div class="button-container"> <button name="Escape" onclick="activeteNoteButtons('None')" class="no-borber-button"><img src="images/close.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-15%);">Close Menu</div> </div>
 
-   </header>
+    </div>
 
 <div class="main">
 
@@ -51,14 +48,8 @@
     <div id="print" tabindex="0">
      <div class="paper" id="paper"> 
          
-         
-      <div id="startMartiria" onclick="choose(this)"><div id="startNote"></div><div id="startTempo"></div></div>
-        
-        <div id="paperContent">
-
-          
-
-        </div>
+      
+        <div id="paperContent">   </div>
         
 
         <div id="pageNumber"></div>
@@ -95,7 +86,7 @@
         <button name="!" onclick="addNoteWithText('!', 'psaltica')" class="oneNoteButton psaltica">!</button>
         <button name="@" onclick="addNoteWithText('@', 'psaltica')" class="oneNoteButton psaltica">@</button>
         <button name="_" onclick="addNoteWithText('_', 'psaltica')" class="oneNoteButton psaltica">_</button>
-        <button name="-" onclick="addNoteWithText('-', 'psaltica')" class="oneNoteButton psaltica">-</button> 
+        <button name="-" onclick="addNoteWithText(`)<span class='red' style='position: relative; left: 15px; top:-3px;'>s<span>`, 'psaltica')" class="oneNoteButton psaltica">-</button> 
         <button name=")" onclick="addNoteWithText(')', 'psaltica')" class="oneNoteButton psaltica">)</button>   <!--Ne e problem crvenata zagrada-->
         <button name="#" onclick="addNoteWithText('#', 'psaltica')" class="oneNoteButton psaltica">#</button>
         <button name="$" onclick="addNoteWithText('$', 'psaltica')" class="oneNoteButton psaltica">$</button>
@@ -109,8 +100,8 @@
         <button name="E" onclick="addNoteWithText('E', 'psaltica')" class="oneNoteButton psaltica">E</button>
         <button name="o" onclick="addNoteWithText('o', 'psaltica')" class="oneNoteButton psaltica">o</button>
         <button name="O" onclick="addNoteWithText('O', 'psaltica')" class="oneNoteButton psaltica">O</button>
-        <button name="l" onclick="addNoteWithText('l', 'psaltica')" class="oneNoteButton psaltica">l</button>
-        <button name="L" onclick="addNoteWithText('L', 'psaltica')" class="oneNoteButton psaltica">L</button>
+        <button name="l" onclick="addNoteWithText(`O<span class='red' style='position: relative; top: -7px; left: -4px;'>s</span>`, 'psaltica')" class="oneNoteButton psaltica">l</button>
+        <button name="L" onclick="addNoteWithText(`O<span class='red' style='position: relative; top: -7px; left: -4px;'>d</span>`, 'psaltica')" class="oneNoteButton psaltica">L</button>
         <button name="P" onclick="addNoteWithText('P', 'psaltica')" class="oneNoteButton psaltica">P</button>
         <button name="I" onclick="addNoteWithText('I', 'psaltica')" class="oneNoteButton psaltica">I</button>
         <button name="U" onclick="addNoteWithText('U', 'psaltica')" class="oneNoteButton psaltica">U</button>
@@ -303,52 +294,52 @@
         <button onclick="addNoteWithText('_','oxeia')" class="oneNoteButton oxeia">_</button>
         <button onclick="addNoteWithText('\\','oxeia')" class="oneNoteButton oxeia">\</button>
 
-        <button onclick="addTemporalNote('<span class=red>s</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>s</button>
-        <button onclick="addTemporalNote('<span class=red>S</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">U</span>S</button>
-        <button onclick="addTemporalNote('<span class=red>x</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>x</button>
-        <button onclick="addTemporalNote('<span class=red>X</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>X</button>
-        <button onclick="addTemporalNote('<span class=red>w</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>w</button>
-        <button onclick="addTemporalNote('<span class=red>h</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>h</button>
-        <button onclick="addTemporalNote('<span class=red>H</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">U</span>H</button>
-        <button onclick="addTemporalNote('<span class=red>d</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>d</button>
-        <button onclick="addTemporalNote('<span class=red>D</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">U</span>D</button>
-        <button onclick="addTemporalNote('<span class=red>f</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>f</button>
-        <button onclick="addTemporalNote('<span class=red>F</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">U</span>F</button>
-        <button onclick="addTemporalNote('<span class=red>g</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>g</button>
-        <button onclick="addTemporalNote('<span class=red>G</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>G</button>
-        <button onclick="addTemporalNote('<span class=red>;</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>;</button>
-        <button onclick="addTemporalNote('<span class=red>:</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>:</button>
-        <button onclick="addTemporalNote('<span class=red>k</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>k</button>
-        <button onclick="addTemporalNote('<span class=red>K</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>K</button>
+        <button onclick="addTemporalNote('<span class=red>s</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>s</button>
+        <button onclick="addTemporalNote('<span class=red>S</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">U</span>S</button>
+        <button onclick="addTemporalNote('<span class=red>x</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>x</button>
+        <button onclick="addTemporalNote('<span class=red>X</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>X</button>
+        <button onclick="addTemporalNote('<span class=red>w</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>w</button>
+        <button onclick="addTemporalNote('<span class=red>h</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>h</button>
+        <button onclick="addTemporalNote('<span class=red>H</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">U</span>H</button>
+        <button onclick="addTemporalNote('<span class=red>d</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>d</button>
+        <button onclick="addTemporalNote('<span class=red>D</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">U</span>D</button>
+        <button onclick="addTemporalNote('<span class=red>f</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>f</button>
+        <button onclick="addTemporalNote('<span class=red>F</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">U</span>F</button>
+        <button onclick="addTemporalNote('<span class=red>g</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>g</button>
+        <button onclick="addTemporalNote('<span class=red>G</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>G</button>
+        <button onclick="addTemporalNote('<span class=red>;</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>;</button>
+        <button onclick="addTemporalNote('<span class=red>:</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>:</button>
+        <button onclick="addTemporalNote('<span class=red>k</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>k</button>
+        <button onclick="addTemporalNote('<span class=red>K</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>K</button>
 
 
-        <button onclick="addTemporalNote('<span class=red>c</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>c</button>
-        <button onclick='addTemporalNote(`<span class=red>"</span>`, `oxeia`)' class="oneNoteButton oxeia"><span class="red">1</span>"</button>
-        <button onclick="addTemporalNote('<span class=red>{</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>{</button>
-        <button onclick="addTemporalNote(`<span class=red>'</span>`, 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>'</button>
-        <button onclick="addTemporalNote('<span class=red>[</span>', 'oxeia')" class="twoNoteButton oxeia"><span class="psaltica red">00</span>[</button>
-        <button onclick="addTemporalNote('<span class=red>]/</span>', 'oxeia')" class="twoNoteButton oxeia"><span class="psaltica red">1aP</span>]/</button>
+        <button onclick="addTemporalNote('<span class=red>c</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>c</button>
+        <button onclick='addTemporalNote(`<span class=red>"</span>`, `oxeia`)' class="oneNoteButton oxeia"><span class="grey-blur">1</span>"</button>
+        <button onclick="addTemporalNote('<span class=red>{</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>{</button>
+        <button onclick="addTemporalNote(`<span class=red>'</span>`, 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>'</button>
+        <button onclick="addTemporalNote('<span class=red>[</span>', 'oxeia')" class="twoNoteButton oxeia"><span class="psaltica  grey-blur">00</span>[</button>
+        <button onclick="addTemporalNote('<span class=red>]/</span>', 'oxeia')" class="twoNoteButton oxeia red"><span class="psaltica grey-blur">1aP</span>]/</button>
 
 
         <button onclick="addTemporalNote('<span class=red>p</span>', 'oxeia')" class="oneNoteButton oxeia">p</button>
-        <button onclick="addTemporalNote('<span class=red>+</span>', 'oxeia')" class="twoNoteButton  oxeia"><span class="red">1</span>+</button>
-        <button onclick="addTemporalNote('<span class=red>)</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>)</button>
-        <button onclick="addTemporalNote('<span class=red>0</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>0</button>
+        <button onclick="addTemporalNote('<span class=red>+</span>', 'oxeia')" class="twoNoteButton  oxeia"><span class="grey-blur">1</span>+</button>
+        <button onclick="addTemporalNote('<span class=red>)</span>', 'oxeia')" class="oneNoteButton oxeia"><span class=" grey-blur">1</span>)</button>
+        <button onclick="addTemporalNote('<span class=red>0</span>', 'oxeia')" class="oneNoteButton oxeia"><span class=" grey-blur">1</span>0</button>
 
-        <button onclick="addTemporalNote('<span class=red>q</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>q</button>
-        <button onclick="addTemporalNote('<span class=red>a</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>a</button>
-        <button onclick="addTemporalNote('<span class=red>A</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>A</button>
-        <button onclick="addTemporalNote('<span class=red>z</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>z</button>
-        <button onclick="addTemporalNote('<span class=red>Z</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>Z</button>
+        <button onclick="addTemporalNote('<span class=red>q</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>q</button>
+        <button onclick="addTemporalNote('<span class=red>a</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>a</button>
+        <button onclick="addTemporalNote('<span class=red>A</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>A</button>
+        <button onclick="addTemporalNote('<span class=red>z</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>z</button>
+        <button onclick="addTemporalNote('<span class=red>Z</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="grey-blur">1</span>Z</button>
 
-        <button onclick="addTemporalNote('<span class=red>v</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>v</button>
-        <button onclick="addTemporalNote('<span class=red>b</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>b</button>
-        <button onclick="addTemporalNote('<span class=red>,</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="psaltica red">1'</span>,</button>
-        <button onclick="addTemporalNote('<span class=red>|</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="psaltica red">!</span>|</button>
-        <button onclick="addTemporalNote('<span class=red>}</span>', 'oxeia')" class="twoNoteButton oneNoteButton oxeia"><span class="psaltica red">00</span>}</button>
-        <button onclick="addTemporalNote('<span class=red>?</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="red">1</span>?</button>
-        <button onclick="addTemporalNote('<span class=red>.</span>', 'oxeia')" class="oneNoteButton oxeia"><span class="psaltica red">0</span>.</button>
-        <button onclick="addTemporalNote('<span class=red>e</span>', 'oxeia')" class="twoNoteButton  oxeia"><span class="psaltica red">!</span>e<span class="psaltica red">0</span></button>
+        <button onclick="addTemporalNote('<span class=red>v</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>v</button>
+        <button onclick="addTemporalNote('<span class=red>b</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>b</button>
+        <button onclick="addTemporalNote('<span class=red>,</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="psaltica grey-blur">1'</span>,</button>
+        <button onclick="addTemporalNote('<span class=red>|</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="psaltica grey-blur">!</span>|</button>
+        <button onclick="addTemporalNote('<span class=red>}</span>', 'oxeia')" class="twoNoteButton oneNoteButton oxeia red"><span class="psaltica grey-blur">00</span>}</button>
+        <button onclick="addTemporalNote('<span class=red>?</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="grey-blur">1</span>?</button>
+        <button onclick="addTemporalNote('<span class=red>.</span>', 'oxeia')" class="oneNoteButton oxeia red"><span class="psaltica grey-blur">0</span>.</button>
+        <button onclick="addTemporalNote('<span class=red>e</span>', 'oxeia')" class="twoNoteButton oxeia red"><span class="psaltica grey-blur">!</span>e<span class="psaltica grey-blur">0</span></button>
 
 
 
@@ -732,12 +723,19 @@
         <br>
         <br>
 
-          <button onclick="newLineAtStart()" >New Line at Start</button>
-          <button onclick="newLine()" >New Line at End</button>
+        <div class="buttonsDashboard">
+        <div class="button-container"> <button onclick="justify()" class='no-borber-button'><img src="images/justify.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Justify</div> </div>
+        <div class="button-container"> <button name=" " onclick="newSpace()" class="no-borber-button"><img src="images/space.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">WhiteSpace</div> </div>
+        <div class="button-container"> <button name="Enter" onclick="newLine()" class="no-borber-button"><img src="images/enter.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">New Line</div> </div> 
+        <div class="button-container"> <button name="Enter" onclick="newLineAtStart()" class="no-borber-button"><img src="images/down.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-20%);">Bring Down</div> </div>
+        <div class="button-container"> <button name="Enter" onclick="deleteNewLineAtStart()" class="no-borber-button"><img src="images/down.png" class="button-image" style="rotate: 180deg;"></button> <div class="hiddenText" style="transform: translateX(-20%);">Bring Up</div> </div> 
+        <div class="button-container pageNumberDiv"> <button onclick="activetePageNumbers()" class='no-borber-button'><img src="images/pageNumber.png"  class="button-image"></button>       
+        <input type="number" onchange="updatePageNumber(value)" id="pageNumberInput"/> <div class="hiddenText" style="transform: translate(-155%, 65%);">Add Page Number</div></div>
 
-        <br>
           
-          <label>New Line Font</label>
+        </div>                
+        
+        <label>New Line Font</label>
           <select id="newLineFont">
             <option value="CSL">Churchslavonic</option>
             <option value="MKD">Macedonian</option>      
@@ -749,6 +747,9 @@
           <input type="range" id="newLineFontSize" min="10" max="60" value="16">
 
           <br><br> <label>Red: </label>   <input type="checkbox" id="newLineRed" value="on">
+
+
+         <br>Starting Martirias:
 
           <details>
             <summary><span class='special2 titleMartiria red'>h</span><span class='text titleMartiria red' style='bottom: 27px;'>а7</span></summary>
@@ -860,6 +861,27 @@
      </aside>
 
     </div>
+
+
+    <footer>
+
+
+
+
+
+      <div class="footer-title"> Neumes </div>
+      <div class="footer-description"> Version: 1.0 Live </div>
+         
+     <div class="footer-links">
+      <a href="about.html" target="_blank" rel="noopener noreferrer">About</a> &nbsp; | &nbsp;
+      <a href="help.html" target="_blank" rel="noopener noreferrer">Getting Started</a> &nbsp; | &nbsp;
+      <a href="shortcuts.html"target="_blank" rel="noopener noreferrer">Keyboard Shortcuts</a> &nbsp; | &nbsp;
+      <a href="external_resources.html" target="_blank" rel="noopener noreferrer">External Resources</a> &nbsp; | &nbsp;
+      <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact</a>
+    </div>
+
+
+    </footer>
 
  </body>
 </html>

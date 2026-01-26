@@ -1,31 +1,33 @@
 function init(){
-    paperContent.innerHTML=""
-    countTextNote = 0;
+    version = 1.0
     document.getElementById('textInputArea').value=""
     document.getElementById('neumesInportArea').value=""
-    document.getElementById('startNote').value=""
-    document.getElementById('startTempo').value=""
     document.getElementById('pageNumberInput').value="1"
     document.getElementById('Upload').value=''
-    document.getElementById('startNote').innerHTML=''
-    document.getElementById('startTempo').innerHTML=''
     document.getElementById('newLineFontSize').value = '16'
 
     countTextNote = 0;
 
     paperContent = document.getElementById('paperContent');
-    paper = document.getElementById('paper')
-
+    paper = document.getElementById('paper');
+    paperPrint = document.getElementById('print');
+    
     activeteNoteButtons(' ');
+
+    paperContent.innerHTML=""
+    countTextNote = 0;
 }
 
 function addNoteWithText(note, font){
 
+    console.log('tuka1')
     newText = document.createElement('div')
     newText.classList.add("text")
     newText.innerText=''
     newText.setAttribute("id", countTextNote)
     newText.setAttribute("onclick", "event.stopPropagation(); choose(this)")
+
+    console.log('tuka2')
 
     newNote = document.createElement('div')
     newNote.setAttribute("onclick", "choose(this)")
@@ -34,8 +36,12 @@ function addNoteWithText(note, font){
     newNote.classList.add('note')
     newNote.classList.add('withText')
 
+    console.log('tuka3')
+
     newNote.appendChild(newText)
     paperContent.appendChild(newNote)   
+
+    console.log('tuka4')
 
     countTextNote = countTextNote+1;
 }
@@ -174,22 +180,47 @@ function newLine(){
 }
 
 function newLineAtStart(){
+
+    newLineFont = document.getElementById('newLineFont').value
+    newLineFontSize = document.getElementById('newLineFontSize').value
+
     line=document.createElement('div')
-    line.classList.add('newline');
+    line.classList.add('newline', 'newLineAtStart');
     line.setAttribute('contenteditable', 'true');
     line.setAttribute('onclick', "event.stopPropagation(); this.focus(); ")
+    
+    if (newLineFont=="MKD"){
+        line.style.fontFamily = 'Calibri';
+    }      
+    else if (newLineFont=="CSL"){
+        line.style.fontFamily = 'Irmologion';
+    }    
+    
+    line.style.fontSize = newLineFontSize + 'pt' 
+
+    if (document.getElementById('newLineRed').checked){
+        line.style.color='#ed0000'
+    }
+    
     paperContent.insertBefore(line, paperContent.firstChild)
+}
+
+function deleteNewLineAtStart(){
+    linesOnTop = document.getElementsByClassName('newLineAtStart');
+    if (linesOnTop.length!=0){
+        linesOnTop[linesOnTop.length-1].remove()
+    }
 }
 
 function exportNotes(){
 
     activeteNoteButtons('importNeumes');
-    document.getElementById('neumesInportArea').value = paper.innerHTML;
+    document.getElementById('neumesInportArea').value = paperContent.innerHTML;
 }
 
 function savePDF(){
 
-    divContents = document.getElementById('print')
+    isJustified = window.getComputedStyle(paperContent).justifyContent == 'space-between';
 
     const options = {
         margin:       0,
@@ -200,14 +231,14 @@ function savePDF(){
     };
 
 
-    html2pdf().from(divContents.innerHTML).set(options).toPdf().get('pdf').then(function(pdf) {
+    html2pdf().from(paperPrint.innerHTML).set(options).toPdf().get('pdf').then(function(pdf) {
 
     date_now = new Date().toString().slice(0, -42)
         const metadata = {
             title: 'Neumes '+date_now,
             subject: 'Neumes '+date_now,
-            author: 'NeumesApp',
-            keywords: divContents.innerHTML
+            author: 'NeumesApp Version=' +version + " j=" + isJustified,
+            keywords: paperContent.innerHTML
         };
 
         pdf.setProperties(metadata);
@@ -219,10 +250,11 @@ function savePDF(){
 
 function ImportNeumes(){ 
     neumes = document.getElementById('neumesInportArea').value
-    paper.innerHTML = ''
-    paper.innerHTML = neumes
+    paperContent.innerHTML = ''
+    paperContent.innerHTML = neumes
 
     countTextNote = document.getElementsByClassName('withText').length;
+    console.log(length)
 }
 
 
@@ -238,6 +270,14 @@ function activeteNoteButtons(button){
 
 function addTitleMartira(startingMartiria, position){
 
+    if (document.getElementById("startMartiria") == null ){
+    titleMartiriaPlaceholder = document.createElement('div')
+    titleMartiriaPlaceholder.setAttribute("id", "startMartiria")
+    titleMartiriaPlaceholder.setAttribute("onclick", "choose(this)")
+    titleMartiriaPlaceholder.innerHTML=`<div id="startNote"></div><div id="startTempo"></div>`;
+    paperContent.insertBefore(titleMartiriaPlaceholder, paperContent.firstChild)
+    }
+      
     possition = document.getElementById(position)
     possition.innerHTML = startingMartiria;
 }
@@ -282,8 +322,7 @@ function addAccentsBack(){
 
 function justify(){
     
-    paperContent.style.justifyContent == 'flex-start' ? paperContent.style.justifyContent = 'space-between' : paperContent.style.justifyContent = 'flex-start';
-    
+    window.getComputedStyle(paperContent).justifyContent == 'flex-start' ? paperContent.style.justifyContent = 'space-between' : paperContent.style.justifyContent = 'flex-start';   
 }
   
 async function readUpload(){
@@ -300,6 +339,15 @@ async function readUpload(){
     document.getElementById('neumesInportArea').value=info.Keywords
 
     ImportNeumes()
+
+    console.log(info.Author)
+    
+    if(info.Author.toString().includes('true')){
+        paperContent.style.justifyContent = 'space-between'
+    }
+    else{
+        paperContent.style.justifyContent = 'flex-start'
+    }
 }
 
 function removePunctuation(){
@@ -337,7 +385,6 @@ function moveLeft(){
     if (selectedElement.length == 0) return;
         selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) - 1 + 'px';
 }
-
 
 function moveDown(){
 

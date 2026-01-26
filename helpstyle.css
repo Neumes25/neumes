@@ -34,6 +34,8 @@
      }  
 
 
+
+
 body{
         background-color: #F0F0F0;
         font-family: 'Calibri';
@@ -92,4 +94,15 @@ body{
 
  td{
    text-align: center;
+ }
+
+ .grey-blur{
+   color: rgb(117, 117, 117);
+ }
+
+ .external_links_div{
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   align-items: center;
  }
