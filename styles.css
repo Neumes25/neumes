@@ -328,7 +328,7 @@ font-size: 15pt;
 
 
 
-.no-borber-button{
+.no-border-button{
    border: none;
    background-color: transparent;
    outline: none;
@@ -400,6 +400,7 @@ footer{
    background-color: var(--header-and-footer-color);
    color: beige;
    font-family: 'Calibri';
+   padding-bottom: 10px;
 }
 
 header{
@@ -467,3 +468,4 @@ a:hover{
 a:active{
    text-decoration: underline;
 }
+

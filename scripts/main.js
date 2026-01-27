@@ -20,14 +20,11 @@ function init(){
 
 function addNoteWithText(note, font){
 
-    console.log('tuka1')
     newText = document.createElement('div')
     newText.classList.add("text")
     newText.innerText=''
     newText.setAttribute("id", countTextNote)
     newText.setAttribute("onclick", "event.stopPropagation(); choose(this)")
-
-    console.log('tuka2')
 
     newNote = document.createElement('div')
     newNote.setAttribute("onclick", "choose(this)")
@@ -36,12 +33,8 @@ function addNoteWithText(note, font){
     newNote.classList.add('note')
     newNote.classList.add('withText')
 
-    console.log('tuka3')
-
     newNote.appendChild(newText)
     paperContent.appendChild(newNote)   
-
-    console.log('tuka4')
 
     countTextNote = countTextNote+1;
 }
@@ -408,7 +401,8 @@ function moveUp(){
 
 init();
 
-
+fontSizeDisplay = document.getElementById('fontSizeValue');
+document.getElementById('newLineFontSize').addEventListener('input', ()=>{fontSizeDisplay.textContent = document.getElementById('newLineFontSize').value})
 
 
 document.getElementById('print').addEventListener('click', ()=> {document.getElementById('print').focus()})
