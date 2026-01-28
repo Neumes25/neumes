@@ -433,3 +433,18 @@ document.addEventListener('keydown', (event)=>{
         document.getElementsByClassName("selected")[0].classList.remove("selected")
     }
 })
+
+
+
+// For Tutorial, button flashes
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+            button.classList.remove('flash')
+            void button.offsetWidth;
+            button.classList.add('flash')
+    })
+
+})

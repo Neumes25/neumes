@@ -469,3 +469,25 @@ a:active{
    text-decoration: underline;
 }
 
+
+@keyframes flashred {
+
+   0%{
+      background-color: #d3e414;
+   }
+
+   50%{
+      background-color: #ffdd00;
+   }
+
+   100%{
+      background-color: initial;
+   }
+   
+}
+
+
+.flash{
+   animation: flashred 0.6s ease-in-out;
+   box-shadow: 0 0 20px grba(255, 0, 0, 0.7);
+}
