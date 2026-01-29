@@ -436,15 +436,15 @@ document.addEventListener('keydown', (event)=>{
 
 
 
-// For Tutorial, button flashes
+// For Tutorial videos
 
-const buttons = document.querySelectorAll("button");
+// const buttons = document.querySelectorAll("button");
 
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-            button.classList.remove('flash')
-            void button.offsetWidth;
-            button.classList.add('flash')
-    })
+// buttons.forEach(button => {
+//     button.addEventListener("click", () => {
+//             button.classList.remove('flash')
+//             void button.offsetWidth;
+//             button.classList.add('flash')
+//     })
 
-})
+// })

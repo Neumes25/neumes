@@ -106,3 +106,10 @@ body{
    position: relative;
    align-items: center;
  }
+
+ .tutorial-video{
+   position: relative;
+   left: 50%;
+   transform: translateX(-50%);
+   text-align: center;
+}

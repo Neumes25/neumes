@@ -470,6 +470,8 @@ a:active{
 }
 
 
+
+/* For Tutorial Videos:
 @keyframes flashred {
 
    0%{
@@ -490,4 +492,4 @@ a:active{
 .flash{
    animation: flashred 0.6s ease-in-out;
    box-shadow: 0 0 20px grba(255, 0, 0, 0.7);
-}
+} */
