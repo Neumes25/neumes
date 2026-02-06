@@ -224,7 +224,7 @@ function savePDF(){
     };
 
 
-    html2pdf().from(paperPrint.innerHTML).set(options).toPdf().get('pdf').then(function(pdf) {
+    html2pdf().from(paperContent).set(options).toPdf().get('pdf').then(function(pdf) {
 
     date_now = new Date().toString().slice(0, -42)
         const metadata = {
@@ -235,6 +235,18 @@ function savePDF(){
         };
 
         pdf.setProperties(metadata);
+
+        width=pdf.internal.pageSize.width
+        height=pdf.internal.pageSize.height
+
+
+        pdf.setFontSize(10)
+        pdf.text(
+            "Footer Test",
+            height,
+            width,
+            {align:'center'}
+        )
 
         pdf.save();
     });

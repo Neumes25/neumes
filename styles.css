@@ -36,10 +36,10 @@
 :root{
    --red-color: #ed0000;
    --grey-blur-color: rgb(117, 117, 117);
-   --A4-page-height: 297mm;
-   --A4-page-width: 210mm;
-   --A4-page-side-margin: 19mm;
-   --A4-page-top-margin: 25mm;
+   --A4-page-height: 1122px;
+   --A4-page-width: 794px;;
+   --A4-page-side-margin: 72px;
+   --A4-page-top-margin: 94px;;
    --A4-pageContent-width: calc(var(--A4-page-width) - 2*var(--A4-page-side-margin));
    --A4-pageContent-height: calc(var(--A4-page-height) - 2*var(--A4-page-top-margin));
    --buttonsDashboard-height: 2cm;
@@ -134,8 +134,7 @@ body{
 
 #paperContent{
    position: relative;
-   top: var(--A4-page-top-margin);
-   left: var(--A4-page-side-margin);
+   padding: var(--A4-page-top-margin) var(--A4-page-side-margin);
    width: var(--A4-pageContent-width);
    height: var(--A4-pageContent-height);
    display: flex;
@@ -390,18 +389,43 @@ text-shadow: -0.5px -0.5px 0 #2782dd, 0.5px -0.5px 0 #2782dd, 0.5px 0.5px 0 #278
 }
 
 footer{
-   height: 2.5cm;
-   position: relative;
    display: flex;
-   justify-content: space-around;
-   align-items: center;
-   flex-direction: column;
-   bottom: 0;
    background-color: var(--header-and-footer-color);
+   flex-direction: row;
+   padding: 20px;
+   font-family: Arial, sans-serif;
+   font-size: 14px;
    color: beige;
-   font-family: 'Calibri';
-   padding-bottom: 10px;
+   border-top: 1px solid #ccc;
+   justify-content: space-evenly;
 }
+
+
+.footer-left,
+  .footer-center,
+  .footer-links {
+    margin: 0 0;
+    width: 30%;
+  }
+
+
+ .footer-center {
+   text-align: center;
+   font-size: 14px;
+ }
+
+
+ .footer-center .copyright {
+   font-size: 12px;
+   color: #667;
+   margin-top: 8px;
+ }
+
+ .footer-right {
+   display: flex;
+   flex-direction: column;
+ }
+
 
 header{
    height: 1.5cm;
@@ -418,6 +442,7 @@ header{
 }
 
 .title-image{
+   margin-top: 4px;
    height: 1.3cm;
    width: 1.cm;
    border-radius: 10px;
@@ -428,23 +453,29 @@ header{
 }
 
 .footer-title{
+
    color: beige;
    top: 5px;
    font-size: 15pt;
    justify-content: center;
    align-items: center;
+   position: relative;
 }
 
-.footer-description{
-   color: beige;
-   justify-content: center;
-   align-items: center;
+.footer-image{
+   height: 1cm;
+   width: 1cm;
+   border-radius: 10px;
 }
 
+.footer-title-and-image{
+   display: flex;
+   flex-direction: row;
+}
 
 .footer-links{
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
    color: beige;
    justify-content: center;
    align-items: center;
