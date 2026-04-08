@@ -55,8 +55,12 @@
       position: relative;
       bottom: 15pt;
       font-size: 16pt;
-      font-family: 'Irmologion';
+      font-family: 'Calibri';
 }     
+
+.text:hover{
+   cursor: pointer;
+}
 
 .red{
    color: var(--red-color);
@@ -85,6 +89,10 @@
 .psaltica{
    font-family: 'Psaltica';
    margin: 0px 0.5px 0px 0.5px;
+}
+
+.psaltica:hover{
+   cursor: pointer;
 }
 
 .special{
@@ -299,7 +307,7 @@ color: var(--red-color);
 width: var(--A4-pageContent-width);
 left: var(--A4-page-side-margin);
 position: relative;
-top: 80px;
+top: 60px;
 text-align: center;
 font-family: 'PageNumber';
 font-size: 15pt;
