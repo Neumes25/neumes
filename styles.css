@@ -55,7 +55,7 @@
       position: relative;
       bottom: 15pt;
       font-size: 16pt;
-      font-family: 'Calibri';
+      font-family: 'Irmologion';
 }     
 
 .text:hover{
@@ -265,6 +265,12 @@ width: 20px;
    font-size: 16pt;
    font-family: 'Irmologion';
    }
+
+.newlineAtStart{
+   height: 6pt;
+   width: 100%;
+   position: relative;
+}
 
 button{
    height: fit-content;
@@ -508,6 +514,19 @@ a:active{
    text-decoration: underline;
 }
 
+.textBox{
+   position: absolute;
+   height: fit-content;
+   min-width: 40%;
+   width: fit-content;
+   left: 170pt;
+   top: 25pt;
+   text-align: center;
+}
+
+.textBox-selected{
+   border: 2px solid #4a90e2;
+}
 
 
 /* For Tutorial Videos:

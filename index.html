@@ -20,7 +20,7 @@
 <body>
 
   <header>
-    <img class="title-image" src="images/favicon_io/apple-touch-icon.png"> <div class="title-text"> &nbsp; &nbsp; NEUMES &nbsp; &nbsp; A free, online, Neumatic Musicsheet Editor for Byzantine Chants in Churchlavonic.</div>
+    <img class="title-image" src="images/favicon_io/apple-touch-icon.png"> <div class="title-text"> &nbsp; &nbsp; NEUMES &nbsp; &nbsp; A Free Online Neumatic Music Sheet Editor for Byzantine Chants in Church Slavonic.</div>
   </header>
 
 
@@ -609,8 +609,9 @@
         <button name="M" onclick="addIson('m')" class="oneNoteButton special2 red"><span class="grey-blur psaltica">!</span>m</button>
         <button name="," onclick="addIson('<')" class="oneNoteButton special2 red"><span class="grey-blur psaltica">0</span><</button>
         <button name="<" onclick="addIson(',')" class="oneNoteButton special2 red"><span class="grey-blur psaltica">!</span>,</button>
-
         <button onclick="addIson('>')" class="red oneNoteButton special2"><span class="grey-blur psaltica">0</span>></button>
+        <button style="height:63px; position:relative;" onclick="addIson(`<span style='position:relative; left:-14px;'>V</span>`); addIson(`<span>m</span>`); addNoteNoText(`<span class='red note' style='font-family:Calibri; font-size:16pt; position:relative; left:-27px; top:-24px;'>-</span>`)" class="oneNoteButton special2 red"><span class="grey-blur psaltica">0</span><span style="position:relative; left:-10px;">V</span><span>m</span><span style="position:absolute;  left:25px; font-family:Calibri; font-size:12pt;">-</span></button>
+        
 
         <br><br>
 
@@ -726,25 +727,26 @@
         <div class="button-container"> <button name=" " onclick="newSpace()" class="no-border-button"><img src="images/space.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">White<br>Space</div> </div>
         <div class="button-container"> <button name="Enter" onclick="newLine()" class="no-border-button"><img src="images/enter.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">New Line</div> </div> 
         <div class="button-container"> <button onclick="newLineAtStart()" class="no-border-button"><img src="images/down.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-5%);">Bring Down</div> </div>
-        <div class="button-container"> <button onclick="deleteNewLineAtStart()" class="no-border-button"><img src="images/down.png" class="button-image" style="rotate: 180deg;"></button> <div class="hiddenText" style="transform: translateX(-10%);">Bring Up</div> </div> 
+        <div class="button-container"> <button onclick="deleteNewLineAtStart()" class="no-border-button"><img src="images/down.png" class="button-image" style="rotate: 180deg;"></button> <div class="hiddenText" style="transform: translateX(-10%);">Bring Up</div> </div>
+        <div class="button-container"> <button onclick="addTextBox()" class="no-border-button"><img src="images/textBox.png" class="button-image"></button> <div class="hiddenText" style="transform: translateX(-10%);">Text Box</div> </div> 
         <div class="button-container pageNumberDiv"> <button onclick="activetePageNumbers()" class='no-border-button'><img src="images/pageNumber.png"  class="button-image"></button>       
         <input type="number" onchange="updatePageNumber(value)" id="pageNumberInput"/> <div class="hiddenText" style="transform: translate(-155%, 65%);">Add Page Number</div></div>         
           </div>                
         
           <br><br>
 
-          <label>New Line Font</label>
-          <select id="newLineFont">
+          <label>TextBox Font</label>
+          <select id="textBoxFont">
             <option value="CSL">Churchslavonic</option>
             <option value="MKD">Macedonian</option>      
           </select>
         
           <br><br>
-          <label>New Line Font Size: <span id="fontSizeValue">16</span></label>
+          <label>TextBox Font Size: <span id="fontSizeValue">16</span></label>
           <br>
-          <input type="range" id="newLineFontSize" min="10" max="48" value="16"> 
+          <input type="range" id="textBoxFontSize" min="10" max="48" value="16"> 
 
-          <br><br> <label>Red: </label>   <input type="checkbox" id="newLineRed" value="on">
+          <br><br> <label>Red: </label>   <input type="checkbox" id="textBoxRed" value="on">
 
 
           <br>Starting Martirias:
@@ -868,17 +870,24 @@
         <img class="footer-image" src="images/favicon_io/apple-touch-icon.png"> <div class="footer-title"> &nbsp; Neumes </div>
         </div>  
         
-        <div class="footer-description"> A free, online, Neumatic Musicsheet Editor for Byzantine Chants in Churchlavonic. </div>
+        <div class="footer-description"> <br> A Free Online Neumatic Music Sheet Editor for Byzantine Chants in Church Slavonic. </div>
         <p>Version: 1.1.2 Live (Feb 2026)</p>
       </div>
     
       <div class="footer-center">
         <br>
         <p>
-          This application is open source but for non-commercial use only. If used, it must be properly cited. All rights remain with the author. Copying, redistribution, or commercial use of the source code is strictly prohibited.
-        </p>
+          This application is provided free of charge for personal and liturgical use.
+
+          The service is provided “as is,” without warranty of any kind, express or implied. The author shall not be liable for any damages arising from the use of, or inability to use, the software.
+          
+          If this software is used to produce materials that are published academically or commercially (including, but not limited to, books, articles, recordings, or digital publications), proper citation and attribution to NEUMES and its author are required.
+          
+          Redistribution or commercial distribution of the software itself is prohibited without prior written permission from the author.
+          
+          The author reserves the right to modify or discontinue the service at any time without notice.        </p>
         <p class="copyright">
-          © 2026 Matej Kostoski. All rights reserved.
+          © 2026 Matej Kostoski, M.Sc. All rights reserved.
         </p>
       </div>
     

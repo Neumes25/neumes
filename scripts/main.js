@@ -4,7 +4,7 @@ function init(){
     document.getElementById('neumesInportArea').value=""
     document.getElementById('pageNumberInput').value="1"
     document.getElementById('Upload').value=''
-    document.getElementById('newLineFontSize').value = '16'
+    document.getElementById('textBoxFontSize').value = '16'
 
     countTextNote = 0;
 
@@ -131,10 +131,10 @@ function getTextFromNeumes(){
 
 
 function deleteNote(){
-    if(paperContent.lastElementChild.classList.contains('withText')){
+    if(paperContent.lastElementChild?.classList.contains('withText')){
         countTextNote=countTextNote-1;
     }
-    paperContent.lastElementChild.remove()
+    paperContent.lastElementChild?.remove()
 }
 
 
@@ -142,59 +142,54 @@ function newSpace(){
     
     whiteSpace=document.createElement('div')
     whiteSpace.classList.add('white');
-    whiteSpace.setAttribute('contenteditable', 'true');
     paperContent.appendChild(whiteSpace)
+}
+
+function addTextBox(){
+
+    textBoxFont = document.getElementById('textBoxFont').value
+    textBoxFontSize = document.getElementById('textBoxFontSize').value
+
+    textBox=document.createElement('div')
+    textBox.classList.add('textBox', 'textBox-selected');
+
+    textBox.setAttribute('contenteditable', 'true');
+    textBox.setAttribute('onclick', "event.stopPropagation(); this.focus(); ")
+    textBox.addEventListener('auxclick', function (event) {
+        this.classList.add('textBox-selected');
+      });
+
+    if (textBoxFont=="MKD"){
+        textBox.style.fontFamily = 'Calibri';
+    }      
+    else if (textBoxFont=="CSL"){
+        textBox.style.fontFamily = 'Irmologion';
+    }    
+    
+    textBox.style.fontSize = textBoxFontSize + 'pt' 
+
+    if (document.getElementById('textBoxRed').checked){
+        textBox.style.color='#ed0000'
+    }
+
+    
+    paperContent.appendChild(textBox)
+
 }
 
 function newLine(){
     
-    newLineFont = document.getElementById('newLineFont').value
-    newLineFontSize = document.getElementById('newLineFontSize').value
-
     line=document.createElement('div')
     line.classList.add('newline');
-    line.setAttribute('contenteditable', 'true');
-    line.setAttribute('onclick', "event.stopPropagation(); this.focus(); ")
-
-    if (newLineFont=="MKD"){
-        line.style.fontFamily = 'Calibri';
-    }      
-    else if (newLineFont=="CSL"){
-        line.style.fontFamily = 'Irmologion';
-    }    
-    
-    line.style.fontSize = newLineFontSize + 'pt' 
-
-    if (document.getElementById('newLineRed').checked){
-        line.style.color='#ed0000'
-    }
-
+   
     paperContent.appendChild(line)
 }
 
 function newLineAtStart(){
 
-    newLineFont = document.getElementById('newLineFont').value
-    newLineFontSize = document.getElementById('newLineFontSize').value
-
     line=document.createElement('div')
-    line.classList.add('newline', 'newLineAtStart');
-    line.setAttribute('contenteditable', 'true');
-    line.setAttribute('onclick', "event.stopPropagation(); this.focus(); ")
-    
-    if (newLineFont=="MKD"){
-        line.style.fontFamily = 'Calibri';
-    }      
-    else if (newLineFont=="CSL"){
-        line.style.fontFamily = 'Irmologion';
-    }    
-    
-    line.style.fontSize = newLineFontSize + 'pt' 
-
-    if (document.getElementById('newLineRed').checked){
-        line.style.color='#ed0000'
-    }
-    
+    line.classList.add('newlineAtStart');
+   
     paperContent.insertBefore(line, paperContent.firstChild)
 }
 
@@ -208,7 +203,7 @@ function deleteNewLineAtStart(){
 function exportNotes(){
 
     activeteNoteButtons('importNeumes');
-    document.getElementById('neumesInportArea').value = paperContent.innerHTML;
+    document.getElementById('neumesInportArea').value = paperContent.innerHTML.replaceAll('></', '>\n</');
 }
 
 function savePDF(){
@@ -236,15 +231,16 @@ function savePDF(){
 
         pdf.setProperties(metadata);
 
-        width=pdf.internal.pageSize.width
-        height=pdf.internal.pageSize.height
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const pageWidth = pdf.internal.pageSize.getWidth();
 
 
-        pdf.setFontSize(10)
+        pdf.setFontSize(8)
+        pdf.setFont('Helvetica', 'italic')
         pdf.text(
-            "Footer Test",
-            height,
-            width,
+            "Created using Neumes © (neumes25.github.io/neumes)",
+            pageWidth/2,
+            pageHeight-7,
             {align:'center'}
         )
 
@@ -377,23 +373,21 @@ function choose(elements){
 
 function moveRight(){
 
-    selectedElement = document.getElementsByClassName("selected")
+    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
 
     if (selectedElement.length == 0) return;
         selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) + 1 + 'px';
 }
 
 function moveLeft(){
-
-    selectedElement = document.getElementsByClassName("selected")
+    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
 
     if (selectedElement.length == 0) return;
         selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) - 1 + 'px';
 }
 
 function moveDown(){
-
-    selectedElement = document.getElementsByClassName("selected")
+    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
 
     if (selectedElement.length == 0) return;
         selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) + 1 + 'px';
@@ -401,8 +395,7 @@ function moveDown(){
 }
 
 function moveUp(){
-
-    selectedElement = document.getElementsByClassName("selected")
+    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
 
     if (selectedElement.length == 0) return;
         selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) - 1 + 'px';
@@ -414,7 +407,7 @@ function moveUp(){
 init();
 
 fontSizeDisplay = document.getElementById('fontSizeValue');
-document.getElementById('newLineFontSize').addEventListener('input', ()=>{fontSizeDisplay.textContent = document.getElementById('newLineFontSize').value})
+document.getElementById('textBoxFontSize').addEventListener('input', ()=>{fontSizeDisplay.textContent = document.getElementById('textBoxFontSize').value})
 
 
 document.getElementById('print').addEventListener('click', ()=> {document.getElementById('print').focus()})
@@ -442,7 +435,8 @@ document.addEventListener('keydown', (event)=>{
     if (event.key == 'ArrowRight' && document.getElementsByClassName("selected") !=0) moveRight()
     
     if (event.key == "Escape") {
-        document.getElementsByClassName("selected")[0].classList.remove("selected")
+        document.getElementsByClassName("selected")[0]?.classList.remove("selected")
+        document.getElementsByClassName("textBox-selected")[0]?.classList.remove("textBox-selected")
     }
 })
 
