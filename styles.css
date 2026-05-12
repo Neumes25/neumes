@@ -106,6 +106,7 @@
 
 .ftora{
    width: fit-content;
+   position: relative;
    font-size: 26pt;
    font-family: 'Ftora';
    height:  calc( var(--line-spacing) - var(--ftora-offset));
@@ -161,6 +162,19 @@ body{
    z-index: 100;
 }
 
+.titleMartiria-text{
+   bottom: -9px;
+   text-align: center;
+   height: fit-content;
+   position: relative;
+   font-size: 16pt;
+   font-family: 'Irmologion';
+   width: fit-content;
+   font-size: 26pt;
+   height: var(--line-spacing);
+   position: relative;
+}
+
 #startMartiria:hover{
 cursor: pointer;
 }
@@ -170,7 +184,7 @@ cursor: pointer;
    white-space: nowrap;
    position: absolute;
    right: 0;
-   top: 5%;
+   top: 70pt;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
@@ -234,6 +248,7 @@ cursor: pointer;
    font-family: 'Irmologion';
    width: 90mm;
    height: 60mm;
+   font-size: 16pt;
 }
 
 .ison{
@@ -258,11 +273,12 @@ width: 20px;
 .newline{
    height: calc(var(--line-spacing)/5);
    width: 100%;
-   text-align: center;
-   height: fit-content;
+   height: 70pt;                 /* For compatibility with older */
+   text-align: center;           /* For compatibility with older */
+   height: fit-content;          /* For compatibility with older */
+   bottom: 15pt;                 /* For compatibility with older */
    position: relative;
-   bottom: 15pt;
-   font-size: 16pt;
+   font-size: 16pt;              /* For compatibility with older */
    font-family: 'Irmologion';
    }
 
@@ -313,7 +329,7 @@ color: var(--red-color);
 width: var(--A4-pageContent-width);
 left: var(--A4-page-side-margin);
 position: relative;
-top: 60px;
+top: -50px;
 text-align: center;
 font-family: 'PageNumber';
 font-size: 15pt;
@@ -504,7 +520,6 @@ a:visited{
    text-decoration: none;
    color: beige;
 }
-
 a:hover{
    text-decoration: underline;
    cursor: pointer;
@@ -515,13 +530,16 @@ a:active{
 }
 
 .textBox{
-   position: absolute;
+   position: relative;
    height: fit-content;
    min-width: 40%;
+   max-width: 670px;
    width: fit-content;
-   left: 170pt;
+   margin-left: auto;
+   margin-right: auto;
    top: 25pt;
    text-align: center;
+   overflow-wrap: break-word;
 }
 
 .textBox-selected{
@@ -529,7 +547,7 @@ a:active{
 }
 
 
-/* For Tutorial Videos:
+
 @keyframes flashred {
 
    0%{
@@ -547,7 +565,12 @@ a:active{
 }
 
 
-.flash{
+.demo-mode .flash{
    animation: flashred 0.6s ease-in-out;
    box-shadow: 0 0 20px grba(255, 0, 0, 0.7);
-} */
+}
+
+
+#textBoxMenu{
+   display: none;
+}

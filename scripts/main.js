@@ -16,6 +16,7 @@ function init(){
 
     paperContent.innerHTML=""
     countTextNote = 0;
+    footerOn = true;
 }
 
 function addNoteWithText(note, font){
@@ -172,8 +173,28 @@ function addTextBox(){
         textBox.style.color='#ed0000'
     }
 
-    
+    textBoxPosition = document.getElementById('textBoxPosition').value
+
+    if(textBoxPosition == 'top'){
+        textBox.style.setProperty('top', '0')
+
+    }
+    else if(textBoxPosition == 'mid'){
+        textBox.style.setProperty('top', '350px')
+    }
+    else if(textBoxPosition == 'bottom'){
+        textBox.style.setProperty('top', '850px')
+    }
+
+    if (document.getElementById('twoColumns').checked){
+        textBox.style.setProperty('column-count', '2')
+    }
+
+
     paperContent.appendChild(textBox)
+
+    
+
 
 }
 
@@ -234,7 +255,7 @@ function savePDF(){
         const pageHeight = pdf.internal.pageSize.getHeight();
         const pageWidth = pdf.internal.pageSize.getWidth();
 
-
+        if (footerOn) {
         pdf.setFontSize(8)
         pdf.setFont('Helvetica', 'italic')
         pdf.text(
@@ -243,7 +264,7 @@ function savePDF(){
             pageHeight-7,
             {align:'center'}
         )
-
+        }
         pdf.save();
     });
 
@@ -402,7 +423,13 @@ function moveUp(){
 
 }
 
+function turnOffFooter(){
+    footerOn = false;
+}
 
+function showTextBoxMenu(){
+    document.getElementById("textBoxMenu").style.getPropertyValue('display') == 'none' ? document.getElementById("textBoxMenu").style.setProperty('display', 'block') :  document.getElementById("textBoxMenu").style.setProperty('display', 'none')
+}
 
 init();
 
@@ -444,13 +471,41 @@ document.addEventListener('keydown', (event)=>{
 
 // For Tutorial videos
 
-// const buttons = document.querySelectorAll("button");
-
-// buttons.forEach(button => {
-//     button.addEventListener("click", () => {
-//             button.classList.remove('flash')
-//             void button.offsetWidth;
-//             button.classList.add('flash')
-//     })
-
-// })
+const DemoMode = {
+    enabled: false,
+  
+    enable() {
+      this.enabled = true;
+      document.body.classList.add("demo-mode");
+      console.log("[DemoMode] ENABLED");
+    },
+  
+    disable() {
+      this.enabled = false;
+      document.body.classList.remove("demo-mode");
+      console.log("[DemoMode] DISABLED");
+    },
+  
+    toggle() {
+      this.enabled ? this.disable() : this.enable();
+    }
+  };
+  
+  // Expose to browser console
+  window.DemoMode = DemoMode;
+  
+  document.addEventListener("click", (e) => {
+    if (!DemoMode.enabled) return;
+  
+    const button = e.target.closest("button");
+    if (!button || button.disabled) return;
+  
+    button.classList.remove("flash");
+    void button.offsetWidth;
+    button.classList.add("flash");
+  
+    setTimeout(() => {
+      button.classList.remove("flash");
+    }, 600);
+  });
+  
