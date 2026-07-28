@@ -431,6 +431,47 @@ function showTextBoxMenu(){
     document.getElementById("textBoxMenu").style.getPropertyValue('display') == 'none' ? document.getElementById("textBoxMenu").style.setProperty('display', 'block') :  document.getElementById("textBoxMenu").style.setProperty('display', 'none')
 }
 
+
+function getNextNote(note){
+
+    if (note.firstElementChild){
+        return note.firstElementChild
+    }
+
+    if(note.nextElementSibling){
+        return note.nextElementSibling
+    }
+
+    let parent = note.parentElement
+
+    while(parent && parent != paper){
+
+        if (parent.nextElementSibling){
+            return parent.nextElementSibling
+        }
+
+        parent = parent.parentElement
+    }
+
+    return null
+}
+
+function getPreviousNote(el) {
+
+    if (el.previousElementSibling) {
+
+        let prev = el.previousElementSibling;
+
+        while (prev.lastElementChild) {
+            prev = prev.lastElementChild;
+        }
+
+        return prev;
+    }
+
+    return el.parentElement;
+}
+
 init();
 
 fontSizeDisplay = document.getElementById('fontSizeValue');
@@ -447,6 +488,19 @@ document.addEventListener('keydown', (event)=>{
 
    if (document.activeElement !== document.getElementById('print')) return
     
+    if (event.key == 'Tab'){
+
+        event.preventDefault()
+
+        selectedNote = document.getElementsByClassName('selected')[0]
+
+        if(!selectedNote) return
+
+        nextNote = event.shiftKey ? getPreviousNote(selectedNote) : getNextNote(selectedNote)
+
+        selectedNote.classList.remove('selected')
+        nextNote.classList.add('selected')
+    }
    
     document.getElementsByName(event.key.toString())[0]?.click()
 
