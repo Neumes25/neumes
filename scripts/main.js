@@ -1,5 +1,5 @@
 function init(){
-    version = 1.0
+    version = '1.3.1'
     document.getElementById('textInputArea').value=""
     document.getElementById('neumesInportArea').value=""
     document.getElementById('pageNumberInput').value="1"
@@ -24,20 +24,25 @@ function addNoteWithText(note, font){
     newText = document.createElement('div')
     newText.classList.add("text")
     newText.innerText=''
-    newText.setAttribute("id", countTextNote)
     newText.setAttribute("onclick", "event.stopPropagation(); choose(this)")
 
     newNote = document.createElement('div')
     newNote.setAttribute("onclick", "choose(this)")
     newNote.innerHTML=note
-    newNote.classList.add(font)
-    newNote.classList.add('note')
-    newNote.classList.add('withText')
+    newNote.classList.add(font, 'note', 'withText')
+    // newNote.classList.add('note')
+    // newNote.classList.add('withText')
 
     newNote.appendChild(newText)
-    paperContent.appendChild(newNote)   
 
-    countTextNote = countTextNote+1;
+    const selected = document.querySelector('.note.selected')
+        if (selected){
+            selected.after(newNote)
+        }
+        else {
+            paperContent.appendChild(newNote)   
+        }
+    addTextboxIDs()
 }
 
 
@@ -48,8 +53,15 @@ function addNoteNoText(note, font){
     newNote.classList.add(font)
     newNote.classList.add('note')
     newNote.setAttribute("onclick", "choose(this)")
-    paperContent.appendChild(newNote)   
-
+    
+    const selected = document.querySelector('.note.selected')
+        if (selected){
+            selected.after(newNote)
+        }
+        else {
+           paperContent.appendChild(newNote)   
+        }  
+    addTextboxIDs()    
 }
 
 
@@ -57,12 +69,19 @@ function addIson(note){
     
     newNote = document.createElement('div')
     newNote.innerHTML=note
-    newNote.classList.add('special2')
-    newNote.classList.add('note')
-    newNote.classList.add('red')
-    newNote.classList.add('ison')
+    newNote.classList.add('special2', 'note', 'red', 'ison')
+    // newNote.classList.add('note')
+    // newNote.classList.add('red')
+    // newNote.classList.add('ison')
       
-    paperContent.appendChild(newNote)   
+    const selected = document.querySelector('.note.selected')
+        if (selected){
+            selected.after(newNote)
+        }
+        else {
+           paperContent.appendChild(newNote)   
+        }  
+    addTextboxIDs()    
 }
 
 
@@ -70,18 +89,34 @@ function addMartiria(note, font){
     
     newMartiria = document.createElement('div')
     newMartiria.innerHTML=note
-    newMartiria.classList.add(font)
-    newMartiria.classList.add('red')
-    newMartiria.classList.add('note')
-    newNote.setAttribute("onclick", "choose(this)")
+    newMartiria.classList.add(font, 'red', 'note')
+    // newMartiria.classList.add('red')
+    // newMartiria.classList.add('note')
+    newMartiria.setAttribute("onclick", "choose(this)")
        
-    paperContent.appendChild(newMartiria)     
+    const selected = document.querySelector('.note.selected')
+        if (selected){
+            selected.after(newMartiria)
+        }
+        else {
+           paperContent.appendChild(newMartiria)   
+        }  
+    addTextboxIDs()       
 }
 
 
 function addTemporalNote(note, font){
 
-    var parentNote = paperContent.lastChild;
+    const selected = document.querySelector('.note.selected')
+        if (selected){
+            parentNote = selected;
+            
+        }
+        else {
+           parentNote = paperContent.lastChild;   
+        }  
+
+    
     
     newNote = document.createElement('span')
     newNote.innerHTML=note
@@ -94,13 +129,28 @@ function addTemporalNote(note, font){
 
 function addFtora(note, font='ftora'){
 
-        var parentNote = paperContent.lastChild;
+    const selected = document.querySelector('.note.selected')
+        if (selected){
+            parentNote = selected;
+            
+        }
+        else {
+           parentNote = paperContent.lastChild;   
+        }  
         
         newNote = document.createElement('span')
         newNote.innerHTML=note
         newNote.classList.add(font)
                 
         parentNote.insertBefore(newNote, parentNote.lastChild)       
+}
+
+function addTextboxIDs(){
+    textboxes=document.querySelectorAll('.text')
+    textboxes.forEach((textbox, index) => {
+        textbox.id=index
+    })
+    countTextNote = textboxes.length
 }
 
 function addText(){
@@ -123,8 +173,8 @@ function getTextFromNeumes(){
     textString2 = ''
     for(i=0; i<countTextNote; i++){
     
-        textString2 = textString2 + document.getElementById(i.toString()).innerText;
-        textString2 = textString2 + ' ';
+        textString2 += document.getElementById(i.toString()).innerText + ' ';
+        // textString2 = textString2 + ' ';
     }
 
     document.getElementById('textInputArea').value = textString2;
@@ -132,10 +182,9 @@ function getTextFromNeumes(){
 
 
 function deleteNote(){
-    if(paperContent.lastElementChild?.classList.contains('withText')){
-        countTextNote=countTextNote-1;
-    }
-    paperContent.lastElementChild?.remove()
+
+    document.querySelector('.note.selected')?.remove()
+    addTextboxIDs()
 }
 
 
@@ -275,8 +324,7 @@ function ImportNeumes(){
     paperContent.innerHTML = ''
     paperContent.innerHTML = neumes
 
-    countTextNote = document.getElementsByClassName('withText').length;
-    console.log(length)
+    addTextboxIDs()
 }
 
 
