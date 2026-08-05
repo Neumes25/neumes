@@ -532,7 +532,7 @@ a:active{
 .textBox{
    position: relative;
    height: fit-content;
-   min-width: 40%;
+   min-width: 80px;
    max-width: 670px;
    width: fit-content;
    margin-left: auto;

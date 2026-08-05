@@ -145,6 +145,167 @@ function addFtora(note, font='ftora'){
         parentNote.insertBefore(newNote, parentNote.lastChild)       
 }
 
+function makeOxeia(){
+
+    const oxeiaMapings = new Map([
+    ["psaltica|1", "1"],
+    ["psaltica|2", "2"],
+    ["psaltica|3", "3"],
+    ["psaltica|4", "4"],
+    ["psaltica|5", "5"],
+    ["psaltica|6", "6"],
+    ["psaltica|7", "7"],
+    ["psaltica|8", "8"],
+    ["psaltica|9", "9"],
+    ["special|0", "I"],
+    ["special|1", "W"],
+    ["special|2", "E"],
+    ["psaltica|0", "I"],
+    ["special2|9", "I"],
+    ["psaltica|~", "~"],
+    ["psaltica|!", "!"],
+    ["psaltica|I", "!"],
+    ["special|\\", "`"],
+    ["psaltica|-", "-"],
+    ["psaltica|@", "@"],
+    ["psaltica|#", "#"],
+    ["psaltica|$", "$"],
+    ["psaltica|P", "P"],
+    ["psaltica|o", "o"],
+    ["psaltica|O", "O"],
+    ["psaltica|l", "l"],
+    ["psaltica|L", "L"],
+    ["psaltica|=", "="],
+    ["special|u", "%"],
+    ["special|i", "^"],
+    ["psaltica|U", "U"],
+    ["psaltica|Y", "Y"],
+    ["psaltica|T", "T"],
+    ["psaltica|R", "R"],
+    ["special|t", "&"],
+    ["special|5", "*"],
+    ["special|8", "("],
+    ["special|9", "j"],
+    ["special|T", "J"],
+    ["special|Y", "º"], // Alt+0186
+    ["special|y", "_"],
+    ["psaltica|_", "\\"],
+    ["psaltica|s", "s"],
+    ["psaltica|S", "S"],
+    ["psaltica|x", "x"],
+    ["psaltica|X", "X"],
+    ["psaltica|h", "h"],
+    ["psaltica|H", "H"],
+    ["psaltica|d", "d"],
+    ["psaltica|D", "D"],
+    ["psaltica|f", "f"],
+    ["psaltica|F", "F"],
+    ["psaltica|g", "g"],
+    ["psaltica|G", "G"],
+    ["psaltica|{", "{"],
+    ["psaltica|[", "["],
+    ["psaltica|]", "]"],
+    ["psaltica|'", "'"]
+]);
+
+const reverseOxeiaMapings = new Map([
+    ["1", ["psaltica", "1"]],
+    ["2", ["psaltica", "2"]],
+    ["3", ["psaltica", "3"]],
+    ["4", ["psaltica", "4"]],
+    ["5", ["psaltica", "5"]],
+    ["6", ["psaltica", "6"]],
+    ["7", ["psaltica", "7"]],
+    ["8", ["psaltica", "8"]],
+    ["9", ["psaltica", "9"]],
+    ["Q", ["special", "0"]],
+    ["W", ["special", "1"]],
+    ["E", ["special", "2"]],
+    // Ambiguous: could be psaltica|0, special|0 or special2|9.
+    // Chose psaltica|0 because it is the primary note font.
+    ["I", ["psaltica", "0"]],
+    ["~", ["psaltica", "~"]],
+    ["!", ["psaltica", "!"]],
+    ["`", ["special", "\\"]],
+    ["-", ["psaltica", "-"]],
+    ["@", ["psaltica", "@"]],
+    ["#", ["psaltica", "#"]],
+    ["$", ["psaltica", "$"]],
+    ["P", ["psaltica", "P"]],
+    ["o", ["psaltica", "o"]],
+    ["O", ["psaltica", "O"]],
+    ["l", ["psaltica", "l"]],
+    ["L", ["psaltica", "L"]],
+    ["=", ["psaltica", "="]],
+    ["%", ["special", "u"]],
+    ["^", ["special", "i"]],
+    ["U", ["psaltica", "U"]],
+    ["Y", ["psaltica", "Y"]],
+    ["T", ["psaltica", "T"]],
+    ["R", ["psaltica", "R"]],
+    ["&", ["special", "t"]],
+    ["*", ["special", "5"]],
+    ["(", ["special", "8"]],
+    ["j", ["special", "9"]],
+    ["J", ["special", "T"]],
+    ["º", ["special", "Y"]],
+    ["_", ["special", "y"]],
+    ["\\", ["psaltica", "_"]],
+    ["s", ["psaltica", "s"]],
+    ["S", ["psaltica", "S"]],
+    ["x", ["psaltica", "x"]],
+    ["X", ["psaltica", "X"]],
+    ["h", ["psaltica", "h"]],
+    ["H", ["psaltica", "H"]],
+    ["d", ["psaltica", "d"]],
+    ["D", ["psaltica", "D"]],
+    ["f", ["psaltica", "f"]],
+    ["F", ["psaltica", "F"]],
+    ["g", ["psaltica", "g"]],
+    ["G", ["psaltica", "G"]],
+    ["{", ["psaltica", "{"]],
+    ["[", ["psaltica", "["]],
+    ["]", ["psaltica", "]"]],
+    ["'", ["psaltica", "'"]]
+]);
+
+    note = document.querySelector('.note.selected')
+    if (!note) {
+    console.warn("No note selected.");
+    return;
+}
+
+    if (note.classList[0]!='oxeia') {
+
+    const font = note.classList[0];
+    const character = note.firstChild.textContent.trim();
+    const key = `${font}|${character}`
+
+    const replacement = oxeiaMapings.get(key);
+
+    if (replacement === undefined) {
+        console.warn(`Character cannot be converted: ${key}`);
+        return false;
+    }
+
+        note.classList.replace(font, "oxeia");
+        note.firstChild.textContent = replacement;
+    }
+    else {
+
+   const reverse = reverseOxeiaMapings.get(note.firstChild.textContent);
+
+    if (!reverse) {
+        console.warn(`Character cannot be converted back: ${note.firstChild.textContent}`);
+    return;
+    }
+
+    const [font, character] = reverse;
+    note.classList.replace("oxeia", font);
+    note.firstChild.textContent = character;
+    }
+}
+
 function addTextboxIDs(){
     textboxes=document.querySelectorAll('.text')
     textboxes.forEach((textbox, index) => {
@@ -370,15 +531,41 @@ function removeAccents(){
     withAccents = document.getElementById('textInputArea').value;
     removedAccents = withAccents.split('').filter(char => !/['12@~]/.test(char)).join('');
 
-    characterToReplace      = ['$', '%', '0', '4', '5', 'E', 'H', 'h', 'S', 's',  'Y', 'y', 'A', 'a', 'e', '|', 'ѓ', 'ќ', 'Ќ', 'ћ', 'Ћ', 'ё', '±', 'Ё', 'џ',  'Ј', 'ј', 'j', 'J']
-    characterToReplaceWith  = ['#', '#', 'о', '3', '3', 'е', 'њ', 'ы', 'z', 'z', 'у', 'у', 'а', 'а', 'е', 'z3', 'а3', 'ў', 'Ў', 'я', 'Я', 'э', 'я', 'э', 'o', 'І', 'i3', 'і', 'ї']
+const characterMap = new Map([
+    ['$', '#'],
+    ['%', '#'],
+    ['0', 'о'],
+    ['4', '3'],
+    ['5', '3'],
+    ['E', 'е'],
+    ['H', 'њ'],
+    ['h', 'ы'],
+    ['S', 'z'],
+    ['s', 'z'],
+    ['Y', 'у'],
+    ['y', 'у'],
+    ['A', 'а'],
+    ['a', 'а'],
+    ['e', 'е'],
+    ['|', 'z3'],
+    ['ѓ', 'а3'],
+    ['ќ', 'ў'],
+    ['Ќ', 'Ў'],
+    ['ћ', 'я'],
+    ['Ћ', 'Я'],
+    ['ё', 'э'],
+    ['±', 'я'],
+    ['Ё', 'э'],
+    ['џ', 'o'],
+    ['Ј', 'І'],
+    ['ј', 'i3'],
+    ['j', 'і'],
+    ['J', 'ї']
+]);
 
-    
-    for(let i=0; i<characterToReplace.length; i++){
-
-        removedAccents = removedAccents.replaceAll( characterToReplace[i], characterToReplaceWith[i]  );
-    }
-    
+for (const [from, to] of characterMap) {
+    removedAccents = removedAccents.replaceAll(from, to);
+}
 
     document.getElementById('textInputArea').value=removedAccents;    
 }
