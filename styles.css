@@ -56,6 +56,7 @@
       bottom: 15pt;
       font-size: 16pt;
       font-family: 'Irmologion';
+      z-index: 10;
 }     
 
 .text:hover{
@@ -399,10 +400,9 @@ font-size: 15pt;
 
 
 
-#neumesInportArea{
+#neumesImportArea{
    width: 90mm;
    height: 120mm;
-
 }
 
 .letterButton{

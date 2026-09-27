@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts/main.js" defer></script>
+    <script type="module" src="scripts/main.js" defer></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
@@ -591,8 +589,9 @@
     
             
         <div class="importNeumes Button-menu">
-          <textarea id="neumesInportArea"></textarea>
-          <button onclick="ImportNeumes()">Import</button>
+          
+          <textarea id="neumesImportArea"></textarea> 
+          <button onclick="importNeumes()">Import</button>
           <input type="file" id="Upload" onchange="readUpload()">
           
 
@@ -645,6 +644,7 @@
           <button class="letterButton" onclick="copyToClipboard('і')">і</button>
           <button class="letterButton" onclick="copyToClipboard('<')"><</button>
           <button class="letterButton" onclick="copyToClipboard('8')">8</button>
+          <button class="letterButton" onclick="copyToClipboard('’')">’</button>
         </details>
       
         </div>
@@ -827,7 +827,7 @@
         </div>  
         
         <div class="footer-description"> <br> A Free Online Neumatic Music Sheet Editor for Byzantine Chants in Church Slavonic. </div>
-        <p>Version: 1.4.1 Live (Jul 2026)</p>
+        <p id="version"></p>
       </div>
     
       <div class="footer-center">

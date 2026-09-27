@@ -1,754 +1,73 @@
+import { state } from './state.js';
+import { paperContent, paper, paperPrint, textBoxFontSize, textInputArea, neumesimportarea, version } from './dom.js';
+import { addNoteWithText, addNoteNoText, addFtora, addMartiria, addIson, addTemporalNote, makeOxeia, deleteNote, choose, moveDown, moveLeft, moveRight, moveUp, newSpace, newLine, getNextNote, getPreviousNote} from './notes.js'
+import { addText, getTextFromNeumes, removeAccents, addAccentsBack, removePunctuation, copyToClipboard} from './lyrics.js'
+import { importNeumes, exportNotes, savePDF, readUpload} from './exportandimport.js'
+import { turnOffFooter, addTextBox, newLineAtStart, deleteNewLineAtStart, addTitleMartira, activetePageNumbers, updatePageNumber, justify} from './pagesetup.js'
+import { activeteNoteButtons, showTextBoxMenu } from './gui.js' 
+import { DemoMode } from './demo.js'
+
 function init(){
-    version = '1.3.1'
-    document.getElementById('textInputArea').value=""
-    document.getElementById('neumesInportArea').value=""
+    
+    textInputArea.value=""
+    neumesimportarea.value=""
     document.getElementById('pageNumberInput').value="1"
     document.getElementById('Upload').value=''
-    document.getElementById('textBoxFontSize').value = '16'
+    textBoxFontSize.value = '16'
 
-    countTextNote = 0;
+    paperPrint.addEventListener('click', ()=> {document.getElementById('print').focus()})
 
-    paperContent = document.getElementById('paperContent');
-    paper = document.getElementById('paper');
-    paperPrint = document.getElementById('print');
-    
+    state.countTextNote = 0;
+
     activeteNoteButtons(' ');
 
     paperContent.innerHTML=""
-    countTextNote = 0;
-    footerOn = true;
-}
 
-function addNoteWithText(note, font){
 
-    newText = document.createElement('div')
-    newText.classList.add("text")
-    newText.innerText=''
-    newText.setAttribute("onclick", "event.stopPropagation(); choose(this)")
+    paperContent.addEventListener("click", (event) => {
+        const ob = event.target.closest(".note, .text, #startMartiria")
 
-    newNote = document.createElement('div')
-    newNote.setAttribute("onclick", "choose(this)")
-    newNote.innerHTML=note
-    newNote.classList.add(font, 'note', 'withText')
-    // newNote.classList.add('note')
-    // newNote.classList.add('withText')
-
-    newNote.appendChild(newText)
-
-    const selected = document.querySelector('.note.selected')
-        if (selected){
-            selected.after(newNote)
+        if (!ob){
+            return;
         }
-        else {
-            paperContent.appendChild(newNote)   
-        }
-    addTextboxIDs()
-}
 
-
-function addNoteNoText(note, font){
-
-    newNote = document.createElement('div')
-    newNote.innerHTML=note
-    newNote.classList.add(font)
-    newNote.classList.add('note')
-    newNote.setAttribute("onclick", "choose(this)")
-    
-    const selected = document.querySelector('.note.selected')
-        if (selected){
-            selected.after(newNote)
-        }
-        else {
-           paperContent.appendChild(newNote)   
-        }  
-    addTextboxIDs()    
-}
-
-
-function addIson(note){
-    
-    newNote = document.createElement('div')
-    newNote.innerHTML=note
-    newNote.classList.add('special2', 'note', 'red', 'ison')
-    // newNote.classList.add('note')
-    // newNote.classList.add('red')
-    // newNote.classList.add('ison')
-      
-    const selected = document.querySelector('.note.selected')
-        if (selected){
-            selected.after(newNote)
-        }
-        else {
-           paperContent.appendChild(newNote)   
-        }  
-    addTextboxIDs()    
-}
-
-
-function addMartiria(note, font){
-    
-    newMartiria = document.createElement('div')
-    newMartiria.innerHTML=note
-    newMartiria.classList.add(font, 'red', 'note')
-    // newMartiria.classList.add('red')
-    // newMartiria.classList.add('note')
-    newMartiria.setAttribute("onclick", "choose(this)")
-       
-    const selected = document.querySelector('.note.selected')
-        if (selected){
-            selected.after(newMartiria)
-        }
-        else {
-           paperContent.appendChild(newMartiria)   
-        }  
-    addTextboxIDs()       
-}
-
-
-function addTemporalNote(note, font){
-
-    const selected = document.querySelector('.note.selected')
-        if (selected){
-            parentNote = selected;
-            
-        }
-        else {
-           parentNote = paperContent.lastChild;   
-        }  
-
-    
-    
-    newNote = document.createElement('span')
-    newNote.innerHTML=note
-    newNote.classList.add(font)
-    newNote.classList.add('note')
-    
-    parentNote.insertBefore(newNote, parentNote.lastElementChild)
-}
-
-
-function addFtora(note, font='ftora'){
-
-    const selected = document.querySelector('.note.selected')
-        if (selected){
-            parentNote = selected;
-            
-        }
-        else {
-           parentNote = paperContent.lastChild;   
-        }  
-        
-        newNote = document.createElement('span')
-        newNote.innerHTML=note
-        newNote.classList.add(font)
-                
-        parentNote.insertBefore(newNote, parentNote.lastChild)       
-}
-
-function makeOxeia(){
-
-    const oxeiaMapings = new Map([
-    ["psaltica|1", "1"],
-    ["psaltica|2", "2"],
-    ["psaltica|3", "3"],
-    ["psaltica|4", "4"],
-    ["psaltica|5", "5"],
-    ["psaltica|6", "6"],
-    ["psaltica|7", "7"],
-    ["psaltica|8", "8"],
-    ["psaltica|9", "9"],
-    ["special|0", "I"],
-    ["special|1", "W"],
-    ["special|2", "E"],
-    ["psaltica|0", "I"],
-    ["special2|9", "I"],
-    ["psaltica|~", "~"],
-    ["psaltica|!", "!"],
-    ["psaltica|I", "!"],
-    ["special|\\", "`"],
-    ["psaltica|-", "-"],
-    ["psaltica|@", "@"],
-    ["psaltica|#", "#"],
-    ["psaltica|$", "$"],
-    ["psaltica|P", "P"],
-    ["psaltica|o", "o"],
-    ["psaltica|O", "O"],
-    ["psaltica|l", "l"],
-    ["psaltica|L", "L"],
-    ["psaltica|=", "="],
-    ["special|u", "%"],
-    ["special|i", "^"],
-    ["psaltica|U", "U"],
-    ["psaltica|Y", "Y"],
-    ["psaltica|T", "T"],
-    ["psaltica|R", "R"],
-    ["special|t", "&"],
-    ["special|5", "*"],
-    ["special|8", "("],
-    ["special|9", "j"],
-    ["special|T", "J"],
-    ["special|Y", "º"], // Alt+0186
-    ["special|y", "_"],
-    ["psaltica|_", "\\"],
-    ["psaltica|s", "s"],
-    ["psaltica|S", "S"],
-    ["psaltica|x", "x"],
-    ["psaltica|X", "X"],
-    ["psaltica|h", "h"],
-    ["psaltica|H", "H"],
-    ["psaltica|d", "d"],
-    ["psaltica|D", "D"],
-    ["psaltica|f", "f"],
-    ["psaltica|F", "F"],
-    ["psaltica|g", "g"],
-    ["psaltica|G", "G"],
-    ["psaltica|{", "{"],
-    ["psaltica|[", "["],
-    ["psaltica|]", "]"],
-    ["psaltica|'", "'"]
-]);
-
-const reverseOxeiaMapings = new Map([
-    ["1", ["psaltica", "1"]],
-    ["2", ["psaltica", "2"]],
-    ["3", ["psaltica", "3"]],
-    ["4", ["psaltica", "4"]],
-    ["5", ["psaltica", "5"]],
-    ["6", ["psaltica", "6"]],
-    ["7", ["psaltica", "7"]],
-    ["8", ["psaltica", "8"]],
-    ["9", ["psaltica", "9"]],
-    ["Q", ["special", "0"]],
-    ["W", ["special", "1"]],
-    ["E", ["special", "2"]],
-    // Ambiguous: could be psaltica|0, special|0 or special2|9.
-    // Chose psaltica|0 because it is the primary note font.
-    ["I", ["psaltica", "0"]],
-    ["~", ["psaltica", "~"]],
-    ["!", ["psaltica", "!"]],
-    ["`", ["special", "\\"]],
-    ["-", ["psaltica", "-"]],
-    ["@", ["psaltica", "@"]],
-    ["#", ["psaltica", "#"]],
-    ["$", ["psaltica", "$"]],
-    ["P", ["psaltica", "P"]],
-    ["o", ["psaltica", "o"]],
-    ["O", ["psaltica", "O"]],
-    ["l", ["psaltica", "l"]],
-    ["L", ["psaltica", "L"]],
-    ["=", ["psaltica", "="]],
-    ["%", ["special", "u"]],
-    ["^", ["special", "i"]],
-    ["U", ["psaltica", "U"]],
-    ["Y", ["psaltica", "Y"]],
-    ["T", ["psaltica", "T"]],
-    ["R", ["psaltica", "R"]],
-    ["&", ["special", "t"]],
-    ["*", ["special", "5"]],
-    ["(", ["special", "8"]],
-    ["j", ["special", "9"]],
-    ["J", ["special", "T"]],
-    ["º", ["special", "Y"]],
-    ["_", ["special", "y"]],
-    ["\\", ["psaltica", "_"]],
-    ["s", ["psaltica", "s"]],
-    ["S", ["psaltica", "S"]],
-    ["x", ["psaltica", "x"]],
-    ["X", ["psaltica", "X"]],
-    ["h", ["psaltica", "h"]],
-    ["H", ["psaltica", "H"]],
-    ["d", ["psaltica", "d"]],
-    ["D", ["psaltica", "D"]],
-    ["f", ["psaltica", "f"]],
-    ["F", ["psaltica", "F"]],
-    ["g", ["psaltica", "g"]],
-    ["G", ["psaltica", "G"]],
-    ["{", ["psaltica", "{"]],
-    ["[", ["psaltica", "["]],
-    ["]", ["psaltica", "]"]],
-    ["'", ["psaltica", "'"]]
-]);
-
-    note = document.querySelector('.note.selected')
-    if (!note) {
-    console.warn("No note selected.");
-    return;
-}
-
-    if (note.classList[0]!='oxeia') {
-
-    const font = note.classList[0];
-    const character = note.firstChild.textContent.trim();
-    const key = `${font}|${character}`
-
-    const replacement = oxeiaMapings.get(key);
-
-    if (replacement === undefined) {
-        console.warn(`Character cannot be converted: ${key}`);
-        return false;
-    }
-
-        note.classList.replace(font, "oxeia");
-        note.firstChild.textContent = replacement;
-    }
-    else {
-
-   const reverse = reverseOxeiaMapings.get(note.firstChild.textContent);
-
-    if (!reverse) {
-        console.warn(`Character cannot be converted back: ${note.firstChild.textContent}`);
-    return;
-    }
-
-    const [font, character] = reverse;
-    note.classList.replace("oxeia", font);
-    note.firstChild.textContent = character;
-    }
-}
-
-function addTextboxIDs(){
-    textboxes=document.querySelectorAll('.text')
-    textboxes.forEach((textbox, index) => {
-        textbox.id=index
+        choose(ob)
     })
-    countTextNote = textboxes.length
-}
 
-function addText(){
+    version.innerText=state.version;
 
-    textString = document.getElementById('textInputArea').value.replaceAll('\n', " ")
-    textArray = textString.split(" ")
-    textArray = textArray.filter(value => value !=" " && value!="");
+    document.addEventListener('keydown', (event)=>{
     
+   if((event.keyCode === ' ' || event.keyCode==='ArrowRight') &&  document.activeElement == paperPrint) event.preventDefault()
 
-    for (i=0; i<Math.min(countTextNote, textArray.length); i++){
-        
-        noteText = document.getElementById(i.toString());
-        noteText.innerText = textArray[i]
-    }
-}
-
-
-function getTextFromNeumes(){
-
-    textString2 = ''
-    for(i=0; i<countTextNote; i++){
-    
-        textString2 += document.getElementById(i.toString()).innerText + ' ';
-        // textString2 = textString2 + ' ';
-    }
-
-    document.getElementById('textInputArea').value = textString2;
-}
-
-
-function deleteNote(){
-
-    document.querySelector('.note.selected')?.remove()
-    addTextboxIDs()
-}
-
-
-function newSpace(){
-    
-    whiteSpace=document.createElement('div')
-    whiteSpace.classList.add('white');
-    paperContent.appendChild(whiteSpace)
-}
-
-function addTextBox(){
-
-    textBoxFont = document.getElementById('textBoxFont').value
-    textBoxFontSize = document.getElementById('textBoxFontSize').value
-
-    textBox=document.createElement('div')
-    textBox.classList.add('textBox', 'textBox-selected');
-
-    textBox.setAttribute('contenteditable', 'true');
-    textBox.setAttribute('onclick', "event.stopPropagation(); this.focus(); ")
-    textBox.addEventListener('auxclick', function (event) {
-        this.classList.add('textBox-selected');
-      });
-
-    if (textBoxFont=="MKD"){
-        textBox.style.fontFamily = 'Calibri';
-    }      
-    else if (textBoxFont=="CSL"){
-        textBox.style.fontFamily = 'Irmologion';
-    }    
-    
-    textBox.style.fontSize = textBoxFontSize + 'pt' 
-
-    if (document.getElementById('textBoxRed').checked){
-        textBox.style.color='#ed0000'
-    }
-
-    textBoxPosition = document.getElementById('textBoxPosition').value
-
-    if(textBoxPosition == 'top'){
-        textBox.style.setProperty('top', '0')
-
-    }
-    else if(textBoxPosition == 'mid'){
-        textBox.style.setProperty('top', '350px')
-    }
-    else if(textBoxPosition == 'bottom'){
-        textBox.style.setProperty('top', '850px')
-    }
-
-    if (document.getElementById('twoColumns').checked){
-        textBox.style.setProperty('column-count', '2')
-    }
-
-
-    paperContent.appendChild(textBox)
-
-    
-
-
-}
-
-function newLine(){
-    
-    line=document.createElement('div')
-    line.classList.add('newline');
-   
-    paperContent.appendChild(line)
-}
-
-function newLineAtStart(){
-
-    line=document.createElement('div')
-    line.classList.add('newlineAtStart');
-   
-    paperContent.insertBefore(line, paperContent.firstChild)
-}
-
-function deleteNewLineAtStart(){
-    linesOnTop = document.getElementsByClassName('newLineAtStart');
-    if (linesOnTop.length!=0){
-        linesOnTop[linesOnTop.length-1].remove()
-    }
-}
-
-function exportNotes(){
-
-    activeteNoteButtons('importNeumes');
-    document.getElementById('neumesInportArea').value = paperContent.innerHTML.replaceAll('></', '>\n</');
-}
-
-function savePDF(){
-
-    isJustified = window.getComputedStyle(paperContent).justifyContent == 'space-between';
-
-    const options = {
-        margin:       0,
-        filename:     'content.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 4 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-
-    html2pdf().from(paperContent).set(options).toPdf().get('pdf').then(function(pdf) {
-
-    date_now = new Date().toString().slice(0, -42)
-        const metadata = {
-            title: 'Neumes '+date_now,
-            subject: 'Neumes '+date_now,
-            author: 'NeumesApp Version=' +version + " j=" + isJustified,
-            keywords: paperContent.innerHTML
-        };
-
-        pdf.setProperties(metadata);
-
-        const pageHeight = pdf.internal.pageSize.getHeight();
-        const pageWidth = pdf.internal.pageSize.getWidth();
-
-        if (footerOn) {
-        pdf.setFontSize(8)
-        pdf.setFont('Helvetica', 'italic')
-        pdf.text(
-            "Created using Neumes © (neumes25.github.io/neumes)",
-            pageWidth/2,
-            pageHeight-7,
-            {align:'center'}
-        )
-        }
-        pdf.save();
-    });
-
-}
-
-function ImportNeumes(){ 
-    neumes = document.getElementById('neumesInportArea').value
-    paperContent.innerHTML = ''
-    paperContent.innerHTML = neumes
-
-    addTextboxIDs()
-}
-
-
-function activeteNoteButtons(button){
-    elements = document.getElementsByClassName('Button-menu');
-
-    for (let i=0; i<elements.length; i++){
-
-        elements[i].classList.contains(button) ? elements[i].style.display = 'block' : elements[i].style.display = 'none'       
-    }
-}
-
-
-function addTitleMartira(startingMartiria, position){
-
-    if (document.getElementById("startMartiria") == null ){
-    titleMartiriaPlaceholder = document.createElement('div')
-    titleMartiriaPlaceholder.setAttribute("id", "startMartiria")
-    titleMartiriaPlaceholder.setAttribute("onclick", "choose(this)")
-    titleMartiriaPlaceholder.innerHTML=`<div id="startNote"></div><div id="startTempo"></div>`;
-    paperContent.insertBefore(titleMartiriaPlaceholder, paperContent.firstChild)
-    }
-      
-    possition = document.getElementById(position)
-    possition.innerHTML = startingMartiria;
-}
-
-
-function activetePageNumbers(){
-    numberInput = document.getElementById('pageNumberInput')
-    
-    window.getComputedStyle(numberInput).getPropertyValue('visibility') == 'hidden' ? numberInput.style.setProperty('visibility', 'visible') :  numberInput.style.setProperty('visibility', 'hidden')
-    
-}
-
-function updatePageNumber(value){
-        document.getElementById('pageNumber').innerText = value;
-}
-
-
-function removeAccents(){
-
-    withAccents = document.getElementById('textInputArea').value;
-    removedAccents = withAccents.split('').filter(char => !/['12@~]/.test(char)).join('');
-
-const characterMap = new Map([
-    ['$', '#'],
-    ['%', '#'],
-    ['0', 'о'],
-    ['4', '3'],
-    ['5', '3'],
-    ['E', 'е'],
-    ['H', 'њ'],
-    ['h', 'ы'],
-    ['S', 'z'],
-    ['s', 'z'],
-    ['Y', 'у'],
-    ['y', 'у'],
-    ['A', 'а'],
-    ['a', 'а'],
-    ['e', 'е'],
-    ['|', 'z3'],
-    ['ѓ', 'а3'],
-    ['ќ', 'ў'],
-    ['Ќ', 'Ў'],
-    ['ћ', 'я'],
-    ['Ћ', 'Я'],
-    ['ё', 'э'],
-    ['±', 'я'],
-    ['Ё', 'э'],
-    ['џ', 'o'],
-    ['Ј', 'І'],
-    ['ј', 'i3'],
-    ['j', 'і'],
-    ['J', 'ї']
-]);
-
-for (const [from, to] of characterMap) {
-    removedAccents = removedAccents.replaceAll(from, to);
-}
-
-    document.getElementById('textInputArea').value=removedAccents;    
-}
-
-
-function addAccentsBack(){
-
-    document.getElementById('textInputArea').value = '';
-    document.getElementById('textInputArea').value = withAccents;
-}
-
-function justify(){
-    
-    window.getComputedStyle(paperContent).justifyContent == 'flex-start' ? paperContent.style.justifyContent = 'space-between' : paperContent.style.justifyContent = 'flex-start';   
-}
-  
-async function readUpload(){
-
-    upload = document.getElementById('Upload')
-    const file = upload.files[0]
-
-    const arrayBuffer = await file.arrayBuffer();
-
-    pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
-
-    const {info, metadata} = await pdf.getMetadata();
-    
-    document.getElementById('neumesInportArea').value=info.Keywords
-
-    ImportNeumes()
-
-    console.log(info.Author)
-    
-    if(info.Author.toString().includes('true')){
-        paperContent.style.justifyContent = 'space-between'
-    }
-    else{
-        paperContent.style.justifyContent = 'flex-start'
-    }
-}
-
-function removePunctuation(){
-    withPunctuation = document.getElementById('textInputArea').value;
-    removedPunctuation = withPunctuation.split('').filter(char => !/[,.:;!?*()/]/.test(char)).join('');
-  
-    document.getElementById('textInputArea').value=removedPunctuation;  
-}
-
-function copyToClipboard(value){
-    navigator.clipboard.writeText(value)
-}
-
-function choose(elements){
-    selectedNotes=document.getElementsByClassName("selected");
-    Array.from(selectedNotes).forEach(selectedNote => {
-        
-        selectedNote.classList.remove("selected")
-    });
-    elements.classList.add("selected")
-}
-
-function moveRight(){
-
-    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
-
-    if (selectedElement.length == 0) return;
-        selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) + 1 + 'px';
-}
-
-function moveLeft(){
-    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
-
-    if (selectedElement.length == 0) return;
-        selectedElement[0].style.left = parseInt(window.getComputedStyle(selectedElement[0]).left) - 1 + 'px';
-}
-
-function moveDown(){
-    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
-
-    if (selectedElement.length == 0) return;
-        selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) + 1 + 'px';
-
-}
-
-function moveUp(){
-    selectedElement = document.querySelectorAll('.selected, .textBox-selected');
-
-    if (selectedElement.length == 0) return;
-        selectedElement[0].style.top = parseInt(window.getComputedStyle(selectedElement[0]).top) - 1 + 'px';
-
-}
-
-function turnOffFooter(){
-    footerOn = false;
-}
-
-function showTextBoxMenu(){
-    document.getElementById("textBoxMenu").style.getPropertyValue('display') == 'none' ? document.getElementById("textBoxMenu").style.setProperty('display', 'block') :  document.getElementById("textBoxMenu").style.setProperty('display', 'none')
-}
-
-
-function getNextNote(note){
-
-    if (note.firstElementChild){
-        return note.firstElementChild
-    }
-
-    if(note.nextElementSibling){
-        return note.nextElementSibling
-    }
-
-    let parent = note.parentElement
-
-    while(parent && parent != paper){
-
-        if (parent.nextElementSibling){
-            return parent.nextElementSibling
-        }
-
-        parent = parent.parentElement
-    }
-
-    return null
-}
-
-function getPreviousNote(el) {
-
-    if (el.previousElementSibling) {
-
-        let prev = el.previousElementSibling;
-
-        while (prev.lastElementChild) {
-            prev = prev.lastElementChild;
-        }
-
-        return prev;
-    }
-
-    return el.parentElement;
-}
-
-init();
-
-fontSizeDisplay = document.getElementById('fontSizeValue');
-document.getElementById('textBoxFontSize').addEventListener('input', ()=>{fontSizeDisplay.textContent = document.getElementById('textBoxFontSize').value})
-
-
-document.getElementById('print').addEventListener('click', ()=> {document.getElementById('print').focus()})
-
-document.addEventListener('keydown', (event)=>{
-
-    console.log(event.key.toString())
-    
-   if((event.keyCode === 32 || event.keyCode===39) &&  document.activeElement == document.getElementById('print')) event.preventDefault()
-
-   if (document.activeElement !== document.getElementById('print')) return
+   if (document.activeElement !== paperPrint) return;
     
     if (event.key == 'Tab'){
 
         event.preventDefault()
 
-        selectedNote = document.getElementsByClassName('selected')[0]
+        const selectedNote = document.getElementsByClassName('selected')[0]
 
         if(!selectedNote) return
 
-        nextNote = event.shiftKey ? getPreviousNote(selectedNote) : getNextNote(selectedNote)
+        const nextNote = event.shiftKey ? getPreviousNote(selectedNote) : getNextNote(selectedNote)
 
         selectedNote.classList.remove('selected')
         nextNote.classList.add('selected')
     }
    
-    document.getElementsByName(event.key.toString())[0]?.click()
+    document.getElementsByName(event.key)[0]?.click()
 
-
+    const selected = document.getElementsByClassName("selected");
 
     if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key)) event.preventDefault()
-    if (event.key == 'ArrowUp' && document.getElementsByClassName("selected") !=0)  moveUp()
+    if (event.key == 'ArrowUp' &&  selected)  moveUp()
 
-    if (event.key == 'ArrowDown' && document.getElementsByClassName("selected") !=0) moveDown()
+    if (event.key == 'ArrowDown' && selected) moveDown()
     
-    if (event.key == 'ArrowLeft' && document.getElementsByClassName("selected") !=0) moveLeft()
+    if (event.key == 'ArrowLeft' && selected) moveLeft()
 
-    if (event.key == 'ArrowRight' && document.getElementsByClassName("selected") !=0) moveRight()
+    if (event.key == 'ArrowRight' && selected) moveRight()
     
     if (event.key == "Escape") {
         document.getElementsByClassName("selected")[0]?.classList.remove("selected")
@@ -756,45 +75,44 @@ document.addEventListener('keydown', (event)=>{
     }
 })
 
+textBoxFontSize.addEventListener('input', ()=>{document.getElementById('fontSizeValue').textContent = textBoxFontSize.value})
+
+}
+
+init();
 
 
-// For Tutorial videos
+ 
+window.addNoteWithText = addNoteWithText;
+window.addNoteNoText = addNoteNoText;
+window.addIson = addIson;
+window.addMartiria = addMartiria;
+window.addTemporalNote =addTemporalNote;
+window.addFtora = addFtora;
+window.makeOxeia = makeOxeia;
+window.exportNotes = exportNotes;
+window.importNeumes = importNeumes;
+window.deleteNote = deleteNote;
+window.activeteNoteButtons = activeteNoteButtons;
+window.addText = addText;
+window.getTextFromNeumes = getTextFromNeumes;
+window.newSpace = newSpace;
+window.addTextBox = addTextBox;
+window.addTitleMartira = addTitleMartira;
+window.activetePageNumbers = activetePageNumbers;
+window.updatePageNumber = updatePageNumber;
+window.removeAccents = removeAccents;
+window.addAccentsBack = addAccentsBack;
+window.justify = justify;
+window.readUpload = readUpload;
+window.removePunctuation = removePunctuation;
+window.copyToClipboard = copyToClipboard;
+window.choose = choose;
+window.showTextBoxMenu = showTextBoxMenu;
+window.newLine = newLine;
+window.newLineAtStart = newLineAtStart;
+window.deleteNewLineAtStart  = deleteNewLineAtStart;
+window.savePDF = savePDF;
+window.DemoMode = DemoMode;
+window.init = init;
 
-const DemoMode = {
-    enabled: false,
-  
-    enable() {
-      this.enabled = true;
-      document.body.classList.add("demo-mode");
-      console.log("[DemoMode] ENABLED");
-    },
-  
-    disable() {
-      this.enabled = false;
-      document.body.classList.remove("demo-mode");
-      console.log("[DemoMode] DISABLED");
-    },
-  
-    toggle() {
-      this.enabled ? this.disable() : this.enable();
-    }
-  };
-  
-  // Expose to browser console
-  window.DemoMode = DemoMode;
-  
-  document.addEventListener("click", (e) => {
-    if (!DemoMode.enabled) return;
-  
-    const button = e.target.closest("button");
-    if (!button || button.disabled) return;
-  
-    button.classList.remove("flash");
-    void button.offsetWidth;
-    button.classList.add("flash");
-  
-    setTimeout(() => {
-      button.classList.remove("flash");
-    }, 600);
-  });
-  
