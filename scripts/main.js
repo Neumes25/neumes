@@ -14,14 +14,14 @@ function init(){
     document.getElementById('pageNumberInput').value="1"
     document.getElementById('Upload').value=''
     textBoxFontSize.value = '16'
+    version.innerText=state.version;
+    state.countTextNote = 0;
+    activeteNoteButtons(' ');
+    paperContent.innerHTML=""
+}
+
 
     paperPrint.addEventListener('click', ()=> {document.getElementById('print').focus()})
-
-    state.countTextNote = 0;
-
-    activeteNoteButtons(' ');
-
-    paperContent.innerHTML=""
 
 
     paperContent.addEventListener("click", (event) => {
@@ -33,8 +33,6 @@ function init(){
 
         choose(ob)
     })
-
-    version.innerText=state.version;
 
     document.addEventListener('keydown', (event)=>{
     
@@ -77,12 +75,11 @@ function init(){
 
 textBoxFontSize.addEventListener('input', ()=>{document.getElementById('fontSizeValue').textContent = textBoxFontSize.value})
 
-}
 
 init();
 
 
- 
+window.state = state 
 window.addNoteWithText = addNoteWithText;
 window.addNoteNoText = addNoteNoText;
 window.addIson = addIson;
@@ -115,4 +112,5 @@ window.deleteNewLineAtStart  = deleteNewLineAtStart;
 window.savePDF = savePDF;
 window.DemoMode = DemoMode;
 window.init = init;
+window.turnOffFooter = turnOffFooter;
 

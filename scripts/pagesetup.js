@@ -1,3 +1,5 @@
+import {state} from './state.js'
+
 export function addTextBox(){
 
     const textBoxFont = document.getElementById('textBoxFont').value
@@ -67,7 +69,7 @@ export function newLineAtStart(){
 }
 
 export function deleteNewLineAtStart(){
-    const linesOnTop = document.getElementsByClassName('newLineAtStart');
+    const linesOnTop = document.getElementsByClassName('newlineAtStart');
     if (linesOnTop.length!=0){
         linesOnTop[linesOnTop.length-1].remove()
     }
